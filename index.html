@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Linnade kauguste mäng · Tallinnast</title>
+<title>Kui kaugel see linn Tallinnast on?</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -31,22 +31,22 @@ body{
 /* HEADER */
 .hdr{width:100%;max-width:1120px;display:flex;justify-content:space-between;
   align-items:center;margin-bottom:14px}
-.hdr h1{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.16em;
+.hdr h1{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--gold);font-weight:900}
 .score-bar{display:flex;gap:12px;align-items:center}
 .sb{text-align:center;background:var(--surface);border:1px solid var(--border);
-  border-radius:7px;padding:5px 12px}
-.sb .v{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--gold)}
-.sb .l{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+  border-radius:7px;padding:7px 16px}
+.sb .v{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold)}
+.sb .l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
 /* LAYOUT */
 .game{display:flex;gap:14px;width:100%;max-width:1120px;align-items:flex-start}
 
 /* CARD PANEL */
-.card-panel{flex:0 0 220px;display:flex;flex-direction:column;gap:10px}
+.card-panel{flex:0 0 230px;display:flex;flex-direction:column;gap:10px}
 
 /* CARD */
-.card-scene{width:200px;height:300px;perspective:1200px;margin:0 auto;cursor:default}
+.card-scene{width:210px;height:320px;perspective:1200px;margin:0 auto;cursor:default}
 .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;
   transition:transform .65s cubic-bezier(.4,0,.2,1)}
 .card-inner.flipped{transform:rotateY(180deg)}
@@ -61,19 +61,19 @@ body{
 .card-front::before{content:'';position:absolute;inset:0;border-radius:11px;
   background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(0,0,0,.012) 14px,rgba(0,0,0,.012) 15px);
   pointer-events:none}
-.cf-num{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#8A7050;
+.cf-num{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A7050;
   margin-bottom:10px;display:flex;justify-content:space-between}
 .cf-divider{border:none;border-top:1px solid rgba(201,168,76,.3);margin:8px 0}
 .cf-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;
   color:#1A1005;line-height:1.1;margin-bottom:4px;word-break:break-word}
 .cf-name.sm{font-size:22px}.cf-name.xs{font-size:18px}
-.cf-q{font-size:10px;color:#7A6040;line-height:1.5;margin-top:auto;
+.cf-q{font-size:12px;color:#7A6040;line-height:1.5;margin-top:auto;
   border-top:1px solid rgba(201,168,76,.25);padding-top:8px}
-.cf-q strong{display:block;font-size:12px;color:#3A2810;margin-bottom:2px}
+.cf-q strong{display:block;font-size:14px;color:#3A2810;margin-bottom:3px}
 .hint-btn{
   margin-top:8px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);
-  color:#7A5A20;font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:.1em;
-  text-transform:uppercase;border-radius:5px;padding:5px 8px;cursor:pointer;
+  color:#7A5A20;font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;border-radius:5px;padding:7px 10px;cursor:pointer;
   transition:all .18s;width:100%;
 }
 .hint-btn:hover{background:rgba(201,168,76,.22);color:#3A2810}
@@ -85,19 +85,19 @@ body{
   display:flex;flex-direction:column;padding:14px 13px 11px;
   border:2.5px solid transparent;
 }
-.cb-region{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;
-  opacity:.7;margin-bottom:8px}
-.cb-dist{font-family:'Playfair Display',serif;font-size:46px;font-weight:900;
+.cb-region{font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  opacity:.7;margin-bottom:6px}
+.cb-dist{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;
   line-height:1;margin-bottom:1px}
-.cb-dist-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+.cb-dist-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
 .cb-divider{border:none;border-top:1px solid rgba(255,255,255,.15);margin:9px 0 7px}
-.cb-row{display:flex;justify-content:space-between;margin-bottom:4px;font-size:11px}
-.cb-lbl{opacity:.55;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
-.cb-val{font-weight:700;font-size:12px}
+.cb-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:13px}
+.cb-lbl{opacity:.55;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.cb-val{font-weight:700;font-size:14px}
 .cb-near{margin-top:7px;border-top:1px solid rgba(255,255,255,.12);padding-top:7px}
-.cb-near-ttl{font-size:8px;letter-spacing:.18em;text-transform:uppercase;opacity:.45;margin-bottom:5px}
-.cb-near-row{display:flex;justify-content:space-between;font-size:10px;
-  padding:2px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.cb-near-ttl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.45;margin-bottom:5px}
+.cb-near-row{display:flex;justify-content:space-between;font-size:12px;
+  padding:3px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .cb-near-row:last-child{border-bottom:none}
 .cb-near-name{opacity:.75}
 .cb-near-d{font-weight:700;opacity:.85}
@@ -109,15 +109,15 @@ body{
   display:none;
 }
 .rb-pts{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--gold)}
-.rb-max{font-size:10px;color:var(--muted)}
-.rb-detail{font-size:10px;color:var(--text);line-height:1.7;margin-top:4px}
+.rb-max{font-size:12px;color:var(--muted)}
+.rb-detail{font-size:12px;color:var(--text);line-height:1.8;margin-top:6px}
 .ok{color:#4ade80}.adj{color:#facc15}.bad{color:#f87171}
 
 /* BUTTONS */
 .action-btn{
   width:100%;border:1.5px solid var(--goldd);background:transparent;
-  color:var(--gold);font-family:'Courier Prime',monospace;font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;border-radius:8px;padding:10px;
+  color:var(--gold);font-family:'Courier Prime',monospace;font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;border-radius:8px;padding:12px;
   cursor:pointer;transition:all .2s;display:none;
 }
 .action-btn:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
@@ -129,10 +129,10 @@ body{
   background:var(--surface);border:1px solid var(--border);border-radius:8px;
   padding:10px 12px;display:none;
 }
-.hd-ttl{font-size:8px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:7px}
+.hd-ttl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px}
 .hd-row{display:flex;justify-content:space-between;align-items:baseline;
-  padding:3px 0;border-bottom:1px solid var(--border);font-size:11px}
+  padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}
 .hd-row:last-child{border-bottom:none}
 .hd-name{color:var(--text)}
 .hd-dist{color:var(--gold);font-weight:700}
@@ -142,9 +142,9 @@ body{
   background:var(--surface);border:1px solid var(--goldd);border-radius:12px;
   padding:22px;text-align:center;width:100%;display:none;
 }
-.go-h{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:6px}
+.go-h{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);margin-bottom:8px}
 .go-s{font-family:'Playfair Display',serif;font-size:54px;font-weight:900;color:var(--gold2,var(--gold))}
-.go-m{font-size:11px;color:var(--muted);margin-bottom:14px}
+.go-m{font-size:13px;color:var(--muted);margin-bottom:14px}
 .go-r{background:var(--gold);color:#0a1520;border:none;border-radius:7px;
   padding:10px 24px;font-family:'Courier Prime',monospace;font-weight:700;font-size:12px;
   letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
@@ -152,8 +152,8 @@ body{
 
 /* BOARD PANEL */
 .board-panel{flex:1;min-width:0}
-.board-hint{font-size:10px;color:var(--muted);text-align:center;margin-bottom:8px;
-  letter-spacing:.1em}
+.board-hint{font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;
+  letter-spacing:.06em}
 
 /* BAR ROWS */
 .bar-row{
@@ -166,11 +166,11 @@ body{
   display:flex;align-items:center;justify-content:space-between;
   padding:5px 10px;
 }
-.bar-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.bar-dist-range{font-size:9px;opacity:.5;letter-spacing:.06em}
+.bar-label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.bar-dist-range{font-size:11px;opacity:.5;letter-spacing:.04em}
 
 .bar-track{
-  position:relative;height:54px;cursor:crosshair;
+  position:relative;height:60px;cursor:crosshair;
   margin:0 10px 8px;border-radius:4px;
   background:rgba(0,0,0,.3);
   border:1px solid rgba(255,255,255,.06);
@@ -180,23 +180,23 @@ body{
 /* Tick marks */
 .bar-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.07);pointer-events:none}
 .bar-tick-lbl{position:absolute;bottom:-1px;transform:translateX(-50%);
-  font-size:7px;color:rgba(255,255,255,.2);white-space:nowrap;pointer-events:none}
+  font-size:9px;color:rgba(255,255,255,.25);white-space:nowrap;pointer-events:none}
 .bar-hover-line{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.25);
   pointer-events:none;opacity:0;transition:opacity .1s}
-.bar-hover-dist{position:absolute;bottom:2px;font-size:8px;
-  background:rgba(0,0,0,.7);padding:1px 4px;border-radius:2px;
-  color:rgba(255,255,255,.5);pointer-events:none;transform:translateX(-50%)}
+.bar-hover-dist{position:absolute;bottom:2px;font-size:11px;
+  background:rgba(0,0,0,.8);padding:2px 6px;border-radius:3px;
+  color:rgba(255,255,255,.7);pointer-events:none;transform:translateX(-50%)}
 
 /* Markers on bar */
 .marker{position:absolute;top:50%;transform:translate(-50%,-50%);
   display:flex;flex-direction:column;align-items:center;pointer-events:none}
-.marker-dot{width:10px;height:10px;border-radius:50%;border:2px solid rgba(0,0,0,.4)}
-.marker-lbl{font-size:7px;white-space:nowrap;margin-top:2px;
-  background:rgba(0,0,0,.65);padding:1px 3px;border-radius:2px;
-  max-width:60px;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.marker-dot{width:12px;height:12px;border-radius:50%;border:2px solid rgba(0,0,0,.4)}
+.marker-lbl{font-size:9px;white-space:nowrap;margin-top:2px;
+  background:rgba(0,0,0,.75);padding:2px 4px;border-radius:2px;
+  max-width:72px;overflow:hidden;text-overflow:ellipsis;text-align:center}
 .marker.guess .marker-dot{background:rgba(255,255,255,.4);border-color:rgba(255,255,255,.2)}
 .marker.guess .marker-lbl{color:rgba(255,255,255,.5)}
-.marker.correct .marker-dot{width:13px;height:13px;border-width:2.5px}
+.marker.correct .marker-dot{width:16px;height:16px;border-width:2.5px}
 .marker.correct .marker-lbl{font-weight:700}
 .marker.hint-mk .marker-dot{width:7px;height:7px;background:rgba(255,255,255,.15);
   border:1.5px dashed rgba(255,255,255,.25)}
@@ -216,7 +216,7 @@ body{
   border:1.5px solid rgba(255,255,255,.35);background:rgba(30,46,60,.9);
   pointer-events:none;z-index:5;
 }
-.pc-name{font-size:7px;font-weight:700;color:rgba(255,255,255,.75);
+.pc-name{font-size:9px;font-weight:700;color:rgba(255,255,255,.85);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc-q{font-size:8px;color:rgba(255,255,255,.35)}
 
@@ -266,7 +266,7 @@ body{
 <body>
 
 <div class="hdr">
-  <h1>Kaugustemäng · Tallinnast</h1>
+  <h1>Kui kaugel see linn Tallinnast on?</h1>
   <div class="score-bar">
     <div class="sb"><div class="v" id="s-pts">0</div><div class="l">Punktid</div></div>
     <div class="sb"><div class="v" id="s-done">0</div><div class="l">Mängitud</div></div>
@@ -275,7 +275,9 @@ body{
 </div>
 
 <div class="game" id="game">
+  <!-- LEFT: card panel -->
   <div class="card-panel">
+    <!-- Kaart -->
     <div class="card-scene">
       <div class="card-inner" id="card-inner">
         <div class="card-face card-front" id="card-front">
@@ -294,7 +296,7 @@ body{
         <div class="card-face card-back" id="card-back">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
           <div class="cb-name" id="cb-name" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;opacity:.85;letter-spacing:.03em">—</div>
-          <div id="cb-flag" style="font-size:28px;line-height:1;margin-top:-2px">🏳</div>
+          <img id="cb-flag" src="" width="36" height="24" style="border-radius:3px;object-fit:cover;margin-top:1px;box-shadow:0 1px 4px rgba(0,0,0,.4)" alt="">
         </div>
           <div class="cb-region" id="cb-region">—</div>
           <div class="cb-dist" id="cb-dist">—</div>
@@ -310,20 +312,24 @@ body{
       </div>
     </div>
 
+    <!-- Vihjed -->
     <div class="hint-display" id="hint-display">
       <div class="hd-ttl" id="hd-ttl">Kaugus kaardilinnast</div>
       <div id="hd-rows"></div>
     </div>
 
+    <!-- Tulemus -->
     <div class="result-badge" id="result-badge">
       <div class="rb-pts" id="rb-pts">0</div>
       <div class="rb-max">/ 6 punkti</div>
       <div class="rb-detail" id="rb-detail"></div>
     </div>
 
+    <!-- Nupp -->
     <button class="action-btn primary" id="confirm-btn" onclick="confirmGuess()">✓ Kinnita asukoht</button>
     <button class="action-btn" id="next-btn" onclick="nextCard()">Järgmine kaart →</button>
 
+    <!-- Gameover -->
     <div class="gameover" id="gameover">
       <div class="go-h">Mäng läbi!</div>
       <div class="go-s" id="go-s">0</div>
@@ -332,6 +338,7 @@ body{
     </div>
   </div>
 
+  <!-- RIGHT: board -->
   <div class="board-panel">
     <div class="board-hint" id="board-hint">Klõpsa ribal → vali maailmajagu ja kaugus</div>
     <div id="board"></div>
@@ -341,7 +348,7 @@ body{
 <div class="tut" id="tut">
   <div class="tut-box">
     <h2>Kaugustemäng</h2>
-    <p>Kaardil on linna nimi. Sinu ülesanne: asetada see linn <b>õigesse maailmajakku</b> ja <b>õigele kaugusele</b> Tallinnast.</p>
+    <p>Kaardil on linna nimi. Sinu ülesanne: asetada see linn <b>õigesse maailmajaosse</b> ja <b>õigele kaugusele</b> Tallinnast.</p>
     <div class="tut-steps">
       <span>1.</span> Loe linna nime (esikülg)<br>
       <span>2.</span> Vajad vihjet? Ava 3 võrdluslinna kaugused<br>
@@ -355,277 +362,286 @@ body{
 </div>
 
 <script>
+// ═══ DATA ═══
 const CITIES=[
-{n:"Tōkyō",c:"Jaapan",m:"Aasia",p:"37.4 M",fl:"🇯🇵",la:35.689,lo:139.692,dist:7877,near:[{n:"Ōsaka",d:396},{n:"Busan",d:963},{n:"Seoul",d:1153}]},
-{n:"Delhi",c:"India",m:"Aasia",p:"32.9 M",fl:"🇮🇳",la:28.614,lo:77.209,dist:5205,near:[{n:"Lahore",d:427},{n:"Islamabad",d:692},{n:"Katmandu",d:801}]},
-{n:"Shanghai",c:"Hiina",m:"Aasia",p:"28.5 M",fl:"🇨🇳",la:31.228,lo:121.474,dist:7417,near:[{n:"Nanjing",d:270},{n:"Wuhan",d:687},{n:"Taipei",d:689}]},
-{n:"Dhaka",c:"Bangladesh",m:"Aasia",p:"22.5 M",fl:"🇧🇩",la:23.811,lo:90.412,dist:6378,near:[{n:"Kolkata",d:251},{n:"Katmandu",d:670},{n:"Yangon",d:979}]},
-{n:"São Paulo",c:"Brasiilia",m:"Lõuna-Ameerika",p:"22.4 M",fl:"🇧🇷",la:-23.55,lo:-46.633,dist:11260,near:[{n:"Rio de Janeiro",d:361},{n:"Brasília",d:875},{n:"Asunción",d:1131}]},
-{n:"Mexico City",c:"Mehhiko",m:"Põhja-Ameerika",p:"22.1 M",fl:"🇲🇽",la:19.432,lo:-99.133,dist:9886,near:[{n:"Guatemala City",d:1061},{n:"Houston",d:1208},{n:"Havanna",d:1785}]},
-{n:"Peking",c:"Hiina",m:"Aasia",p:"21.5 M",fl:"🇨🇳",la:39.914,lo:116.392,dist:6363,near:[{n:"Tianjin",d:109},{n:"Pyongyang",d:809},{n:"Nanjing",d:900}]},
-{n:"Kairo",c:"Egiptus",m:"Aafrika",p:"21.3 M",fl:"🇪🇬",la:30.044,lo:31.235,dist:3305,near:[{n:"Sharm el-Sheikh",d:383},{n:"Hurghada",d:399},{n:"Tel Aviv",d:407}]},
-{n:"Mumbai",c:"India",m:"Aasia",p:"20.8 M",fl:"🇮🇳",la:19.076,lo:72.877,dist:5890,near:[{n:"Hyderabad",d:621},{n:"Bangalore",d:845},{n:"Karachi",d:883}]},
-{n:"Ōsaka",c:"Jaapan",m:"Aasia",p:"19.1 M",fl:"🇯🇵",la:34.693,lo:135.502,dist:7784,near:[{n:"Tōkyō",d:396},{n:"Busan",d:588},{n:"Seoul",d:829}]},
-{n:"New York",c:"USA",m:"Põhja-Ameerika",p:"18.8 M",fl:"🇺🇸",la:40.713,lo:-74.006,dist:6650,near:[{n:"Washington DC",d:328},{n:"Montreal",d:534},{n:"Ottawa",d:541}]},
-{n:"Chongqing",c:"Hiina",m:"Aasia",p:"16.9 M",fl:"🇨🇳",la:29.563,lo:106.551,dist:6760,near:[{n:"Chengdu",d:264},{n:"Wuhan",d:755},{n:"Hanoi",d:952}]},
-{n:"Karachi",c:"Pakistan",m:"Aasia",p:"16.4 M",fl:"🇵🇰",la:24.861,lo:67.011,dist:5036,near:[{n:"Muscat",d:865},{n:"Mumbai",d:883},{n:"Lahore",d:1035}]},
-{n:"Istanbul",c:"Türkiye",m:"Aasia",p:"15.6 M",fl:"🇹🇷",la:41.015,lo:28.98,dist:2069,near:[{n:"Ankara",d:350},{n:"Bukarest",d:447},{n:"Antalya",d:482}]},
-{n:"Buenos Aires",c:"Argentina",m:"Lõuna-Ameerika",p:"15.3 M",fl:"🇦🇷",la:-34.614,lo:-58.438,dist:12907,near:[{n:"Montevideo",d:210},{n:"Asunción",d:1040},{n:"Santiago",d:1132}]},
-{n:"Lagos",c:"Nigeeria",m:"Aafrika",p:"15.3 M",fl:"🇳🇬",la:6.455,lo:3.384,dist:6164,near:[{n:"Accra",d:406},{n:"Abuja",d:538},{n:"Abidjan",d:827}]},
-{n:"Kinshasa",c:"DR Kongo",m:"Aafrika",p:"15.0 M",fl:"🇨🇩",la:-4.322,lo:15.323,dist:7138,near:[{n:"Luanda",d:553},{n:"Kigali",d:1657},{n:"Abuja",d:1724}]},
-{n:"Kolkata",c:"India",m:"Aasia",p:"15.0 M",fl:"🇮🇳",la:22.563,lo:88.363,dist:6380,near:[{n:"Dhaka",d:251},{n:"Katmandu",d:650},{n:"Yangon",d:1036}]},
-{n:"Manila",c:"Filipiinid",m:"Aasia",p:"14.4 M",fl:"🇵🇭",la:14.599,lo:120.984,dist:8960,near:[{n:"Hongkong",d:1119},{n:"Shenzhen",d:1146},{n:"Taipei",d:1162}]},
-{n:"Tianjin",c:"Hiina",m:"Aasia",p:"14.0 M",fl:"🇨🇳",la:39.143,lo:117.177,dist:6472,near:[{n:"Peking",d:109},{n:"Pyongyang",d:740},{n:"Nanjing",d:801}]},
-{n:"Guangzhou",c:"Hiina",m:"Aasia",p:"13.8 M",fl:"🇨🇳",la:23.129,lo:113.264,dist:7727,near:[{n:"Shenzhen",d:104},{n:"Hongkong",d:129},{n:"Hanoi",d:803}]},
-{n:"Rio de Janeiro",c:"Brasiilia",m:"Lõuna-Ameerika",p:"13.5 M",fl:"🇧🇷",la:-22.908,lo:-43.173,dist:11026,near:[{n:"São Paulo",d:361},{n:"Brasília",d:936},{n:"Asunción",d:1492}]},
-{n:"Lahore",c:"Pakistan",m:"Aasia",p:"13.1 M",fl:"🇵🇰",la:31.554,lo:74.357,dist:4781,near:[{n:"Islamabad",d:271},{n:"Delhi",d:427},{n:"Kabul",d:585}]},
-{n:"Bangalore",c:"India",m:"Aasia",p:"12.7 M",fl:"🇮🇳",la:12.972,lo:77.595,dist:6726,near:[{n:"Chennai",d:290},{n:"Hyderabad",d:500},{n:"Colombo",d:717}]},
-{n:"Los Angeles",c:"USA",m:"Põhja-Ameerika",p:"12.5 M",fl:"🇺🇸",la:34.052,lo:-118.244,dist:9076,near:[{n:"Las Vegas",d:368},{n:"San Francisco",d:559},{n:"Vancouver",d:1740}]},
-{n:"Moskva",c:"Venemaa",m:"Euroopa",p:"12.5 M",fl:"🇷🇺",la:55.751,lo:37.618,dist:867,near:[{n:"Novgorod",d:491},{n:"Pihkva",d:610},{n:"Peterburg",d:635}]},
-{n:"Shenzhen",c:"Hiina",m:"Aasia",p:"12.5 M",fl:"🇨🇳",la:22.543,lo:114.057,dist:7826,near:[{n:"Hongkong",d:27},{n:"Guangzhou",d:104},{n:"Taipei",d:812}]},
-{n:"Wuhan",c:"Hiina",m:"Aasia",p:"11.5 M",fl:"🇨🇳",la:30.593,lo:114.305,dist:7093,near:[{n:"Nanjing",d:457},{n:"Shanghai",d:687},{n:"Chongqing",d:755}]},
-{n:"Bogotá",c:"Colombia",m:"Lõuna-Ameerika",p:"11.3 M",fl:"🇨🇴",la:4.711,lo:-74.072,dist:10052,near:[{n:"Quito",d:739},{n:"Panama City",d:767},{n:"Caracas",d:1016}]},
-{n:"Pariis",c:"Prantsusmaa",m:"Euroopa",p:"11.1 M",fl:"🇫🇷",la:48.857,lo:2.352,dist:1859,near:[{n:"Brüssel",d:264},{n:"Luksemburg",d:287},{n:"London",d:343}]},
-{n:"Jakarta",c:"Indoneesia",m:"Aasia",p:"11.0 M",fl:"🇮🇩",la:-6.211,lo:106.845,dist:10158,near:[{n:"Singapur",d:898},{n:"Bali (Denpasar)",d:962},{n:"Kuala Lumpur",d:1187}]},
-{n:"Lima",c:"Peruu",m:"Lõuna-Ameerika",p:"10.9 M",fl:"🇵🇪",la:-12.046,lo:-77.043,dist:11825,near:[{n:"La Paz",d:1078},{n:"Quito",d:1324},{n:"Bogotá",d:1892}]},
-{n:"Bangkok",c:"Tai",m:"Aasia",p:"10.7 M",fl:"🇹🇭",la:13.756,lo:100.502,dist:7890,near:[{n:"Vientiane",d:519},{n:"Phnom Penh",d:538},{n:"Yangon",d:577}]},
-{n:"Chennai",c:"India",m:"Aasia",p:"10.5 M",fl:"🇮🇳",la:13.083,lo:80.27,dist:6852,near:[{n:"Bangalore",d:290},{n:"Hyderabad",d:515},{n:"Colombo",d:686}]},
-{n:"Hyderabad",c:"India",m:"Aasia",p:"10.5 M",fl:"🇮🇳",la:17.385,lo:78.486,dist:6340,near:[{n:"Bangalore",d:500},{n:"Chennai",d:515},{n:"Mumbai",d:621}]},
-{n:"Seoul",c:"Lõuna-Korea",m:"Aasia",p:"9.9 M",fl:"🇰🇷",la:37.566,lo:126.978,dist:7108,near:[{n:"Pyongyang",d:195},{n:"Busan",d:325},{n:"Ōsaka",d:829}]},
-{n:"Chicago",c:"USA",m:"Põhja-Ameerika",p:"9.5 M",fl:"🇺🇸",la:41.878,lo:-87.63,dist:7171,near:[{n:"Toronto",d:704},{n:"Washington DC",d:955},{n:"Ottawa",d:1037}]},
-{n:"Teheran",c:"Iraan",m:"Aasia",p:"9.5 M",fl:"🇮🇷",la:35.694,lo:51.421,dist:3266,near:[{n:"Bakuu",d:542},{n:"Ašgabat",d:668},{n:"Bagdad",d:694}]},
-{n:"London",c:"Ühendkuningriik",m:"Euroopa",p:"9.5 M",fl:"🇬🇧",la:51.507,lo:-0.128,dist:1784,near:[{n:"Manchester",d:262},{n:"Brüssel",d:321},{n:"Rotterdam",d:321}]},
-{n:"Nanjing",c:"Hiina",m:"Aasia",p:"9.3 M",fl:"🇨🇳",la:32.06,lo:118.797,dist:7199,near:[{n:"Shanghai",d:270},{n:"Wuhan",d:457},{n:"Tianjin",d:801}]},
-{n:"Ho Chi Minh City",c:"Vietnam",m:"Aasia",p:"9.0 M",fl:"🇻🇳",la:10.776,lo:106.701,dist:8523,near:[{n:"Phnom Penh",d:213},{n:"Bangkok",d:751},{n:"Vientiane",d:913}]},
-{n:"Hanoi",c:"Vietnam",m:"Aasia",p:"8.0 M",fl:"🇻🇳",la:21.028,lo:105.804,dist:7505,near:[{n:"Vientiane",d:478},{n:"Guangzhou",d:803},{n:"Shenzhen",d:869}]},
-{n:"Chengdu",c:"Hiina",m:"Aasia",p:"9.0 M",fl:"🇨🇳",la:30.572,lo:104.067,dist:6530,near:[{n:"Chongqing",d:264},{n:"Wuhan",d:980},{n:"Hanoi",d:1075}]},
-{n:"Kuala Lumpur",c:"Malaisia",m:"Aasia",p:"8.4 M",fl:"🇲🇾",la:3.14,lo:101.687,dist:8971,near:[{n:"Singapur",d:317},{n:"Phuket",d:641},{n:"Phnom Penh",d:1000}]},
-{n:"Luanda",c:"Angola",m:"Aafrika",p:"8.3 M",fl:"🇦🇴",la:-8.839,lo:13.234,dist:7661,near:[{n:"Kinshasa",d:553},{n:"Windhoek",d:1580},{n:"Kigali",d:2013}]},
-{n:"Riyad",c:"Saudi Araabia",m:"Aasia",p:"7.7 M",fl:"🇸🇦",la:24.688,lo:46.722,dist:4224,near:[{n:"Manama",d:424},{n:"Doha",d:489},{n:"Kuwait City",d:535}]},
-{n:"Dar es Salaam",c:"Tansaania",m:"Aafrika",p:"7.4 M",fl:"🇹🇿",la:-6.8,lo:39.269,dist:7477,near:[{n:"Zanzibar",d:71},{n:"Nairobi",d:671},{n:"Kampala",d:1085}]},
-{n:"Houston",c:"USA",m:"Põhja-Ameerika",p:"7.3 M",fl:"🇺🇸",la:29.749,lo:-95.368,dist:8688,near:[{n:"Mexico City",d:1208},{n:"Havanna",d:1488},{n:"Chicago",d:1517}]},
-{n:"Bagdad",c:"Iraak",m:"Aasia",p:"7.1 M",fl:"🇮🇶",la:33.341,lo:44.401,dist:3242,near:[{n:"Kuwait City",d:557},{n:"Teheran",d:694},{n:"Damaskus",d:753}]},
-{n:"Santiago",c:"Tšiili",m:"Lõuna-Ameerika",p:"7.0 M",fl:"🇨🇱",la:-33.457,lo:-70.648,dist:13452,near:[{n:"Buenos Aires",d:1132},{n:"Montevideo",d:1341},{n:"Asunción",d:1551}]},
-{n:"Hongkong",c:"Hiina",m:"Aasia",p:"7.4 M",fl:"🇨🇳",la:22.32,lo:114.169,dist:7853,near:[{n:"Shenzhen",d:27},{n:"Guangzhou",d:129},{n:"Taipei",d:811}]},
-{n:"Miami",c:"USA",m:"Põhja-Ameerika",p:"6.2 M",fl:"🇺🇸",la:25.775,lo:-80.209,dist:8357,near:[{n:"Havanna",d:365},{n:"Kingston",d:934},{n:"Santo Domingo",d:1333}]},
-{n:"Washington DC",c:"USA",m:"Põhja-Ameerika",p:"6.4 M",fl:"🇺🇸",la:38.907,lo:-77.037,dist:6963,near:[{n:"New York",d:328},{n:"Toronto",d:562},{n:"Ottawa",d:733}]},
-{n:"Toronto",c:"Kanada",m:"Põhja-Ameerika",p:"6.2 M",fl:"🇨🇦",la:43.651,lo:-79.347,dist:6637,near:[{n:"Ottawa",d:350},{n:"Montreal",d:501},{n:"New York",d:548}]},
-{n:"Khartoum",c:"Sudaan",m:"Aafrika",p:"6.2 M",fl:"🇸🇩",la:15.555,lo:32.533,dist:4921,near:[{n:"Jeddah",d:963},{n:"Addis Abeba",d:994},{n:"Sanaa",d:1251}]},
-{n:"Johannesburg",c:"Lõuna-Aafrika",m:"Aafrika",p:"6.0 M",fl:"🇿🇦",la:-26.205,lo:28.05,dist:9528,near:[{n:"Pretoria",d:53},{n:"Maputo",d:452},{n:"Harare",d:981}]},
-{n:"Singapur",c:"Singapur",m:"Aasia",p:"5.9 M",fl:"🇸🇬",la:1.29,lo:103.852,dist:9270,near:[{n:"Kuala Lumpur",d:317},{n:"Jakarta",d:898},{n:"Phuket",d:950}]},
-{n:"Ankara",c:"Türkiye",m:"Aasia",p:"5.7 M",fl:"🇹🇷",la:39.92,lo:32.854,dist:2243,near:[{n:"Istanbul",d:350},{n:"Antalya",d:385},{n:"Nikosia",d:530}]},
-{n:"Yangon",c:"Myanmar",m:"Aasia",p:"5.5 M",fl:"🇲🇲",la:16.866,lo:96.195,dist:7353,near:[{n:"Bangkok",d:577},{n:"Vientiane",d:690},{n:"Dhaka",d:979}]},
-{n:"Nairobi",c:"Keenia",m:"Aafrika",p:"5.1 M",fl:"🇰🇪",la:-1.286,lo:36.818,dist:6834,near:[{n:"Kampala",d:504},{n:"Zanzibar",d:603},{n:"Dar es Salaam",d:671}]},
-{n:"Addis Abeba",c:"Etioopia",m:"Aafrika",p:"4.8 M",fl:"🇪🇹",la:9.006,lo:38.763,dist:5730,near:[{n:"Sanaa",d:921},{n:"Khartoum",d:994},{n:"Nairobi",d:1165}]},
-{n:"Kabul",c:"Afganistan",m:"Aasia",p:"4.6 M",fl:"🇦🇫",la:34.526,lo:69.178,dist:4234,near:[{n:"Islamabad",d:370},{n:"Dušanbe",d:450},{n:"Lahore",d:585}]},
-{n:"Kapilinn",c:"Lõuna-Aafrika",m:"Aafrika",p:"4.6 M",fl:"🇿🇦",la:-33.925,lo:18.424,dist:10398,near:[{n:"Johannesburg",d:1262},{n:"Windhoek",d:1271},{n:"Pretoria",d:1308}]},
-{n:"Casablanca",c:"Maroko",m:"Aafrika",p:"3.8 M",fl:"🇲🇦",la:33.59,lo:-7.61,dist:3722,near:[{n:"Rabat",d:86},{n:"Marrakech",d:221},{n:"Sevilla",d:447}]},
-{n:"Accra",c:"Ghana",m:"Aafrika",p:"3.6 M",fl:"🇬🇭",la:5.603,lo:-0.187,dist:6351,near:[{n:"Lagos",d:406},{n:"Abidjan",d:424},{n:"Abuja",d:930}]},
-{n:"Madrid",c:"Hispaania",m:"Euroopa",p:"6.7 M",fl:"🇪🇸",la:40.417,lo:-3.703,dist:2893,near:[{n:"Valencia",d:303},{n:"Sevilla",d:391},{n:"Porto",d:423}]},
-{n:"Barcelona",c:"Hispaania",m:"Euroopa",p:"5.6 M",fl:"🇪🇸",la:41.385,lo:2.173,dist:2541,near:[{n:"Andorra la Vella",d:136},{n:"Valencia",d:303},{n:"Marseille",d:339}]},
-{n:"Peterburg",c:"Venemaa",m:"Euroopa",p:"5.4 M",fl:"🇷🇺",la:59.939,lo:30.316,dist:317,near:[{n:"Narva",d:135},{n:"Novgorod",d:167},{n:"Jõhvi",d:175}]},
-{n:"Rooma",c:"Itaalia",m:"Euroopa",p:"4.3 M",fl:"🇮🇹",la:41.902,lo:12.496,dist:2125,near:[{n:"Vatikan",d:4},{n:"Napoli",d:188},{n:"San Marino",d:226}]},
-{n:"Berlin",c:"Saksamaa",m:"Euroopa",p:"3.8 M",fl:"🇩🇪",la:52.52,lo:13.405,dist:1041,near:[{n:"Hamburg",d:255},{n:"Praha",d:281},{n:"Malmö",d:344}]},
-{n:"Kiiev",c:"Ukraina",m:"Euroopa",p:"3.0 M",fl:"🇺🇦",la:50.45,lo:30.523,dist:1064,near:[{n:"Chișinău",d:402},{n:"Harkiv",d:409},{n:"Minsk",d:434}]},
-{n:"Lissabon",c:"Portugal",m:"Euroopa",p:"3.0 M",fl:"🇵🇹",la:38.717,lo:-9.139,dist:3312,near:[{n:"Porto",d:275},{n:"Sevilla",d:314},{n:"Madrid",d:503}]},
-{n:"Budapešt",c:"Ungari",m:"Euroopa",p:"3.3 M",fl:"🇭🇺",la:47.498,lo:19.04,dist:1379,near:[{n:"Bratislava",d:161},{n:"Viin",d:214},{n:"Krakow",d:293}]},
-{n:"Napoli",c:"Itaalia",m:"Euroopa",p:"3.3 M",fl:"🇮🇹",la:40.852,lo:14.268,dist:2191,near:[{n:"Rooma",d:188},{n:"Vatikan",d:191},{n:"San Marino",d:374}]},
-{n:"Varssavi",c:"Poola",m:"Euroopa",p:"3.1 M",fl:"🇵🇱",la:52.23,lo:21.012,dist:834,near:[{n:"Krakow",d:252},{n:"Gdańsk",d:283},{n:"Lviv",d:339}]},
-{n:"Milano",c:"Itaalia",m:"Euroopa",p:"3.2 M",fl:"🇮🇹",la:45.465,lo:9.188,dist:1868,near:[{n:"Torino",d:125},{n:"Vaduz",d:188},{n:"Bern",d:212}]},
-{n:"Ateena",c:"Kreeka",m:"Euroopa",p:"3.6 M",fl:"🇬🇷",la:37.984,lo:23.728,dist:2387,near:[{n:"Thessaloniki",d:302},{n:"Skopje",d:487},{n:"Tirana",d:500}]},
-{n:"Stockholm",c:"Rootsi",m:"Euroopa",p:"2.3 M",fl:"🇸🇪",la:59.332,lo:18.065,dist:379,near:[{n:"Turku",d:265},{n:"Kärdla",d:269},{n:"Kuressaare",d:282}]},
-{n:"Frankfurt",c:"Saksamaa",m:"Euroopa",p:"2.3 M",fl:"🇩🇪",la:50.11,lo:8.682,dist:1455,near:[{n:"Köln",d:153},{n:"Luksemburg",d:191},{n:"München",d:304}]},
-{n:"Bukarest",c:"Rumeenia",m:"Euroopa",p:"2.3 M",fl:"🇷🇴",la:44.432,lo:26.103,dist:1671,near:[{n:"Sofia",d:296},{n:"Chișinău",d:357},{n:"Odessa",d:427}]},
-{n:"Viin",c:"Austria",m:"Euroopa",p:"2.9 M",fl:"🇦🇹",la:48.208,lo:16.373,dist:1362,near:[{n:"Bratislava",d:55},{n:"Budapešt",d:214},{n:"Praha",d:251}]},
-{n:"Manchester",c:"Ühendkuningriik",m:"Euroopa",p:"2.7 M",fl:"🇬🇧",la:53.483,lo:-2.244,dist:1771,near:[{n:"London",d:262},{n:"Dublin",d:266},{n:"Edinburgh",d:281}]},
-{n:"Lyon",c:"Prantsusmaa",m:"Euroopa",p:"2.2 M",fl:"🇫🇷",la:45.75,lo:4.846,dist:2015,near:[{n:"Torino",d:234},{n:"Bern",d:240},{n:"Marseille",d:276}]},
-{n:"Brüssel",c:"Belgia",m:"Euroopa",p:"2.1 M",fl:"🇧🇪",la:50.85,lo:4.351,dist:1599,near:[{n:"Rotterdam",d:120},{n:"Amsterdam",d:173},{n:"Köln",d:183}]},
-{n:"Minsk",c:"Valgevene",m:"Euroopa",p:"2.0 M",fl:"🇧🇾",la:53.904,lo:27.561,dist:639,near:[{n:"Vilnius",d:172},{n:"Daugavpils",d:229},{n:"Kaunas",d:260}]},
-{n:"Hamburg",c:"Saksamaa",m:"Euroopa",p:"1.9 M",fl:"🇩🇪",la:53.551,lo:10.0,dist:1113,near:[{n:"Berlin",d:255},{n:"Kopenhaagen",d:288},{n:"Malmö",d:299}]},
-{n:"Torino",c:"Itaalia",m:"Euroopa",p:"1.8 M",fl:"🇮🇹",la:45.071,lo:7.687,dist:1963,near:[{n:"Milano",d:125},{n:"Monako",d:150},{n:"Bern",d:210}]},
-{n:"Helsinki",c:"Soome",m:"Euroopa",p:"1.5 M",fl:"🇫🇮",la:60.17,lo:24.941,dist:82,near:[{n:"Espoo",d:16},{n:"Tallinn",d:82},{n:"Lahti",d:98}]},
-{n:"Marseille",c:"Prantsusmaa",m:"Euroopa",p:"1.7 M",fl:"🇫🇷",la:43.297,lo:5.382,dist:2225,near:[{n:"Monako",d:172},{n:"Torino",d:270},{n:"Lyon",d:276}]},
-{n:"Porto",c:"Portugal",m:"Euroopa",p:"1.7 M",fl:"🇵🇹",la:41.157,lo:-8.629,dist:3067,near:[{n:"Lissabon",d:275},{n:"Madrid",d:423},{n:"Sevilla",d:478}]},
-{n:"Belgrad",c:"Serbia",m:"Euroopa",p:"1.7 M",fl:"🇷🇸",la:44.804,lo:20.465,dist:1652,near:[{n:"Sarajevo",d:195},{n:"Priština",d:244},{n:"Podgorica",d:280}]},
-{n:"Valencia",c:"Hispaania",m:"Euroopa",p:"1.6 M",fl:"🇪🇸",la:39.47,lo:-0.376,dist:2833,near:[{n:"Madrid",d:303},{n:"Barcelona",d:303},{n:"Andorra la Vella",d:373}]},
-{n:"München",c:"Saksamaa",m:"Euroopa",p:"1.6 M",fl:"🇩🇪",la:48.137,lo:11.575,dist:1520,near:[{n:"Vaduz",d:189},{n:"Zürich",d:242},{n:"Praha",d:300}]},
-{n:"Sevilla",c:"Hispaania",m:"Euroopa",p:"1.5 M",fl:"🇪🇸",la:37.382,lo:-5.975,dist:3284,near:[{n:"Lissabon",d:314},{n:"Rabat",d:382},{n:"Madrid",d:391}]},
-{n:"Harkiv",c:"Ukraina",m:"Euroopa",p:"1.4 M",fl:"🇺🇦",la:49.992,lo:36.231,dist:1279,near:[{n:"Kiiev",d:409},{n:"Odessa",d:564},{n:"Chișinău",d:636}]},
-{n:"Dublin",c:"Iirimaa",m:"Euroopa",p:"1.4 M",fl:"🇮🇪",la:53.333,lo:-6.249,dist:2004,near:[{n:"Manchester",d:266},{n:"Edinburgh",d:352},{n:"London",d:462}]},
-{n:"Zürich",c:"Šveits",m:"Euroopa",p:"1.4 M",fl:"🇨🇭",la:47.376,lo:8.54,dist:1709,near:[{n:"Vaduz",d:79},{n:"Bern",d:95},{n:"Milano",d:218}]},
-{n:"Thessaloniki",c:"Kreeka",m:"Euroopa",p:"1.1 M",fl:"🇬🇷",la:40.629,lo:22.947,dist:2095,near:[{n:"Skopje",d:198},{n:"Sofia",d:232},{n:"Priština",d:271}]},
-{n:"Praha",c:"Tšehhi",m:"Euroopa",p:"1.3 M",fl:"🇨🇿",la:50.075,lo:14.438,dist:1231,near:[{n:"Viin",d:251},{n:"Berlin",d:281},{n:"Bratislava",d:289}]},
-{n:"Sofia",c:"Bulgaaria",m:"Euroopa",p:"1.3 M",fl:"🇧🇬",la:42.698,lo:23.321,dist:1864,near:[{n:"Skopje",d:174},{n:"Priština",d:176},{n:"Thessaloniki",d:232}]},
-{n:"Kopenhaagen",c:"Taani",m:"Euroopa",p:"1.3 M",fl:"🇩🇰",la:55.676,lo:12.568,dist:837,near:[{n:"Malmö",d:28},{n:"Göteborg",d:229},{n:"Hamburg",d:288}]},
-{n:"Rotterdam",c:"Holland",m:"Euroopa",p:"1.0 M",fl:"🇳🇱",la:51.924,lo:4.479,dist:1512,near:[{n:"Amsterdam",d:57},{n:"Brüssel",d:120},{n:"Köln",d:204}]},
-{n:"Amsterdam",c:"Holland",m:"Euroopa",p:"1.2 M",fl:"🇳🇱",la:52.37,lo:4.895,dist:1458,near:[{n:"Rotterdam",d:57},{n:"Brüssel",d:173},{n:"Köln",d:214}]},
-{n:"Köln",c:"Saksamaa",m:"Euroopa",p:"1.1 M",fl:"🇩🇪",la:50.938,lo:6.96,dist:1465,near:[{n:"Frankfurt",d:153},{n:"Luksemburg",d:159},{n:"Brüssel",d:183}]},
-{n:"Odessa",c:"Ukraina",m:"Euroopa",p:"1.0 M",fl:"🇺🇦",la:46.482,lo:30.732,dist:1494,near:[{n:"Chișinău",d:154},{n:"Bukarest",d:427},{n:"Kiiev",d:441}]},
-{n:"Oslo",c:"Norra",m:"Euroopa",p:"1.0 M",fl:"🇳🇴",la:59.913,lo:10.752,dist:786,near:[{n:"Göteborg",d:255},{n:"Stockholm",d:416},{n:"Kopenhaagen",d:483}]},
-{n:"Zagreb",c:"Horvaatia",m:"Euroopa",p:"1.0 M",fl:"🇭🇷",la:45.815,lo:15.978,dist:1623,near:[{n:"Ljubljana",d:117},{n:"Viin",d:268},{n:"Bratislava",d:273}]},
-{n:"Firenze",c:"Itaalia",m:"Euroopa",p:"970 tuh",fl:"🇮🇹",la:43.77,lo:11.248,dist:1967,near:[{n:"San Marino",d:98},{n:"Veneetsia",d:204},{n:"Vatikan",d:230}]},
-{n:"Tirana",c:"Albaania",m:"Euroopa",p:"900 tuh",fl:"🇦🇱",la:41.329,lo:19.819,dist:2042,near:[{n:"Podgorica",d:132},{n:"Skopje",d:153},{n:"Priština",d:186}]},
-{n:"Tallinn",c:"Eesti",m:"Euroopa",p:"460 tuh",fl:"🇪🇪",la:59.437,lo:24.754,dist:0,near:[{n:"Rapla",d:50},{n:"Paide",d:77},{n:"Helsinki",d:82}]},
-{n:"Lviv",c:"Ukraina",m:"Euroopa",p:"720 tuh",fl:"🇺🇦",la:49.842,lo:24.031,dist:1068,near:[{n:"Krakow",d:293},{n:"Varssavi",d:339},{n:"Budapešt",d:450}]},
-{n:"Krakow",c:"Poola",m:"Euroopa",p:"770 tuh",fl:"🇵🇱",la:50.062,lo:19.944,dist:1086,near:[{n:"Varssavi",d:252},{n:"Budapešt",d:293},{n:"Lviv",d:293}]},
-{n:"Riia",c:"Läti",m:"Euroopa",p:"1.0 M",fl:"🇱🇻",la:56.948,lo:24.106,dist:279,near:[{n:"Jūrmala",d:21},{n:"Cēsis",d:81},{n:"Šiauliai",d:123}]},
-{n:"Edinburgh",c:"Ühendkuningriik",m:"Euroopa",p:"540 tuh",fl:"🇬🇧",la:55.953,lo:-3.188,dist:1691,near:[{n:"Manchester",d:281},{n:"Dublin",d:352},{n:"London",d:534}]},
-{n:"Vilnius",c:"Leedu",m:"Euroopa",p:"760 tuh",fl:"🇱🇹",la:54.687,lo:25.28,dist:529,near:[{n:"Kaunas",d:90},{n:"Daugavpils",d:154},{n:"Minsk",d:172}]},
-{n:"Göteborg",c:"Rootsi",m:"Euroopa",p:"580 tuh",fl:"🇸🇪",la:57.707,lo:11.967,dist:765,near:[{n:"Kopenhaagen",d:229},{n:"Malmö",d:242},{n:"Oslo",d:255}]},
-{n:"Bratislava",c:"Slovakkia",m:"Euroopa",p:"500 tuh",fl:"🇸🇰",la:48.148,lo:17.107,dist:1350,near:[{n:"Viin",d:55},{n:"Budapešt",d:161},{n:"Zagreb",d:273}]},
-{n:"Sarajevo",c:"Bosnia-Hertsegoviina",m:"Euroopa",p:"500 tuh",fl:"🇧🇦",la:43.844,lo:18.413,dist:1786,near:[{n:"Podgorica",d:171},{n:"Belgrad",d:195},{n:"Priština",d:258}]},
-{n:"Chișinău",c:"Moldova",m:"Euroopa",p:"500 tuh",fl:"🇲🇩",la:47.005,lo:28.857,dist:1408,near:[{n:"Odessa",d:154},{n:"Bukarest",d:357},{n:"Kiiev",d:402}]},
-{n:"Bern",c:"Šveits",m:"Euroopa",p:"450 tuh",fl:"🇨🇭",la:46.948,lo:7.447,dist:1794,near:[{n:"Zürich",d:95},{n:"Vaduz",d:159},{n:"Torino",d:210}]},
-{n:"Skopje",c:"Põhja-Makedoonia",m:"Euroopa",p:"600 tuh",fl:"🇲🇰",la:41.997,lo:21.431,dist:1953,near:[{n:"Priština",d:78},{n:"Tirana",d:153},{n:"Sofia",d:174}]},
-{n:"Veneetsia",c:"Itaalia",m:"Euroopa",p:"250 tuh",fl:"🇮🇹",la:45.438,lo:12.327,dist:1763,near:[{n:"San Marino",d:167},{n:"Ljubljana",d:182},{n:"Firenze",d:204}]},
-{n:"Malmö",c:"Rootsi",m:"Euroopa",p:"360 tuh",fl:"🇸🇪",la:55.607,lo:13.002,dist:819,near:[{n:"Kopenhaagen",d:28},{n:"Göteborg",d:242},{n:"Hamburg",d:299}]},
-{n:"Nikosia",c:"Küpros",m:"Euroopa",p:"330 tuh",fl:"🇨🇾",la:35.171,lo:33.365,dist:2770,near:[{n:"Beirut",d:242},{n:"Antalya",d:306},{n:"Damaskus",d:326}]},
-{n:"Ljubljana",c:"Sloveenia",m:"Euroopa",p:"300 tuh",fl:"🇸🇮",la:46.051,lo:14.507,dist:1636,near:[{n:"Zagreb",d:117},{n:"Veneetsia",d:182},{n:"Viin",d:278}]},
-{n:"Espoo",c:"Soome",m:"Euroopa",p:"300 tuh",fl:"🇫🇮",la:60.205,lo:24.656,dist:86,near:[{n:"Helsinki",d:16},{n:"Tallinn",d:86},{n:"Lahti",d:102}]},
-{n:"Kaunas",c:"Leedu",m:"Euroopa",p:"290 tuh",fl:"🇱🇹",la:54.897,lo:23.924,dist:507,near:[{n:"Vilnius",d:90},{n:"Šiauliai",d:122},{n:"Klaipėda",d:197}]},
-{n:"Reykjavik",c:"Island",m:"Euroopa",p:"230 tuh",fl:"🇮🇸",la:64.135,lo:-21.895,dist:2448,near:[{n:"Edinburgh",d:1372},{n:"Dublin",d:1494},{n:"Manchester",d:1625}]},
-{n:"Tampere",c:"Soome",m:"Euroopa",p:"240 tuh",fl:"🇫🇮",la:61.498,lo:23.759,dist:236,near:[{n:"Lahti",d:117},{n:"Turku",d:141},{n:"Espoo",d:152}]},
-{n:"Gdańsk",c:"Poola",m:"Euroopa",p:"470 tuh",fl:"🇵🇱",la:54.352,lo:18.647,dist:676,near:[{n:"Klaipėda",d:219},{n:"Palanga",d:233},{n:"Liepāja",d:282}]},
-{n:"Oulu",c:"Soome",m:"Euroopa",p:"210 tuh",fl:"🇫🇮",la:65.013,lo:25.472,dist:621,near:[{n:"Rovaniemi",d:166},{n:"Tampere",d:400},{n:"Lahti",d:448}]},
-{n:"Turku",c:"Soome",m:"Euroopa",p:"200 tuh",fl:"🇫🇮",la:60.455,lo:22.263,dist:179,near:[{n:"Espoo",d:135},{n:"Tampere",d:141},{n:"Helsinki",d:151}]},
-{n:"Pihkva",c:"Venemaa",m:"Euroopa",p:"200 tuh",fl:"🇷🇺",la:57.82,lo:28.333,dist:274,near:[{n:"Võru",d:78},{n:"Põlva",d:80},{n:"Tartu",d:113}]},
-{n:"Podgorica",c:"Montenegro",m:"Euroopa",p:"200 tuh",fl:"🇲🇪",la:42.441,lo:19.263,dist:1927,near:[{n:"Tirana",d:132},{n:"Priština",d:158},{n:"Sarajevo",d:171}]},
-{n:"Novgorod",c:"Venemaa",m:"Euroopa",p:"220 tuh",fl:"🇷🇺",la:58.522,lo:31.275,dist:387,near:[{n:"Peterburg",d:167},{n:"Pihkva",d:189},{n:"Narva",d:201}]},
-{n:"Priština",c:"Kosovo",m:"Euroopa",p:"210 tuh",fl:"🇽🇰",la:42.672,lo:21.166,dist:1880,near:[{n:"Skopje",d:78},{n:"Podgorica",d:158},{n:"Sofia",d:176}]},
-{n:"Daugavpils",c:"Läti",m:"Euroopa",p:"83 tuh",fl:"🇱🇻",la:55.874,lo:26.536,dist:410,near:[{n:"Vilnius",d:154},{n:"Cēsis",d:178},{n:"Riia",d:191}]},
-{n:"Liepāja",c:"Läti",m:"Euroopa",p:"68 tuh",fl:"🇱🇻",la:56.505,lo:21.011,dist:394,near:[{n:"Palanga",d:65},{n:"Klaipėda",d:89},{n:"Šiauliai",d:156}]},
-{n:"Rovaniemi",c:"Soome",m:"Euroopa",p:"65 tuh",fl:"🇫🇮",la:66.503,lo:25.73,dist:787,near:[{n:"Oulu",d:166},{n:"Tampere",d:565},{n:"Lahti",d:614}]},
-{n:"Jūrmala",c:"Läti",m:"Euroopa",p:"52 tuh",fl:"🇱🇻",la:56.969,lo:23.77,dist:280,near:[{n:"Riia",d:21},{n:"Cēsis",d:98},{n:"Šiauliai",d:118}]},
-{n:"Lahti",c:"Soome",m:"Euroopa",p:"120 tuh",fl:"🇫🇮",la:60.983,lo:25.656,dist:179,near:[{n:"Helsinki",d:98},{n:"Espoo",d:102},{n:"Tampere",d:117}]},
-{n:"Klaipėda",c:"Leedu",m:"Euroopa",p:"150 tuh",fl:"🇱🇹",la:55.704,lo:21.145,dist:467,near:[{n:"Palanga",d:25},{n:"Liepāja",d:89},{n:"Šiauliai",d:138}]},
-{n:"Luksemburg",c:"Luksemburg",m:"Euroopa",p:"130 tuh",fl:"🇱🇺",la:49.611,lo:6.13,dist:1614,near:[{n:"Köln",d:159},{n:"Brüssel",d:187},{n:"Frankfurt",d:191}]},
-{n:"Šiauliai",c:"Leedu",m:"Euroopa",p:"100 tuh",fl:"🇱🇹",la:55.934,lo:23.316,dist:399,near:[{n:"Jūrmala",d:118},{n:"Kaunas",d:122},{n:"Riia",d:123}]},
-{n:"Monako",c:"Monako",m:"Euroopa",p:"39 tuh",fl:"🇲🇨",la:43.736,lo:7.422,dist:2103,near:[{n:"Torino",d:150},{n:"Marseille",d:172},{n:"Milano",d:238}]},
-{n:"Andorra la Vella",c:"Andorra",m:"Euroopa",p:"23 tuh",fl:"🇦🇩",la:42.507,lo:1.521,dist:2462,near:[{n:"Barcelona",d:136},{n:"Marseille",d:326},{n:"Valencia",d:373}]},
-{n:"Valetta",c:"Malta",m:"Euroopa",p:"22 tuh",fl:"🇲🇹",la:35.9,lo:14.514,dist:2720,near:[{n:"Tripoli",d:355},{n:"Tunis",d:402},{n:"Napoli",d:551}]},
-{n:"Palanga",c:"Leedu",m:"Euroopa",p:"16 tuh",fl:"🇱🇹",la:55.923,lo:21.064,dist:448,near:[{n:"Klaipėda",d:25},{n:"Liepāja",d:65},{n:"Šiauliai",d:140}]},
-{n:"Cēsis",c:"Läti",m:"Euroopa",p:"18 tuh",fl:"🇱🇻",la:57.312,lo:25.27,dist:238,near:[{n:"Valga",d:69},{n:"Riia",d:81},{n:"Jūrmala",d:98}]},
-{n:"San Marino",c:"San Marino",m:"Euroopa",p:"4 tuh",fl:"🇸🇲",la:43.937,lo:12.442,dist:1914,near:[{n:"Firenze",d:98},{n:"Veneetsia",d:167},{n:"Rooma",d:226}]},
-{n:"Vaduz",c:"Liechtenstein",m:"Euroopa",p:"5 tuh",fl:"🇱🇮",la:47.141,lo:9.523,dist:1693,near:[{n:"Zürich",d:79},{n:"Bern",d:159},{n:"Milano",d:188}]},
-{n:"Tbilisi",c:"Gruusia",m:"Euroopa",p:"1.2 M",fl:"🇬🇪",la:41.694,lo:44.834,dist:2409,near:[{n:"Jerevan",d:171},{n:"Bakuu",d:445},{n:"Teheran",d:878}]},
-{n:"Bakuu",c:"Aserbaidžaan",m:"Aasia",p:"2.3 M",fl:"🇦🇿",la:40.409,lo:49.867,dist:2743,near:[{n:"Tbilisi",d:445},{n:"Jerevan",d:456},{n:"Teheran",d:542}]},
-{n:"Jerevan",c:"Armeenia",m:"Euroopa",p:"1.1 M",fl:"🇦🇲",la:40.179,lo:44.499,dist:2546,near:[{n:"Tbilisi",d:171},{n:"Bakuu",d:456},{n:"Bagdad",d:760}]},
-{n:"Dubai",c:"Araabia Ühendemiraadid",m:"Aasia",p:"3.3 M",fl:"🇦🇪",la:25.204,lo:55.271,dist:4478,near:[{n:"Abu Dhabi",d:123},{n:"Doha",d:376},{n:"Muscat",d:380}]},
-{n:"Abu Dhabi",c:"Araabia Ühendemiraadid",m:"Aasia",p:"1.5 M",fl:"🇦🇪",la:24.453,lo:54.377,dist:4519,near:[{n:"Dubai",d:123},{n:"Doha",d:301},{n:"Manama",d:429}]},
-{n:"Tel Aviv",c:"Iisrael",m:"Aasia",p:"4.2 M",fl:"🇮🇱",la:32.085,lo:34.781,dist:3131,near:[{n:"Jeruusalemm",d:54},{n:"Amman",d:110},{n:"Beirut",d:211}]},
-{n:"Jeruusalemm",c:"Iisrael",m:"Aasia",p:"970 tuh",fl:"🇮🇱",la:31.769,lo:35.216,dist:3174,near:[{n:"Tel Aviv",d:54},{n:"Amman",d:71},{n:"Damaskus",d:218}]},
-{n:"Antalya",c:"Türkiye",m:"Aasia",p:"1.3 M",fl:"🇹🇷",la:36.896,lo:30.713,dist:2543,near:[{n:"Nikosia",d:306},{n:"Ankara",d:385},{n:"Istanbul",d:482}]},
-{n:"Amman",c:"Jordaania",m:"Aasia",p:"4.5 M",fl:"🇯🇴",la:31.952,lo:35.933,dist:3167,near:[{n:"Jeruusalemm",d:71},{n:"Tel Aviv",d:110},{n:"Damaskus",d:176}]},
-{n:"Beirut",c:"Liibanon",m:"Aasia",p:"2.4 M",fl:"🇱🇧",la:33.889,lo:35.495,dist:2948,near:[{n:"Damaskus",d:85},{n:"Tel Aviv",d:211},{n:"Amman",d:219}]},
-{n:"Damaskus",c:"Süüria",m:"Aasia",p:"2.5 M",fl:"🇸🇾",la:33.51,lo:36.292,dist:3005,near:[{n:"Beirut",d:85},{n:"Amman",d:176},{n:"Tel Aviv",d:212}]},
-{n:"Doha",c:"Katar",m:"Aasia",p:"2.4 M",fl:"🇶🇦",la:25.286,lo:51.533,dist:4325,near:[{n:"Manama",d:140},{n:"Abu Dhabi",d:301},{n:"Dubai",d:376}]},
-{n:"Muscat",c:"Omaan",m:"Aasia",p:"1.6 M",fl:"🇴🇲",la:23.614,lo:58.593,dist:4776,near:[{n:"Dubai",d:380},{n:"Abu Dhabi",d:438},{n:"Doha",d:738}]},
-{n:"Kuwait City",c:"Kuveit",m:"Aasia",p:"3.1 M",fl:"🇰🇼",la:29.369,lo:47.978,dist:3775,near:[{n:"Manama",d:434},{n:"Riyad",d:535},{n:"Bagdad",d:557}]},
-{n:"Jeddah",c:"Saudi Araabia",m:"Aasia",p:"4.8 M",fl:"🇸🇦",la:21.485,lo:39.193,dist:4373,near:[{n:"Hurghada",d:842},{n:"Riyad",d:848},{n:"Sanaa",d:863}]},
-{n:"Hurghada",c:"Egiptus",m:"Aafrika",p:"250 tuh",fl:"🇪🇬",la:27.258,lo:33.812,dist:3645,near:[{n:"Sharm el-Sheikh",d:89},{n:"Kairo",d:399},{n:"Jeruusalemm",d:520}]},
-{n:"Astana",c:"Kasahstan",m:"Aasia",p:"1.4 M",fl:"🇰🇿",la:51.18,lo:71.446,dist:3023,near:[{n:"Bishkek",d:954},{n:"Almatõ",d:974},{n:"Taškent",d:1112}]},
-{n:"Almatõ",c:"Kasahstan",m:"Aasia",p:"2.0 M",fl:"🇰🇿",la:43.222,lo:76.851,dist:3912,near:[{n:"Bishkek",d:187},{n:"Taškent",d:662},{n:"Dušanbe",d:854}]},
-{n:"Taškent",c:"Usbekistan",m:"Aasia",p:"2.9 M",fl:"🇺🇿",la:41.299,lo:69.24,dist:3644,near:[{n:"Dušanbe",d:307},{n:"Bishkek",d:475},{n:"Almatõ",d:662}]},
-{n:"Ulaanbaatar",c:"Mongoolia",m:"Aasia",p:"1.6 M",fl:"🇲🇳",la:47.886,lo:106.906,dist:5197,near:[{n:"Peking",d:1166},{n:"Tianjin",d:1275},{n:"Pyongyang",d:1805}]},
-{n:"Islamabad",c:"Pakistan",m:"Aasia",p:"1.2 M",fl:"🇵🇰",la:33.738,lo:73.084,dist:4514,near:[{n:"Lahore",d:271},{n:"Kabul",d:370},{n:"Dušanbe",d:661}]},
-{n:"Katmandu",c:"Nepal",m:"Aasia",p:"1.4 M",fl:"🇳🇵",la:27.717,lo:85.316,dist:5733,near:[{n:"Kolkata",d:650},{n:"Dhaka",d:670},{n:"Delhi",d:801}]},
-{n:"Colombo",c:"Sri Lanka",m:"Aasia",p:"750 tuh",fl:"🇱🇰",la:6.927,lo:79.862,dist:7437,near:[{n:"Chennai",d:686},{n:"Bangalore",d:717},{n:"Malé",d:767}]},
-{n:"Phnom Penh",c:"Kambodža",m:"Aasia",p:"2.2 M",fl:"🇰🇭",la:11.549,lo:104.917,dist:8348,near:[{n:"Ho Chi Minh City",d:213},{n:"Bangkok",d:538},{n:"Vientiane",d:756}]},
-{n:"Bali (Denpasar)",c:"Indoneesia",m:"Aasia",p:"900 tuh",fl:"🇮🇩",la:-8.65,lo:115.217,dist:10861,near:[{n:"Jakarta",d:962},{n:"Singapur",d:1676},{n:"Darwin",d:1759}]},
-{n:"Phuket",c:"Tai",m:"Aasia",p:"100 tuh",fl:"🇹🇭",la:7.878,lo:98.392,dist:8332,near:[{n:"Kuala Lumpur",d:641},{n:"Bangkok",d:693},{n:"Phnom Penh",d:823}]},
-{n:"Taipei",c:"Taiwan",m:"Aasia",p:"7.0 M",fl:"🇹🇼",la:25.033,lo:121.565,dist:8001,near:[{n:"Shanghai",d:689},{n:"Hongkong",d:811},{n:"Shenzhen",d:812}]},
-{n:"Busan",c:"Lõuna-Korea",m:"Aasia",p:"3.4 M",fl:"🇰🇷",la:35.179,lo:129.075,dist:7432,near:[{n:"Seoul",d:325},{n:"Pyongyang",d:520},{n:"Ōsaka",d:588}]},
-{n:"Pyongyang",c:"Põhja-Korea",m:"Aasia",p:"3.1 M",fl:"🇰🇵",la:39.032,lo:125.755,dist:6913,near:[{n:"Seoul",d:195},{n:"Busan",d:520},{n:"Tianjin",d:740}]},
-{n:"Abuja",c:"Nigeeria",m:"Aafrika",p:"3.6 M",fl:"🇳🇬",la:9.072,lo:7.491,dist:5785,near:[{n:"Lagos",d:538},{n:"Accra",d:930},{n:"Abidjan",d:1334}]},
-{n:"Tunis",c:"Tuneesia",m:"Aafrika",p:"2.8 M",fl:"🇹🇳",la:36.818,lo:10.168,dist:2724,near:[{n:"Valetta",d:402},{n:"Tripoli",d:515},{n:"Napoli",d:572}]},
-{n:"Alžiir",c:"Alžeeria",m:"Aafrika",p:"3.9 M",fl:"🇩🇿",la:36.753,lo:3.042,dist:2964,near:[{n:"Valencia",d:425},{n:"Barcelona",d:520},{n:"Tunis",d:634}]},
-{n:"Rabat",c:"Maroko",m:"Aafrika",p:"1.9 M",fl:"🇲🇦",la:34.02,lo:-6.841,dist:3645,near:[{n:"Casablanca",d:86},{n:"Marrakech",d:286},{n:"Sevilla",d:382}]},
-{n:"Marrakech",c:"Maroko",m:"Aafrika",p:"1.0 M",fl:"🇲🇦",la:31.63,lo:-7.981,dist:3929,near:[{n:"Casablanca",d:221},{n:"Rabat",d:286},{n:"Sevilla",d:665}]},
-{n:"Dakar",c:"Senegal",m:"Aafrika",p:"3.9 M",fl:"🇸🇳",la:14.693,lo:-17.447,dist:6044,near:[{n:"Abidjan",d:1800},{n:"Marrakech",d:2115},{n:"Accra",d:2140}]},
-{n:"Pretoria",c:"Lõuna-Aafrika",m:"Aafrika",p:"3.0 M",fl:"🇿🇦",la:-25.747,lo:28.188,dist:9477,near:[{n:"Johannesburg",d:53},{n:"Maputo",d:439},{n:"Harare",d:929}]},
-{n:"Kampala",c:"Uganda",m:"Aafrika",p:"3.6 M",fl:"🇺🇬",la:0.316,lo:32.582,dist:6609,near:[{n:"Kigali",d:377},{n:"Nairobi",d:504},{n:"Zanzibar",d:1029}]},
-{n:"Ottawa",c:"Kanada",m:"Põhja-Ameerika",p:"1.4 M",fl:"🇨🇦",la:45.422,lo:-75.697,dist:6308,near:[{n:"Montreal",d:165},{n:"Toronto",d:350},{n:"New York",d:541}]},
-{n:"Vancouver",c:"Kanada",m:"Põhja-Ameerika",p:"2.6 M",fl:"🇨🇦",la:49.283,lo:-123.121,dist:7581,near:[{n:"San Francisco",d:1281},{n:"Las Vegas",d:1595},{n:"Los Angeles",d:1740}]},
-{n:"Montreal",c:"Kanada",m:"Põhja-Ameerika",p:"4.3 M",fl:"🇨🇦",la:45.508,lo:-73.588,dist:6201,near:[{n:"Ottawa",d:165},{n:"Toronto",d:501},{n:"New York",d:534}]},
-{n:"San Francisco",c:"USA",m:"Põhja-Ameerika",p:"4.7 M",fl:"🇺🇸",la:37.774,lo:-122.419,dist:8792,near:[{n:"Los Angeles",d:559},{n:"Las Vegas",d:671},{n:"Vancouver",d:1281}]},
-{n:"Las Vegas",c:"USA",m:"Põhja-Ameerika",p:"2.2 M",fl:"🇺🇸",la:36.175,lo:-115.137,dist:8762,near:[{n:"Los Angeles",d:368},{n:"San Francisco",d:671},{n:"Vancouver",d:1595}]},
-{n:"Havanna",c:"Kuuba",m:"Põhja-Ameerika",p:"2.1 M",fl:"🇨🇺",la:23.136,lo:-82.359,dist:8720,near:[{n:"Miami",d:365},{n:"Kingston",d:814},{n:"Guatemala City",d:1275}]},
-{n:"Brasília",c:"Brasiilia",m:"Lõuna-Ameerika",p:"4.8 M",fl:"🇧🇷",la:-15.779,lo:-47.93,dist:10572,near:[{n:"São Paulo",d:875},{n:"Rio de Janeiro",d:936},{n:"Asunción",d:1462}]},
-{n:"Caracas",c:"Venezuela",m:"Lõuna-Ameerika",p:"2.9 M",fl:"🇻🇪",la:10.48,lo:-66.916,dist:9099,near:[{n:"Santo Domingo",d:946},{n:"Bogotá",d:1016},{n:"Kingston",d:1353}]},
-{n:"Montevideo",c:"Uruguay",m:"Lõuna-Ameerika",p:"1.8 M",fl:"🇺🇾",la:-34.901,lo:-56.165,dist:12817,near:[{n:"Buenos Aires",d:210},{n:"Asunción",d:1079},{n:"Santiago",d:1341}]},
-{n:"Sydney",c:"Austraalia",m:"Austraalia ja Okeaania",p:"5.3 M",fl:"🇦🇺",la:-33.869,lo:151.209,dist:15228,near:[{n:"Canberra",d:247},{n:"Gold Coast",d:683},{n:"Melbourne",d:713}]},
-{n:"Melbourne",c:"Austraalia",m:"Austraalia ja Okeaania",p:"5.1 M",fl:"🇦🇺",la:-37.814,lo:144.963,dist:15221,near:[{n:"Canberra",d:467},{n:"Hobart",d:598},{n:"Adelaide",d:654}]},
-{n:"Brisbane",c:"Austraalia",m:"Austraalia ja Okeaania",p:"2.6 M",fl:"🇦🇺",la:-27.471,lo:153.024,dist:14742,near:[{n:"Gold Coast",d:71},{n:"Sydney",d:732},{n:"Canberra",d:943}]},
-{n:"Perth",c:"Austraalia",m:"Austraalia ja Okeaania",p:"2.1 M",fl:"🇦🇺",la:-31.952,lo:115.861,dist:13082,near:[{n:"Adelaide",d:2131},{n:"Bali (Denpasar)",d:2592},{n:"Darwin",d:2653}]},
-{n:"Adelaide",c:"Austraalia",m:"Austraalia ja Okeaania",p:"1.4 M",fl:"🇦🇺",la:-34.929,lo:138.6,dist:14613,near:[{n:"Melbourne",d:654},{n:"Canberra",d:958},{n:"Hobart",d:1161}]},
-{n:"Gold Coast",c:"Austraalia",m:"Austraalia ja Okeaania",p:"700 tuh",fl:"🇦🇺",la:-28.017,lo:153.4,dist:14813,near:[{n:"Brisbane",d:71},{n:"Sydney",d:683},{n:"Canberra",d:903}]},
-{n:"Canberra",c:"Austraalia",m:"Austraalia ja Okeaania",p:"460 tuh",fl:"🇦🇺",la:-35.28,lo:149.13,dist:15237,near:[{n:"Sydney",d:247},{n:"Melbourne",d:467},{n:"Hobart",d:859}]},
-{n:"Hobart",c:"Austraalia",m:"Austraalia ja Okeaania",p:"240 tuh",fl:"🇦🇺",la:-42.88,lo:147.328,dist:15774,near:[{n:"Melbourne",d:598},{n:"Canberra",d:859},{n:"Sydney",d:1057}]},
-{n:"Darwin",c:"Austraalia",m:"Austraalia ja Okeaania",p:"150 tuh",fl:"🇦🇺",la:-12.462,lo:130.842,dist:12106,near:[{n:"Bali (Denpasar)",d:1759},{n:"Port Moresby",d:1814},{n:"Adelaide",d:2618}]},
-{n:"Auckland",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"1.7 M",fl:"🇳🇿",la:-36.867,lo:174.767,dist:16717,near:[{n:"Hamilton",d:112},{n:"Wellington",d:491},{n:"Christchurch",d:763}]},
-{n:"Wellington",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"440 tuh",fl:"🇳🇿",la:-41.286,lo:174.776,dist:17129,near:[{n:"Christchurch",d:305},{n:"Hamilton",d:391},{n:"Auckland",d:491}]},
-{n:"Christchurch",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"400 tuh",fl:"🇳🇿",la:-43.532,lo:172.636,dist:17220,near:[{n:"Wellington",d:305},{n:"Dunedin",d:311},{n:"Hamilton",d:676}]},
-{n:"Hamilton",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"180 tuh",fl:"🇳🇿",la:-37.787,lo:175.279,dist:16828,near:[{n:"Auckland",d:112},{n:"Wellington",d:391},{n:"Christchurch",d:676}]},
-{n:"Dunedin",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"130 tuh",fl:"🇳🇿",la:-45.878,lo:170.503,dist:17303,near:[{n:"Christchurch",d:311},{n:"Wellington",d:616},{n:"Hamilton",d:982}]},
-{n:"Port Moresby",c:"Paapua Uus-Guinea",m:"Austraalia ja Okeaania",p:"410 tuh",fl:"🇵🇬",la:-9.447,lo:147.18,dist:12701,near:[{n:"Darwin",d:1814},{n:"Brisbane",d:2096},{n:"Gold Coast",d:2165}]},
-{n:"Suva",c:"Fidži",m:"Austraalia ja Okeaania",p:"190 tuh",fl:"🇫🇯",la:-18.141,lo:178.441,dist:14959,near:[{n:"Auckland",d:2113},{n:"Hamilton",d:2206},{n:"Wellington",d:2597}]},
-{n:"Vatikan",c:"Vatikan",m:"Euroopa",p:"1 tuh",fl:"🇻🇦",la:41.903,lo:12.453,dist:2126,near:[{n:"Rooma",d:4},{n:"Napoli",d:191},{n:"San Marino",d:226}]},
-{n:"Vientiane",c:"Laos",m:"Aasia",p:"950 tuh",fl:"🇱🇦",la:17.966,lo:102.6,dist:7610,near:[{n:"Hanoi",d:478},{n:"Bangkok",d:519},{n:"Yangon",d:690}]},
-{n:"Bishkek",c:"Kõrgõzstan",m:"Aasia",p:"1.1 M",fl:"🇰🇬",la:42.871,lo:74.599,dist:3813,near:[{n:"Almatõ",d:187},{n:"Taškent",d:475},{n:"Dušanbe",d:686}]},
-{n:"Dušanbe",c:"Tadžikistan",m:"Aasia",p:"850 tuh",fl:"🇹🇯",la:38.558,lo:68.773,dist:3853,near:[{n:"Taškent",d:307},{n:"Kabul",d:450},{n:"Islamabad",d:661}]},
-{n:"Ašgabat",c:"Türkmenistan",m:"Aasia",p:"810 tuh",fl:"🇹🇲",la:37.952,lo:58.383,dist:3369,near:[{n:"Teheran",d:668},{n:"Bakuu",d:783},{n:"Dušanbe",d:909}]},
-{n:"Sanaa",c:"Jeemen",m:"Aasia",p:"3.0 M",fl:"🇾🇪",la:15.354,lo:44.207,dist:5153,near:[{n:"Jeddah",d:863},{n:"Addis Abeba",d:921},{n:"Riyad",d:1071}]},
-{n:"Manama",c:"Bahrein",m:"Aasia",p:"150 tuh",fl:"🇧🇭",la:26.218,lo:50.586,dist:4194,near:[{n:"Doha",d:140},{n:"Riyad",d:424},{n:"Abu Dhabi",d:429}]},
-{n:"Malé",c:"Maldiivid",m:"Aasia",p:"230 tuh",fl:"🇲🇻",la:4.175,lo:73.509,dist:7406,near:[{n:"Colombo",d:767},{n:"Bangalore",d:1076},{n:"Chennai",d:1238}]},
-{n:"Tripoli",c:"Liibüa",m:"Aafrika",p:"1.2 M",fl:"🇱🇾",la:32.902,lo:13.18,dist:3072,near:[{n:"Valetta",d:355},{n:"Tunis",d:515},{n:"Napoli",d:889}]},
-{n:"Abidjan",c:"Elevandiluurannik",m:"Aafrika",p:"5.0 M",fl:"🇨🇮",la:5.354,lo:-4.008,dist:6493,near:[{n:"Accra",d:424},{n:"Lagos",d:827},{n:"Abuja",d:1334}]},
-{n:"Harare",c:"Zimbabwe",m:"Aafrika",p:"1.5 M",fl:"🇿🇼",la:-17.829,lo:31.052,dist:8611,near:[{n:"Maputo",d:918},{n:"Pretoria",d:929},{n:"Johannesburg",d:981}]},
-{n:"Kigali",c:"Rwanda",m:"Aafrika",p:"1.3 M",fl:"🇷🇼",la:-1.95,lo:30.057,dist:6842,near:[{n:"Kampala",d:377},{n:"Nairobi",d:755},{n:"Zanzibar",d:1117}]},
-{n:"Maputo",c:"Mosambiik",m:"Aafrika",p:"1.1 M",fl:"🇲🇿",la:-25.966,lo:32.573,dist:9524,near:[{n:"Pretoria",d:439},{n:"Johannesburg",d:452},{n:"Harare",d:918}]},
-{n:"Windhoek",c:"Namiibia",m:"Aafrika",p:"470 tuh",fl:"🇳🇦",la:-22.559,lo:17.083,dist:9145,near:[{n:"Pretoria",d:1181},{n:"Johannesburg",d:1182},{n:"Kapilinn",d:1271}]},
-{n:"Zanzibar",c:"Tansaania",m:"Aafrika",p:"900 tuh",fl:"🇹🇿",la:-6.165,lo:39.199,dist:7406,near:[{n:"Dar es Salaam",d:71},{n:"Nairobi",d:603},{n:"Kampala",d:1029}]},
-{n:"Quito",c:"Ecuador",m:"Lõuna-Ameerika",p:"2.0 M",fl:"🇪🇨",la:-0.229,lo:-78.524,dist:10775,near:[{n:"Bogotá",d:739},{n:"Panama City",d:1031},{n:"San José",d:1286}]},
-{n:"La Paz",c:"Boliivia",m:"Lõuna-Ameerika",p:"2.0 M",fl:"🇧🇴",la:-16.5,lo:-68.15,dist:11744,near:[{n:"Lima",d:1078},{n:"Asunción",d:1463},{n:"Santiago",d:1902}]},
-{n:"Asunción",c:"Paraguay",m:"Lõuna-Ameerika",p:"2.3 M",fl:"🇵🇾",la:-25.286,lo:-57.647,dist:11996,near:[{n:"Buenos Aires",d:1040},{n:"Montevideo",d:1079},{n:"São Paulo",d:1131}]},
-{n:"Guatemala City",c:"Guatemala",m:"Põhja-Ameerika",p:"3.0 M",fl:"🇬🇹",la:14.633,lo:-90.507,dist:9959,near:[{n:"San José",d:871},{n:"Mexico City",d:1061},{n:"Havanna",d:1275}]},
-{n:"Panama City",c:"Panama",m:"Põhja-Ameerika",p:"1.9 M",fl:"🇵🇦",la:8.994,lo:-79.519,dist:9939,near:[{n:"San José",d:512},{n:"Bogotá",d:767},{n:"Quito",d:1031}]},
-{n:"San José",c:"Costa Rica",m:"Põhja-Ameerika",p:"1.4 M",fl:"🇨🇷",la:9.928,lo:-84.091,dist:10092,near:[{n:"Panama City",d:512},{n:"Guatemala City",d:871},{n:"Kingston",d:1193}]},
-{n:"Kingston",c:"Jamaica",m:"Põhja-Ameerika",p:"1.2 M",fl:"🇯🇲",la:17.998,lo:-76.793,dist:8924,near:[{n:"Santo Domingo",d:727},{n:"Havanna",d:814},{n:"Miami",d:934}]},
-{n:"Santo Domingo",c:"Dominikaani Vabariik",m:"Põhja-Ameerika",p:"3.3 M",fl:"🇩🇴",la:18.474,lo:-69.931,dist:8506,near:[{n:"Kingston",d:727},{n:"Caracas",d:946},{n:"Miami",d:1333}]},
-{n:"Sharm el-Sheikh",c:"Egiptus",m:"Aafrika",p:"70 tuh",fl:"🇪🇬",la:27.912,lo:34.329,dist:3581,near:[{n:"Hurghada",d:89},{n:"Kairo",d:383},{n:"Jeruusalemm",d:437}]},
-{n:"Tartu",c:"Eesti",m:"Euroopa",p:"94 tuh",fl:"🇪🇪",la:58.378,lo:26.729,dist:163,near:[{n:"Põlva",d:40},{n:"Jõgeva",d:46},{n:"Võru",d:62}]},
-{n:"Narva",c:"Eesti",m:"Euroopa",p:"53 tuh",fl:"🇪🇪",la:59.378,lo:28.179,dist:194,near:[{n:"Jõhvi",d:43},{n:"Kohtla-Järve",d:51},{n:"Rakvere",d:103}]},
-{n:"Pärnu",c:"Eesti",m:"Euroopa",p:"51 tuh",fl:"🇪🇪",la:58.385,lo:24.499,dist:118,near:[{n:"Viljandi",d:64},{n:"Rapla",d:70},{n:"Haapsalu",d:83}]},
-{n:"Kohtla-Järve",c:"Eesti",m:"Euroopa",p:"37 tuh",fl:"🇪🇪",la:59.397,lo:27.274,dist:143,near:[{n:"Jõhvi",d:9},{n:"Narva",d:51},{n:"Rakvere",d:52}]},
-{n:"Rakvere",c:"Eesti",m:"Euroopa",p:"16 tuh",fl:"🇪🇪",la:59.347,lo:26.355,dist:91,near:[{n:"Kohtla-Järve",d:52},{n:"Jõhvi",d:60},{n:"Jõgeva",d:66}]},
-{n:"Viljandi",c:"Eesti",m:"Euroopa",p:"18 tuh",fl:"🇪🇪",la:58.363,lo:25.59,dist:129,near:[{n:"Paide",d:58},{n:"Pärnu",d:64},{n:"Jõgeva",d:64}]},
-{n:"Jõhvi",c:"Eesti",m:"Euroopa",p:"12 tuh",fl:"🇪🇪",la:59.358,lo:27.416,dist:151,near:[{n:"Kohtla-Järve",d:9},{n:"Narva",d:43},{n:"Rakvere",d:60}]},
-{n:"Kuressaare",c:"Eesti",m:"Euroopa",p:"13 tuh",fl:"🇪🇪",la:58.248,lo:22.487,dist:186,near:[{n:"Kärdla",d:84},{n:"Haapsalu",d:99},{n:"Pärnu",d:118}]},
-{n:"Võru",c:"Eesti",m:"Euroopa",p:"12 tuh",fl:"🇪🇪",la:57.838,lo:27.015,dist:221,near:[{n:"Põlva",d:25},{n:"Valga",d:58},{n:"Tartu",d:62}]},
-{n:"Valga",c:"Eesti",m:"Euroopa",p:"12 tuh",fl:"🇪🇪",la:57.778,lo:26.034,dist:199,near:[{n:"Võru",d:58},{n:"Põlva",d:68},{n:"Cēsis",d:69}]},
-{n:"Haapsalu",c:"Eesti",m:"Euroopa",p:"11 tuh",fl:"🇪🇪",la:58.944,lo:23.546,dist:88,near:[{n:"Kärdla",d:46},{n:"Rapla",d:72},{n:"Pärnu",d:83}]},
-{n:"Paide",c:"Eesti",m:"Euroopa",p:"9 tuh",fl:"🇪🇪",la:58.885,lo:25.558,dist:77,near:[{n:"Rapla",d:45},{n:"Jõgeva",d:51},{n:"Viljandi",d:58}]},
-{n:"Jõgeva",c:"Eesti",m:"Euroopa",p:"6 tuh",fl:"🇪🇪",la:58.752,lo:26.401,dist:121,near:[{n:"Tartu",d:46},{n:"Paide",d:51},{n:"Viljandi",d:64}]},
-{n:"Põlva",c:"Eesti",m:"Euroopa",p:"6 tuh",fl:"🇪🇪",la:58.058,lo:27.058,dist:203,near:[{n:"Võru",d:25},{n:"Tartu",d:40},{n:"Valga",d:68}]},
-{n:"Rapla",c:"Eesti",m:"Euroopa",p:"5 tuh",fl:"🇪🇪",la:58.992,lo:24.793,dist:50,near:[{n:"Paide",d:45},{n:"Tallinn",d:50},{n:"Pärnu",d:70}]},
-{n:"Kärdla",c:"Eesti",m:"Euroopa",p:"4 tuh",fl:"🇪🇪",la:58.994,lo:22.748,dist:124,near:[{n:"Haapsalu",d:46},{n:"Kuressaare",d:84},{n:"Rapla",d:117}]}
+{n:"Tōkyō",c:"Jaapan",m:"Aasia",p:"37.4 M",fl:"jp",la:35.689,lo:139.692,dist:7877,near:[{n:"Ōsaka",d:396},{n:"Busan",d:963},{n:"Seoul",d:1153}]},
+{n:"Delhi",c:"India",m:"Aasia",p:"32.9 M",fl:"in",la:28.614,lo:77.209,dist:5205,near:[{n:"Lahore",d:427},{n:"Islamabad",d:692},{n:"Katmandu",d:801}]},
+{n:"Shanghai",c:"Hiina",m:"Aasia",p:"28.5 M",fl:"cn",la:31.228,lo:121.474,dist:7417,near:[{n:"Nanjing",d:270},{n:"Wuhan",d:687},{n:"Taipei",d:689}]},
+{n:"Dhaka",c:"Bangladesh",m:"Aasia",p:"22.5 M",fl:"bd",la:23.811,lo:90.412,dist:6378,near:[{n:"Kolkata",d:251},{n:"Katmandu",d:670},{n:"Yangon",d:979}]},
+{n:"São Paulo",c:"Brasiilia",m:"Lõuna-Ameerika",p:"22.4 M",fl:"br",la:-23.55,lo:-46.633,dist:11260,near:[{n:"Rio de Janeiro",d:361},{n:"Brasília",d:875},{n:"Asunción",d:1131}]},
+{n:"Mexico City",c:"Mehhiko",m:"Põhja-Ameerika",p:"22.1 M",fl:"mx",la:19.432,lo:-99.133,dist:9886,near:[{n:"Guatemala City",d:1061},{n:"Houston",d:1208},{n:"Havanna",d:1785}]},
+{n:"Peking",c:"Hiina",m:"Aasia",p:"21.5 M",fl:"cn",la:39.914,lo:116.392,dist:6363,near:[{n:"Tianjin",d:109},{n:"Pyongyang",d:809},{n:"Nanjing",d:900}]},
+{n:"Kairo",c:"Egiptus",m:"Aafrika",p:"21.3 M",fl:"eg",la:30.044,lo:31.235,dist:3305,near:[{n:"Sharm el-Sheikh",d:383},{n:"Hurghada",d:399},{n:"Tel Aviv",d:407}]},
+{n:"Mumbai",c:"India",m:"Aasia",p:"20.8 M",fl:"in",la:19.076,lo:72.877,dist:5890,near:[{n:"Hyderabad",d:621},{n:"Bangalore",d:845},{n:"Karachi",d:883}]},
+{n:"Ōsaka",c:"Jaapan",m:"Aasia",p:"19.1 M",fl:"jp",la:34.693,lo:135.502,dist:7784,near:[{n:"Tōkyō",d:396},{n:"Busan",d:588},{n:"Seoul",d:829}]},
+{n:"New York",c:"USA",m:"Põhja-Ameerika",p:"18.8 M",fl:"us",la:40.713,lo:-74.006,dist:6650,near:[{n:"Washington DC",d:328},{n:"Montreal",d:534},{n:"Ottawa",d:541}]},
+{n:"Chongqing",c:"Hiina",m:"Aasia",p:"16.9 M",fl:"cn",la:29.563,lo:106.551,dist:6760,near:[{n:"Chengdu",d:264},{n:"Wuhan",d:755},{n:"Hanoi",d:952}]},
+{n:"Karachi",c:"Pakistan",m:"Aasia",p:"16.4 M",fl:"pk",la:24.861,lo:67.011,dist:5036,near:[{n:"Muscat",d:865},{n:"Mumbai",d:883},{n:"Lahore",d:1035}]},
+{n:"Istanbul",c:"Türkiye",m:"Aasia",p:"15.6 M",fl:"tr",la:41.015,lo:28.98,dist:2069,near:[{n:"Ankara",d:350},{n:"Bukarest",d:447},{n:"Antalya",d:482}]},
+{n:"Buenos Aires",c:"Argentina",m:"Lõuna-Ameerika",p:"15.3 M",fl:"ar",la:-34.614,lo:-58.438,dist:12907,near:[{n:"Montevideo",d:210},{n:"Asunción",d:1040},{n:"Santiago",d:1132}]},
+{n:"Lagos",c:"Nigeeria",m:"Aafrika",p:"15.3 M",fl:"ng",la:6.455,lo:3.384,dist:6164,near:[{n:"Accra",d:406},{n:"Abuja",d:538},{n:"Abidjan",d:827}]},
+{n:"Kinshasa",c:"DR Kongo",m:"Aafrika",p:"15.0 M",fl:"cd",la:-4.322,lo:15.323,dist:7138,near:[{n:"Luanda",d:553},{n:"Kigali",d:1657},{n:"Abuja",d:1724}]},
+{n:"Kolkata",c:"India",m:"Aasia",p:"15.0 M",fl:"in",la:22.563,lo:88.363,dist:6380,near:[{n:"Dhaka",d:251},{n:"Katmandu",d:650},{n:"Yangon",d:1036}]},
+{n:"Manila",c:"Filipiinid",m:"Aasia",p:"14.4 M",fl:"ph",la:14.599,lo:120.984,dist:8960,near:[{n:"Hongkong",d:1119},{n:"Shenzhen",d:1146},{n:"Taipei",d:1162}]},
+{n:"Tianjin",c:"Hiina",m:"Aasia",p:"14.0 M",fl:"cn",la:39.143,lo:117.177,dist:6472,near:[{n:"Peking",d:109},{n:"Pyongyang",d:740},{n:"Nanjing",d:801}]},
+{n:"Guangzhou",c:"Hiina",m:"Aasia",p:"13.8 M",fl:"cn",la:23.129,lo:113.264,dist:7727,near:[{n:"Shenzhen",d:104},{n:"Hongkong",d:129},{n:"Hanoi",d:803}]},
+{n:"Rio de Janeiro",c:"Brasiilia",m:"Lõuna-Ameerika",p:"13.5 M",fl:"br",la:-22.908,lo:-43.173,dist:11026,near:[{n:"São Paulo",d:361},{n:"Brasília",d:936},{n:"Asunción",d:1492}]},
+{n:"Lahore",c:"Pakistan",m:"Aasia",p:"13.1 M",fl:"pk",la:31.554,lo:74.357,dist:4781,near:[{n:"Islamabad",d:271},{n:"Delhi",d:427},{n:"Kabul",d:585}]},
+{n:"Bangalore",c:"India",m:"Aasia",p:"12.7 M",fl:"in",la:12.972,lo:77.595,dist:6726,near:[{n:"Chennai",d:290},{n:"Hyderabad",d:500},{n:"Colombo",d:717}]},
+{n:"Los Angeles",c:"USA",m:"Põhja-Ameerika",p:"12.5 M",fl:"us",la:34.052,lo:-118.244,dist:9076,near:[{n:"Las Vegas",d:368},{n:"San Francisco",d:559},{n:"Vancouver",d:1740}]},
+{n:"Moskva",c:"Venemaa",m:"Euroopa",p:"12.5 M",fl:"ru",la:55.751,lo:37.618,dist:867,near:[{n:"Novgorod",d:491},{n:"Pihkva",d:610},{n:"Peterburg",d:635}]},
+{n:"Shenzhen",c:"Hiina",m:"Aasia",p:"12.5 M",fl:"cn",la:22.543,lo:114.057,dist:7826,near:[{n:"Hongkong",d:27},{n:"Guangzhou",d:104},{n:"Taipei",d:812}]},
+{n:"Wuhan",c:"Hiina",m:"Aasia",p:"11.5 M",fl:"cn",la:30.593,lo:114.305,dist:7093,near:[{n:"Nanjing",d:457},{n:"Shanghai",d:687},{n:"Chongqing",d:755}]},
+{n:"Bogotá",c:"Colombia",m:"Lõuna-Ameerika",p:"11.3 M",fl:"co",la:4.711,lo:-74.072,dist:10052,near:[{n:"Quito",d:739},{n:"Panama City",d:767},{n:"Caracas",d:1016}]},
+{n:"Pariis",c:"Prantsusmaa",m:"Euroopa",p:"11.1 M",fl:"fr",la:48.857,lo:2.352,dist:1859,near:[{n:"Brüssel",d:264},{n:"Luksemburg",d:287},{n:"London",d:343}]},
+{n:"Jakarta",c:"Indoneesia",m:"Aasia",p:"11.0 M",fl:"id",la:-6.211,lo:106.845,dist:10158,near:[{n:"Singapur",d:898},{n:"Bali (Denpasar)",d:962},{n:"Kuala Lumpur",d:1187}]},
+{n:"Lima",c:"Peruu",m:"Lõuna-Ameerika",p:"10.9 M",fl:"pe",la:-12.046,lo:-77.043,dist:11825,near:[{n:"La Paz",d:1078},{n:"Quito",d:1324},{n:"Bogotá",d:1892}]},
+{n:"Bangkok",c:"Tai",m:"Aasia",p:"10.7 M",fl:"th",la:13.756,lo:100.502,dist:7890,near:[{n:"Vientiane",d:519},{n:"Phnom Penh",d:538},{n:"Yangon",d:577}]},
+{n:"Chennai",c:"India",m:"Aasia",p:"10.5 M",fl:"in",la:13.083,lo:80.27,dist:6852,near:[{n:"Bangalore",d:290},{n:"Hyderabad",d:515},{n:"Colombo",d:686}]},
+{n:"Hyderabad",c:"India",m:"Aasia",p:"10.5 M",fl:"in",la:17.385,lo:78.486,dist:6340,near:[{n:"Bangalore",d:500},{n:"Chennai",d:515},{n:"Mumbai",d:621}]},
+{n:"Seoul",c:"Lõuna-Korea",m:"Aasia",p:"9.9 M",fl:"kr",la:37.566,lo:126.978,dist:7108,near:[{n:"Pyongyang",d:195},{n:"Busan",d:325},{n:"Ōsaka",d:829}]},
+{n:"Chicago",c:"USA",m:"Põhja-Ameerika",p:"9.5 M",fl:"us",la:41.878,lo:-87.63,dist:7171,near:[{n:"Toronto",d:704},{n:"Washington DC",d:955},{n:"Ottawa",d:1037}]},
+{n:"Teheran",c:"Iraan",m:"Aasia",p:"9.5 M",fl:"ir",la:35.694,lo:51.421,dist:3266,near:[{n:"Bakuu",d:542},{n:"Ašgabat",d:668},{n:"Bagdad",d:694}]},
+{n:"London",c:"Ühendkuningriik",m:"Euroopa",p:"9.5 M",fl:"gb",la:51.507,lo:-0.128,dist:1784,near:[{n:"Manchester",d:262},{n:"Brüssel",d:321},{n:"Rotterdam",d:321}]},
+{n:"Nanjing",c:"Hiina",m:"Aasia",p:"9.3 M",fl:"cn",la:32.06,lo:118.797,dist:7199,near:[{n:"Shanghai",d:270},{n:"Wuhan",d:457},{n:"Tianjin",d:801}]},
+{n:"Ho Chi Minh City",c:"Vietnam",m:"Aasia",p:"9.0 M",fl:"vn",la:10.776,lo:106.701,dist:8523,near:[{n:"Phnom Penh",d:213},{n:"Bangkok",d:751},{n:"Vientiane",d:913}]},
+{n:"Hanoi",c:"Vietnam",m:"Aasia",p:"8.0 M",fl:"vn",la:21.028,lo:105.804,dist:7505,near:[{n:"Vientiane",d:478},{n:"Guangzhou",d:803},{n:"Shenzhen",d:869}]},
+{n:"Chengdu",c:"Hiina",m:"Aasia",p:"9.0 M",fl:"cn",la:30.572,lo:104.067,dist:6530,near:[{n:"Chongqing",d:264},{n:"Wuhan",d:980},{n:"Hanoi",d:1075}]},
+{n:"Kuala Lumpur",c:"Malaisia",m:"Aasia",p:"8.4 M",fl:"my",la:3.14,lo:101.687,dist:8971,near:[{n:"Singapur",d:317},{n:"Phuket",d:641},{n:"Phnom Penh",d:1000}]},
+{n:"Luanda",c:"Angola",m:"Aafrika",p:"8.3 M",fl:"ao",la:-8.839,lo:13.234,dist:7661,near:[{n:"Kinshasa",d:553},{n:"Windhoek",d:1580},{n:"Kigali",d:2013}]},
+{n:"Riyad",c:"Saudi Araabia",m:"Aasia",p:"7.7 M",fl:"sa",la:24.688,lo:46.722,dist:4224,near:[{n:"Manama",d:424},{n:"Doha",d:489},{n:"Kuwait City",d:535}]},
+{n:"Dar es Salaam",c:"Tansaania",m:"Aafrika",p:"7.4 M",fl:"tz",la:-6.8,lo:39.269,dist:7477,near:[{n:"Zanzibar",d:71},{n:"Nairobi",d:671},{n:"Kampala",d:1085}]},
+{n:"Houston",c:"USA",m:"Põhja-Ameerika",p:"7.3 M",fl:"us",la:29.749,lo:-95.368,dist:8688,near:[{n:"Mexico City",d:1208},{n:"Havanna",d:1488},{n:"Chicago",d:1517}]},
+{n:"Bagdad",c:"Iraak",m:"Aasia",p:"7.1 M",fl:"iq",la:33.341,lo:44.401,dist:3242,near:[{n:"Kuwait City",d:557},{n:"Teheran",d:694},{n:"Damaskus",d:753}]},
+{n:"Santiago",c:"Tšiili",m:"Lõuna-Ameerika",p:"7.0 M",fl:"cl",la:-33.457,lo:-70.648,dist:13452,near:[{n:"Buenos Aires",d:1132},{n:"Montevideo",d:1341},{n:"Asunción",d:1551}]},
+{n:"Hongkong",c:"Hiina",m:"Aasia",p:"7.4 M",fl:"cn",la:22.32,lo:114.169,dist:7853,near:[{n:"Shenzhen",d:27},{n:"Guangzhou",d:129},{n:"Taipei",d:811}]},
+{n:"Miami",c:"USA",m:"Põhja-Ameerika",p:"6.2 M",fl:"us",la:25.775,lo:-80.209,dist:8357,near:[{n:"Havanna",d:365},{n:"Kingston",d:934},{n:"Santo Domingo",d:1333}]},
+{n:"Washington DC",c:"USA",m:"Põhja-Ameerika",p:"6.4 M",fl:"us",la:38.907,lo:-77.037,dist:6963,near:[{n:"New York",d:328},{n:"Toronto",d:562},{n:"Ottawa",d:733}]},
+{n:"Toronto",c:"Kanada",m:"Põhja-Ameerika",p:"6.2 M",fl:"ca",la:43.651,lo:-79.347,dist:6637,near:[{n:"Ottawa",d:350},{n:"Montreal",d:501},{n:"New York",d:548}]},
+{n:"Khartoum",c:"Sudaan",m:"Aafrika",p:"6.2 M",fl:"sd",la:15.555,lo:32.533,dist:4921,near:[{n:"Jeddah",d:963},{n:"Addis Abeba",d:994},{n:"Sanaa",d:1251}]},
+{n:"Johannesburg",c:"Lõuna-Aafrika",m:"Aafrika",p:"6.0 M",fl:"za",la:-26.205,lo:28.05,dist:9528,near:[{n:"Pretoria",d:53},{n:"Maputo",d:452},{n:"Harare",d:981}]},
+{n:"Singapur",c:"Singapur",m:"Aasia",p:"5.9 M",fl:"sg",la:1.29,lo:103.852,dist:9270,near:[{n:"Kuala Lumpur",d:317},{n:"Jakarta",d:898},{n:"Phuket",d:950}]},
+{n:"Ankara",c:"Türkiye",m:"Aasia",p:"5.7 M",fl:"tr",la:39.92,lo:32.854,dist:2243,near:[{n:"Istanbul",d:350},{n:"Antalya",d:385},{n:"Nikosia",d:530}]},
+{n:"Yangon",c:"Myanmar",m:"Aasia",p:"5.5 M",fl:"mm",la:16.866,lo:96.195,dist:7353,near:[{n:"Bangkok",d:577},{n:"Vientiane",d:690},{n:"Dhaka",d:979}]},
+{n:"Nairobi",c:"Keenia",m:"Aafrika",p:"5.1 M",fl:"ke",la:-1.286,lo:36.818,dist:6834,near:[{n:"Kampala",d:504},{n:"Zanzibar",d:603},{n:"Dar es Salaam",d:671}]},
+{n:"Addis Abeba",c:"Etioopia",m:"Aafrika",p:"4.8 M",fl:"et",la:9.006,lo:38.763,dist:5730,near:[{n:"Sanaa",d:921},{n:"Khartoum",d:994},{n:"Nairobi",d:1165}]},
+{n:"Kabul",c:"Afganistan",m:"Aasia",p:"4.6 M",fl:"af",la:34.526,lo:69.178,dist:4234,near:[{n:"Islamabad",d:370},{n:"Dušanbe",d:450},{n:"Lahore",d:585}]},
+{n:"Kapilinn",c:"Lõuna-Aafrika",m:"Aafrika",p:"4.6 M",fl:"za",la:-33.925,lo:18.424,dist:10398,near:[{n:"Johannesburg",d:1262},{n:"Windhoek",d:1271},{n:"Pretoria",d:1308}]},
+{n:"Casablanca",c:"Maroko",m:"Aafrika",p:"3.8 M",fl:"ma",la:33.59,lo:-7.61,dist:3722,near:[{n:"Rabat",d:86},{n:"Marrakech",d:221},{n:"Sevilla",d:447}]},
+{n:"Accra",c:"Ghana",m:"Aafrika",p:"3.6 M",fl:"gh",la:5.603,lo:-0.187,dist:6351,near:[{n:"Lagos",d:406},{n:"Abidjan",d:424},{n:"Abuja",d:930}]},
+{n:"Madrid",c:"Hispaania",m:"Euroopa",p:"6.7 M",fl:"es",la:40.417,lo:-3.703,dist:2893,near:[{n:"Valencia",d:303},{n:"Sevilla",d:391},{n:"Porto",d:423}]},
+{n:"Barcelona",c:"Hispaania",m:"Euroopa",p:"5.6 M",fl:"es",la:41.385,lo:2.173,dist:2541,near:[{n:"Andorra la Vella",d:136},{n:"Valencia",d:303},{n:"Marseille",d:339}]},
+{n:"Peterburg",c:"Venemaa",m:"Euroopa",p:"5.4 M",fl:"ru",la:59.939,lo:30.316,dist:317,near:[{n:"Narva",d:135},{n:"Novgorod",d:167},{n:"Jõhvi",d:175}]},
+{n:"Rooma",c:"Itaalia",m:"Euroopa",p:"4.3 M",fl:"it",la:41.902,lo:12.496,dist:2125,near:[{n:"Vatikan",d:4},{n:"Napoli",d:188},{n:"San Marino",d:226}]},
+{n:"Berlin",c:"Saksamaa",m:"Euroopa",p:"3.8 M",fl:"de",la:52.52,lo:13.405,dist:1041,near:[{n:"Hamburg",d:255},{n:"Praha",d:281},{n:"Malmö",d:344}]},
+{n:"Kiiev",c:"Ukraina",m:"Euroopa",p:"3.0 M",fl:"ua",la:50.45,lo:30.523,dist:1064,near:[{n:"Chișinău",d:402},{n:"Harkiv",d:409},{n:"Minsk",d:434}]},
+{n:"Lissabon",c:"Portugal",m:"Euroopa",p:"3.0 M",fl:"pt",la:38.717,lo:-9.139,dist:3312,near:[{n:"Porto",d:275},{n:"Sevilla",d:314},{n:"Madrid",d:503}]},
+{n:"Budapešt",c:"Ungari",m:"Euroopa",p:"3.3 M",fl:"hu",la:47.498,lo:19.04,dist:1379,near:[{n:"Bratislava",d:161},{n:"Viin",d:214},{n:"Krakow",d:293}]},
+{n:"Napoli",c:"Itaalia",m:"Euroopa",p:"3.3 M",fl:"it",la:40.852,lo:14.268,dist:2191,near:[{n:"Rooma",d:188},{n:"Vatikan",d:191},{n:"San Marino",d:374}]},
+{n:"Varssavi",c:"Poola",m:"Euroopa",p:"3.1 M",fl:"pl",la:52.23,lo:21.012,dist:834,near:[{n:"Krakow",d:252},{n:"Gdańsk",d:283},{n:"Lviv",d:339}]},
+{n:"Milano",c:"Itaalia",m:"Euroopa",p:"3.2 M",fl:"it",la:45.465,lo:9.188,dist:1868,near:[{n:"Torino",d:125},{n:"Vaduz",d:188},{n:"Bern",d:212}]},
+{n:"Ateena",c:"Kreeka",m:"Euroopa",p:"3.6 M",fl:"gr",la:37.984,lo:23.728,dist:2387,near:[{n:"Thessaloniki",d:302},{n:"Skopje",d:487},{n:"Tirana",d:500}]},
+{n:"Stockholm",c:"Rootsi",m:"Euroopa",p:"2.3 M",fl:"se",la:59.332,lo:18.065,dist:379,near:[{n:"Turku",d:265},{n:"Kärdla",d:269},{n:"Kuressaare",d:282}]},
+{n:"Frankfurt",c:"Saksamaa",m:"Euroopa",p:"2.3 M",fl:"de",la:50.11,lo:8.682,dist:1455,near:[{n:"Köln",d:153},{n:"Luksemburg",d:191},{n:"München",d:304}]},
+{n:"Bukarest",c:"Rumeenia",m:"Euroopa",p:"2.3 M",fl:"ro",la:44.432,lo:26.103,dist:1671,near:[{n:"Sofia",d:296},{n:"Chișinău",d:357},{n:"Odessa",d:427}]},
+{n:"Viin",c:"Austria",m:"Euroopa",p:"2.9 M",fl:"at",la:48.208,lo:16.373,dist:1362,near:[{n:"Bratislava",d:55},{n:"Budapešt",d:214},{n:"Praha",d:251}]},
+{n:"Manchester",c:"Ühendkuningriik",m:"Euroopa",p:"2.7 M",fl:"gb",la:53.483,lo:-2.244,dist:1771,near:[{n:"London",d:262},{n:"Dublin",d:266},{n:"Edinburgh",d:281}]},
+{n:"Lyon",c:"Prantsusmaa",m:"Euroopa",p:"2.2 M",fl:"fr",la:45.75,lo:4.846,dist:2015,near:[{n:"Torino",d:234},{n:"Bern",d:240},{n:"Marseille",d:276}]},
+{n:"Brüssel",c:"Belgia",m:"Euroopa",p:"2.1 M",fl:"be",la:50.85,lo:4.351,dist:1599,near:[{n:"Rotterdam",d:120},{n:"Amsterdam",d:173},{n:"Köln",d:183}]},
+{n:"Minsk",c:"Valgevene",m:"Euroopa",p:"2.0 M",fl:"by",la:53.904,lo:27.561,dist:639,near:[{n:"Vilnius",d:172},{n:"Daugavpils",d:229},{n:"Kaunas",d:260}]},
+{n:"Hamburg",c:"Saksamaa",m:"Euroopa",p:"1.9 M",fl:"de",la:53.551,lo:10.0,dist:1113,near:[{n:"Berlin",d:255},{n:"Kopenhaagen",d:288},{n:"Malmö",d:299}]},
+{n:"Torino",c:"Itaalia",m:"Euroopa",p:"1.8 M",fl:"it",la:45.071,lo:7.687,dist:1963,near:[{n:"Milano",d:125},{n:"Monako",d:150},{n:"Bern",d:210}]},
+{n:"Helsinki",c:"Soome",m:"Euroopa",p:"1.5 M",fl:"fi",la:60.17,lo:24.941,dist:82,near:[{n:"Espoo",d:16},{n:"Tallinn",d:82},{n:"Lahti",d:98}]},
+{n:"Marseille",c:"Prantsusmaa",m:"Euroopa",p:"1.7 M",fl:"fr",la:43.297,lo:5.382,dist:2225,near:[{n:"Monako",d:172},{n:"Torino",d:270},{n:"Lyon",d:276}]},
+{n:"Porto",c:"Portugal",m:"Euroopa",p:"1.7 M",fl:"pt",la:41.157,lo:-8.629,dist:3067,near:[{n:"Lissabon",d:275},{n:"Madrid",d:423},{n:"Sevilla",d:478}]},
+{n:"Belgrad",c:"Serbia",m:"Euroopa",p:"1.7 M",fl:"rs",la:44.804,lo:20.465,dist:1652,near:[{n:"Sarajevo",d:195},{n:"Priština",d:244},{n:"Podgorica",d:280}]},
+{n:"Valencia",c:"Hispaania",m:"Euroopa",p:"1.6 M",fl:"es",la:39.47,lo:-0.376,dist:2833,near:[{n:"Madrid",d:303},{n:"Barcelona",d:303},{n:"Andorra la Vella",d:373}]},
+{n:"München",c:"Saksamaa",m:"Euroopa",p:"1.6 M",fl:"de",la:48.137,lo:11.575,dist:1520,near:[{n:"Vaduz",d:189},{n:"Zürich",d:242},{n:"Praha",d:300}]},
+{n:"Sevilla",c:"Hispaania",m:"Euroopa",p:"1.5 M",fl:"es",la:37.382,lo:-5.975,dist:3284,near:[{n:"Lissabon",d:314},{n:"Rabat",d:382},{n:"Madrid",d:391}]},
+{n:"Harkiv",c:"Ukraina",m:"Euroopa",p:"1.4 M",fl:"ua",la:49.992,lo:36.231,dist:1279,near:[{n:"Kiiev",d:409},{n:"Odessa",d:564},{n:"Chișinău",d:636}]},
+{n:"Dublin",c:"Iirimaa",m:"Euroopa",p:"1.4 M",fl:"ie",la:53.333,lo:-6.249,dist:2004,near:[{n:"Manchester",d:266},{n:"Edinburgh",d:352},{n:"London",d:462}]},
+{n:"Zürich",c:"Šveits",m:"Euroopa",p:"1.4 M",fl:"ch",la:47.376,lo:8.54,dist:1709,near:[{n:"Vaduz",d:79},{n:"Bern",d:95},{n:"Milano",d:218}]},
+{n:"Thessaloniki",c:"Kreeka",m:"Euroopa",p:"1.1 M",fl:"gr",la:40.629,lo:22.947,dist:2095,near:[{n:"Skopje",d:198},{n:"Sofia",d:232},{n:"Priština",d:271}]},
+{n:"Praha",c:"Tšehhi",m:"Euroopa",p:"1.3 M",fl:"cz",la:50.075,lo:14.438,dist:1231,near:[{n:"Viin",d:251},{n:"Berlin",d:281},{n:"Bratislava",d:289}]},
+{n:"Sofia",c:"Bulgaaria",m:"Euroopa",p:"1.3 M",fl:"bg",la:42.698,lo:23.321,dist:1864,near:[{n:"Skopje",d:174},{n:"Priština",d:176},{n:"Thessaloniki",d:232}]},
+{n:"Kopenhaagen",c:"Taani",m:"Euroopa",p:"1.3 M",fl:"dk",la:55.676,lo:12.568,dist:837,near:[{n:"Malmö",d:28},{n:"Göteborg",d:229},{n:"Hamburg",d:288}]},
+{n:"Rotterdam",c:"Holland",m:"Euroopa",p:"1.0 M",fl:"nl",la:51.924,lo:4.479,dist:1512,near:[{n:"Amsterdam",d:57},{n:"Brüssel",d:120},{n:"Köln",d:204}]},
+{n:"Amsterdam",c:"Holland",m:"Euroopa",p:"1.2 M",fl:"nl",la:52.37,lo:4.895,dist:1458,near:[{n:"Rotterdam",d:57},{n:"Brüssel",d:173},{n:"Köln",d:214}]},
+{n:"Köln",c:"Saksamaa",m:"Euroopa",p:"1.1 M",fl:"de",la:50.938,lo:6.96,dist:1465,near:[{n:"Frankfurt",d:153},{n:"Luksemburg",d:159},{n:"Brüssel",d:183}]},
+{n:"Odessa",c:"Ukraina",m:"Euroopa",p:"1.0 M",fl:"ua",la:46.482,lo:30.732,dist:1494,near:[{n:"Chișinău",d:154},{n:"Bukarest",d:427},{n:"Kiiev",d:441}]},
+{n:"Oslo",c:"Norra",m:"Euroopa",p:"1.0 M",fl:"no",la:59.913,lo:10.752,dist:786,near:[{n:"Göteborg",d:255},{n:"Stockholm",d:416},{n:"Kopenhaagen",d:483}]},
+{n:"Zagreb",c:"Horvaatia",m:"Euroopa",p:"1.0 M",fl:"hr",la:45.815,lo:15.978,dist:1623,near:[{n:"Ljubljana",d:117},{n:"Viin",d:268},{n:"Bratislava",d:273}]},
+{n:"Firenze",c:"Itaalia",m:"Euroopa",p:"970 tuh",fl:"it",la:43.77,lo:11.248,dist:1967,near:[{n:"San Marino",d:98},{n:"Veneetsia",d:204},{n:"Vatikan",d:230}]},
+{n:"Tirana",c:"Albaania",m:"Euroopa",p:"900 tuh",fl:"al",la:41.329,lo:19.819,dist:2042,near:[{n:"Podgorica",d:132},{n:"Skopje",d:153},{n:"Priština",d:186}]},
+{n:"Tallinn",c:"Eesti",m:"Euroopa",p:"460 tuh",fl:"ee",la:59.437,lo:24.754,dist:0,near:[{n:"Rapla",d:50},{n:"Paide",d:77},{n:"Helsinki",d:82}]},
+{n:"Lviv",c:"Ukraina",m:"Euroopa",p:"720 tuh",fl:"ua",la:49.842,lo:24.031,dist:1068,near:[{n:"Krakow",d:293},{n:"Varssavi",d:339},{n:"Budapešt",d:450}]},
+{n:"Krakow",c:"Poola",m:"Euroopa",p:"770 tuh",fl:"pl",la:50.062,lo:19.944,dist:1086,near:[{n:"Varssavi",d:252},{n:"Budapešt",d:293},{n:"Lviv",d:293}]},
+{n:"Riia",c:"Läti",m:"Euroopa",p:"1.0 M",fl:"lv",la:56.948,lo:24.106,dist:279,near:[{n:"Jūrmala",d:21},{n:"Cēsis",d:81},{n:"Šiauliai",d:123}]},
+{n:"Edinburgh",c:"Ühendkuningriik",m:"Euroopa",p:"540 tuh",fl:"gb",la:55.953,lo:-3.188,dist:1691,near:[{n:"Manchester",d:281},{n:"Dublin",d:352},{n:"London",d:534}]},
+{n:"Vilnius",c:"Leedu",m:"Euroopa",p:"760 tuh",fl:"lt",la:54.687,lo:25.28,dist:529,near:[{n:"Kaunas",d:90},{n:"Daugavpils",d:154},{n:"Minsk",d:172}]},
+{n:"Göteborg",c:"Rootsi",m:"Euroopa",p:"580 tuh",fl:"se",la:57.707,lo:11.967,dist:765,near:[{n:"Kopenhaagen",d:229},{n:"Malmö",d:242},{n:"Oslo",d:255}]},
+{n:"Bratislava",c:"Slovakkia",m:"Euroopa",p:"500 tuh",fl:"sk",la:48.148,lo:17.107,dist:1350,near:[{n:"Viin",d:55},{n:"Budapešt",d:161},{n:"Zagreb",d:273}]},
+{n:"Sarajevo",c:"Bosnia-Hertsegoviina",m:"Euroopa",p:"500 tuh",fl:"ba",la:43.844,lo:18.413,dist:1786,near:[{n:"Podgorica",d:171},{n:"Belgrad",d:195},{n:"Priština",d:258}]},
+{n:"Chișinău",c:"Moldova",m:"Euroopa",p:"500 tuh",fl:"md",la:47.005,lo:28.857,dist:1408,near:[{n:"Odessa",d:154},{n:"Bukarest",d:357},{n:"Kiiev",d:402}]},
+{n:"Bern",c:"Šveits",m:"Euroopa",p:"450 tuh",fl:"ch",la:46.948,lo:7.447,dist:1794,near:[{n:"Zürich",d:95},{n:"Vaduz",d:159},{n:"Torino",d:210}]},
+{n:"Skopje",c:"Põhja-Makedoonia",m:"Euroopa",p:"600 tuh",fl:"mk",la:41.997,lo:21.431,dist:1953,near:[{n:"Priština",d:78},{n:"Tirana",d:153},{n:"Sofia",d:174}]},
+{n:"Veneetsia",c:"Itaalia",m:"Euroopa",p:"250 tuh",fl:"it",la:45.438,lo:12.327,dist:1763,near:[{n:"San Marino",d:167},{n:"Ljubljana",d:182},{n:"Firenze",d:204}]},
+{n:"Malmö",c:"Rootsi",m:"Euroopa",p:"360 tuh",fl:"se",la:55.607,lo:13.002,dist:819,near:[{n:"Kopenhaagen",d:28},{n:"Göteborg",d:242},{n:"Hamburg",d:299}]},
+{n:"Nikosia",c:"Küpros",m:"Euroopa",p:"330 tuh",fl:"cy",la:35.171,lo:33.365,dist:2770,near:[{n:"Beirut",d:242},{n:"Antalya",d:306},{n:"Damaskus",d:326}]},
+{n:"Ljubljana",c:"Sloveenia",m:"Euroopa",p:"300 tuh",fl:"si",la:46.051,lo:14.507,dist:1636,near:[{n:"Zagreb",d:117},{n:"Veneetsia",d:182},{n:"Viin",d:278}]},
+{n:"Espoo",c:"Soome",m:"Euroopa",p:"300 tuh",fl:"fi",la:60.205,lo:24.656,dist:86,near:[{n:"Helsinki",d:16},{n:"Tallinn",d:86},{n:"Lahti",d:102}]},
+{n:"Kaunas",c:"Leedu",m:"Euroopa",p:"290 tuh",fl:"lt",la:54.897,lo:23.924,dist:507,near:[{n:"Vilnius",d:90},{n:"Šiauliai",d:122},{n:"Klaipėda",d:197}]},
+{n:"Reykjavik",c:"Island",m:"Euroopa",p:"230 tuh",fl:"is",la:64.135,lo:-21.895,dist:2448,near:[{n:"Edinburgh",d:1372},{n:"Dublin",d:1494},{n:"Manchester",d:1625}]},
+{n:"Tampere",c:"Soome",m:"Euroopa",p:"240 tuh",fl:"fi",la:61.498,lo:23.759,dist:236,near:[{n:"Lahti",d:117},{n:"Turku",d:141},{n:"Espoo",d:152}]},
+{n:"Gdańsk",c:"Poola",m:"Euroopa",p:"470 tuh",fl:"pl",la:54.352,lo:18.647,dist:676,near:[{n:"Klaipėda",d:219},{n:"Palanga",d:233},{n:"Liepāja",d:282}]},
+{n:"Oulu",c:"Soome",m:"Euroopa",p:"210 tuh",fl:"fi",la:65.013,lo:25.472,dist:621,near:[{n:"Rovaniemi",d:166},{n:"Tampere",d:400},{n:"Lahti",d:448}]},
+{n:"Turku",c:"Soome",m:"Euroopa",p:"200 tuh",fl:"fi",la:60.455,lo:22.263,dist:179,near:[{n:"Espoo",d:135},{n:"Tampere",d:141},{n:"Helsinki",d:151}]},
+{n:"Pihkva",c:"Venemaa",m:"Euroopa",p:"200 tuh",fl:"ru",la:57.82,lo:28.333,dist:274,near:[{n:"Võru",d:78},{n:"Põlva",d:80},{n:"Tartu",d:113}]},
+{n:"Podgorica",c:"Montenegro",m:"Euroopa",p:"200 tuh",fl:"me",la:42.441,lo:19.263,dist:1927,near:[{n:"Tirana",d:132},{n:"Priština",d:158},{n:"Sarajevo",d:171}]},
+{n:"Novgorod",c:"Venemaa",m:"Euroopa",p:"220 tuh",fl:"ru",la:58.522,lo:31.275,dist:387,near:[{n:"Peterburg",d:167},{n:"Pihkva",d:189},{n:"Narva",d:201}]},
+{n:"Priština",c:"Kosovo",m:"Euroopa",p:"210 tuh",fl:"xk",la:42.672,lo:21.166,dist:1880,near:[{n:"Skopje",d:78},{n:"Podgorica",d:158},{n:"Sofia",d:176}]},
+{n:"Daugavpils",c:"Läti",m:"Euroopa",p:"83 tuh",fl:"lv",la:55.874,lo:26.536,dist:410,near:[{n:"Vilnius",d:154},{n:"Cēsis",d:178},{n:"Riia",d:191}]},
+{n:"Liepāja",c:"Läti",m:"Euroopa",p:"68 tuh",fl:"lv",la:56.505,lo:21.011,dist:394,near:[{n:"Palanga",d:65},{n:"Klaipėda",d:89},{n:"Šiauliai",d:156}]},
+{n:"Rovaniemi",c:"Soome",m:"Euroopa",p:"65 tuh",fl:"fi",la:66.503,lo:25.73,dist:787,near:[{n:"Oulu",d:166},{n:"Tampere",d:565},{n:"Lahti",d:614}]},
+{n:"Jūrmala",c:"Läti",m:"Euroopa",p:"52 tuh",fl:"lv",la:56.969,lo:23.77,dist:280,near:[{n:"Riia",d:21},{n:"Cēsis",d:98},{n:"Šiauliai",d:118}]},
+{n:"Lahti",c:"Soome",m:"Euroopa",p:"120 tuh",fl:"fi",la:60.983,lo:25.656,dist:179,near:[{n:"Helsinki",d:98},{n:"Espoo",d:102},{n:"Tampere",d:117}]},
+{n:"Klaipėda",c:"Leedu",m:"Euroopa",p:"150 tuh",fl:"lt",la:55.704,lo:21.145,dist:467,near:[{n:"Palanga",d:25},{n:"Liepāja",d:89},{n:"Šiauliai",d:138}]},
+{n:"Luksemburg",c:"Luksemburg",m:"Euroopa",p:"130 tuh",fl:"lu",la:49.611,lo:6.13,dist:1614,near:[{n:"Köln",d:159},{n:"Brüssel",d:187},{n:"Frankfurt",d:191}]},
+{n:"Šiauliai",c:"Leedu",m:"Euroopa",p:"100 tuh",fl:"lt",la:55.934,lo:23.316,dist:399,near:[{n:"Jūrmala",d:118},{n:"Kaunas",d:122},{n:"Riia",d:123}]},
+{n:"Monako",c:"Monako",m:"Euroopa",p:"39 tuh",fl:"mc",la:43.736,lo:7.422,dist:2103,near:[{n:"Torino",d:150},{n:"Marseille",d:172},{n:"Milano",d:238}]},
+{n:"Andorra la Vella",c:"Andorra",m:"Euroopa",p:"23 tuh",fl:"ad",la:42.507,lo:1.521,dist:2462,near:[{n:"Barcelona",d:136},{n:"Marseille",d:326},{n:"Valencia",d:373}]},
+{n:"Valetta",c:"Malta",m:"Euroopa",p:"22 tuh",fl:"mt",la:35.9,lo:14.514,dist:2720,near:[{n:"Tripoli",d:355},{n:"Tunis",d:402},{n:"Napoli",d:551}]},
+{n:"Palanga",c:"Leedu",m:"Euroopa",p:"16 tuh",fl:"lt",la:55.923,lo:21.064,dist:448,near:[{n:"Klaipėda",d:25},{n:"Liepāja",d:65},{n:"Šiauliai",d:140}]},
+{n:"Cēsis",c:"Läti",m:"Euroopa",p:"18 tuh",fl:"lv",la:57.312,lo:25.27,dist:238,near:[{n:"Valga",d:69},{n:"Riia",d:81},{n:"Jūrmala",d:98}]},
+{n:"San Marino",c:"San Marino",m:"Euroopa",p:"4 tuh",fl:"sm",la:43.937,lo:12.442,dist:1914,near:[{n:"Firenze",d:98},{n:"Veneetsia",d:167},{n:"Rooma",d:226}]},
+{n:"Vaduz",c:"Liechtenstein",m:"Euroopa",p:"5 tuh",fl:"li",la:47.141,lo:9.523,dist:1693,near:[{n:"Zürich",d:79},{n:"Bern",d:159},{n:"Milano",d:188}]},
+{n:"Tbilisi",c:"Gruusia",m:"Euroopa",p:"1.2 M",fl:"ge",la:41.694,lo:44.834,dist:2409,near:[{n:"Jerevan",d:171},{n:"Bakuu",d:445},{n:"Teheran",d:878}]},
+{n:"Bakuu",c:"Aserbaidžaan",m:"Aasia",p:"2.3 M",fl:"az",la:40.409,lo:49.867,dist:2743,near:[{n:"Tbilisi",d:445},{n:"Jerevan",d:456},{n:"Teheran",d:542}]},
+{n:"Jerevan",c:"Armeenia",m:"Euroopa",p:"1.1 M",fl:"am",la:40.179,lo:44.499,dist:2546,near:[{n:"Tbilisi",d:171},{n:"Bakuu",d:456},{n:"Bagdad",d:760}]},
+{n:"Dubai",c:"Araabia Ühendemiraadid",m:"Aasia",p:"3.3 M",fl:"ae",la:25.204,lo:55.271,dist:4478,near:[{n:"Abu Dhabi",d:123},{n:"Doha",d:376},{n:"Muscat",d:380}]},
+{n:"Abu Dhabi",c:"Araabia Ühendemiraadid",m:"Aasia",p:"1.5 M",fl:"ae",la:24.453,lo:54.377,dist:4519,near:[{n:"Dubai",d:123},{n:"Doha",d:301},{n:"Manama",d:429}]},
+{n:"Tel Aviv",c:"Iisrael",m:"Aasia",p:"4.2 M",fl:"il",la:32.085,lo:34.781,dist:3131,near:[{n:"Jeruusalemm",d:54},{n:"Amman",d:110},{n:"Beirut",d:211}]},
+{n:"Jeruusalemm",c:"Iisrael",m:"Aasia",p:"970 tuh",fl:"il",la:31.769,lo:35.216,dist:3174,near:[{n:"Tel Aviv",d:54},{n:"Amman",d:71},{n:"Damaskus",d:218}]},
+{n:"Antalya",c:"Türkiye",m:"Aasia",p:"1.3 M",fl:"tr",la:36.896,lo:30.713,dist:2543,near:[{n:"Nikosia",d:306},{n:"Ankara",d:385},{n:"Istanbul",d:482}]},
+{n:"Amman",c:"Jordaania",m:"Aasia",p:"4.5 M",fl:"jo",la:31.952,lo:35.933,dist:3167,near:[{n:"Jeruusalemm",d:71},{n:"Tel Aviv",d:110},{n:"Damaskus",d:176}]},
+{n:"Beirut",c:"Liibanon",m:"Aasia",p:"2.4 M",fl:"lb",la:33.889,lo:35.495,dist:2948,near:[{n:"Damaskus",d:85},{n:"Tel Aviv",d:211},{n:"Amman",d:219}]},
+{n:"Damaskus",c:"Süüria",m:"Aasia",p:"2.5 M",fl:"sy",la:33.51,lo:36.292,dist:3005,near:[{n:"Beirut",d:85},{n:"Amman",d:176},{n:"Tel Aviv",d:212}]},
+{n:"Doha",c:"Katar",m:"Aasia",p:"2.4 M",fl:"qa",la:25.286,lo:51.533,dist:4325,near:[{n:"Manama",d:140},{n:"Abu Dhabi",d:301},{n:"Dubai",d:376}]},
+{n:"Muscat",c:"Omaan",m:"Aasia",p:"1.6 M",fl:"om",la:23.614,lo:58.593,dist:4776,near:[{n:"Dubai",d:380},{n:"Abu Dhabi",d:438},{n:"Doha",d:738}]},
+{n:"Kuwait City",c:"Kuveit",m:"Aasia",p:"3.1 M",fl:"kw",la:29.369,lo:47.978,dist:3775,near:[{n:"Manama",d:434},{n:"Riyad",d:535},{n:"Bagdad",d:557}]},
+{n:"Jeddah",c:"Saudi Araabia",m:"Aasia",p:"4.8 M",fl:"sa",la:21.485,lo:39.193,dist:4373,near:[{n:"Hurghada",d:842},{n:"Riyad",d:848},{n:"Sanaa",d:863}]},
+{n:"Hurghada",c:"Egiptus",m:"Aafrika",p:"250 tuh",fl:"eg",la:27.258,lo:33.812,dist:3645,near:[{n:"Sharm el-Sheikh",d:89},{n:"Kairo",d:399},{n:"Jeruusalemm",d:520}]},
+{n:"Astana",c:"Kasahstan",m:"Aasia",p:"1.4 M",fl:"kz",la:51.18,lo:71.446,dist:3023,near:[{n:"Bishkek",d:954},{n:"Almatõ",d:974},{n:"Taškent",d:1112}]},
+{n:"Almatõ",c:"Kasahstan",m:"Aasia",p:"2.0 M",fl:"kz",la:43.222,lo:76.851,dist:3912,near:[{n:"Bishkek",d:187},{n:"Taškent",d:662},{n:"Dušanbe",d:854}]},
+{n:"Taškent",c:"Usbekistan",m:"Aasia",p:"2.9 M",fl:"uz",la:41.299,lo:69.24,dist:3644,near:[{n:"Dušanbe",d:307},{n:"Bishkek",d:475},{n:"Almatõ",d:662}]},
+{n:"Ulaanbaatar",c:"Mongoolia",m:"Aasia",p:"1.6 M",fl:"mn",la:47.886,lo:106.906,dist:5197,near:[{n:"Peking",d:1166},{n:"Tianjin",d:1275},{n:"Pyongyang",d:1805}]},
+{n:"Islamabad",c:"Pakistan",m:"Aasia",p:"1.2 M",fl:"pk",la:33.738,lo:73.084,dist:4514,near:[{n:"Lahore",d:271},{n:"Kabul",d:370},{n:"Dušanbe",d:661}]},
+{n:"Katmandu",c:"Nepal",m:"Aasia",p:"1.4 M",fl:"np",la:27.717,lo:85.316,dist:5733,near:[{n:"Kolkata",d:650},{n:"Dhaka",d:670},{n:"Delhi",d:801}]},
+{n:"Colombo",c:"Sri Lanka",m:"Aasia",p:"750 tuh",fl:"lk",la:6.927,lo:79.862,dist:7437,near:[{n:"Chennai",d:686},{n:"Bangalore",d:717},{n:"Malé",d:767}]},
+{n:"Phnom Penh",c:"Kambodža",m:"Aasia",p:"2.2 M",fl:"kh",la:11.549,lo:104.917,dist:8348,near:[{n:"Ho Chi Minh City",d:213},{n:"Bangkok",d:538},{n:"Vientiane",d:756}]},
+{n:"Bali (Denpasar)",c:"Indoneesia",m:"Aasia",p:"900 tuh",fl:"id",la:-8.65,lo:115.217,dist:10861,near:[{n:"Jakarta",d:962},{n:"Singapur",d:1676},{n:"Darwin",d:1759}]},
+{n:"Phuket",c:"Tai",m:"Aasia",p:"100 tuh",fl:"th",la:7.878,lo:98.392,dist:8332,near:[{n:"Kuala Lumpur",d:641},{n:"Bangkok",d:693},{n:"Phnom Penh",d:823}]},
+{n:"Taipei",c:"Taiwan",m:"Aasia",p:"7.0 M",fl:"tw",la:25.033,lo:121.565,dist:8001,near:[{n:"Shanghai",d:689},{n:"Hongkong",d:811},{n:"Shenzhen",d:812}]},
+{n:"Busan",c:"Lõuna-Korea",m:"Aasia",p:"3.4 M",fl:"kr",la:35.179,lo:129.075,dist:7432,near:[{n:"Seoul",d:325},{n:"Pyongyang",d:520},{n:"Ōsaka",d:588}]},
+{n:"Pyongyang",c:"Põhja-Korea",m:"Aasia",p:"3.1 M",fl:"kp",la:39.032,lo:125.755,dist:6913,near:[{n:"Seoul",d:195},{n:"Busan",d:520},{n:"Tianjin",d:740}]},
+{n:"Abuja",c:"Nigeeria",m:"Aafrika",p:"3.6 M",fl:"ng",la:9.072,lo:7.491,dist:5785,near:[{n:"Lagos",d:538},{n:"Accra",d:930},{n:"Abidjan",d:1334}]},
+{n:"Tunis",c:"Tuneesia",m:"Aafrika",p:"2.8 M",fl:"tn",la:36.818,lo:10.168,dist:2724,near:[{n:"Valetta",d:402},{n:"Tripoli",d:515},{n:"Napoli",d:572}]},
+{n:"Alžiir",c:"Alžeeria",m:"Aafrika",p:"3.9 M",fl:"dz",la:36.753,lo:3.042,dist:2964,near:[{n:"Valencia",d:425},{n:"Barcelona",d:520},{n:"Tunis",d:634}]},
+{n:"Rabat",c:"Maroko",m:"Aafrika",p:"1.9 M",fl:"ma",la:34.02,lo:-6.841,dist:3645,near:[{n:"Casablanca",d:86},{n:"Marrakech",d:286},{n:"Sevilla",d:382}]},
+{n:"Marrakech",c:"Maroko",m:"Aafrika",p:"1.0 M",fl:"ma",la:31.63,lo:-7.981,dist:3929,near:[{n:"Casablanca",d:221},{n:"Rabat",d:286},{n:"Sevilla",d:665}]},
+{n:"Dakar",c:"Senegal",m:"Aafrika",p:"3.9 M",fl:"sn",la:14.693,lo:-17.447,dist:6044,near:[{n:"Abidjan",d:1800},{n:"Marrakech",d:2115},{n:"Accra",d:2140}]},
+{n:"Pretoria",c:"Lõuna-Aafrika",m:"Aafrika",p:"3.0 M",fl:"za",la:-25.747,lo:28.188,dist:9477,near:[{n:"Johannesburg",d:53},{n:"Maputo",d:439},{n:"Harare",d:929}]},
+{n:"Kampala",c:"Uganda",m:"Aafrika",p:"3.6 M",fl:"ug",la:0.316,lo:32.582,dist:6609,near:[{n:"Kigali",d:377},{n:"Nairobi",d:504},{n:"Zanzibar",d:1029}]},
+{n:"Ottawa",c:"Kanada",m:"Põhja-Ameerika",p:"1.4 M",fl:"ca",la:45.422,lo:-75.697,dist:6308,near:[{n:"Montreal",d:165},{n:"Toronto",d:350},{n:"New York",d:541}]},
+{n:"Vancouver",c:"Kanada",m:"Põhja-Ameerika",p:"2.6 M",fl:"ca",la:49.283,lo:-123.121,dist:7581,near:[{n:"San Francisco",d:1281},{n:"Las Vegas",d:1595},{n:"Los Angeles",d:1740}]},
+{n:"Montreal",c:"Kanada",m:"Põhja-Ameerika",p:"4.3 M",fl:"ca",la:45.508,lo:-73.588,dist:6201,near:[{n:"Ottawa",d:165},{n:"Toronto",d:501},{n:"New York",d:534}]},
+{n:"San Francisco",c:"USA",m:"Põhja-Ameerika",p:"4.7 M",fl:"us",la:37.774,lo:-122.419,dist:8792,near:[{n:"Los Angeles",d:559},{n:"Las Vegas",d:671},{n:"Vancouver",d:1281}]},
+{n:"Las Vegas",c:"USA",m:"Põhja-Ameerika",p:"2.2 M",fl:"us",la:36.175,lo:-115.137,dist:8762,near:[{n:"Los Angeles",d:368},{n:"San Francisco",d:671},{n:"Vancouver",d:1595}]},
+{n:"Havanna",c:"Kuuba",m:"Põhja-Ameerika",p:"2.1 M",fl:"cu",la:23.136,lo:-82.359,dist:8720,near:[{n:"Miami",d:365},{n:"Kingston",d:814},{n:"Guatemala City",d:1275}]},
+{n:"Brasília",c:"Brasiilia",m:"Lõuna-Ameerika",p:"4.8 M",fl:"br",la:-15.779,lo:-47.93,dist:10572,near:[{n:"São Paulo",d:875},{n:"Rio de Janeiro",d:936},{n:"Asunción",d:1462}]},
+{n:"Caracas",c:"Venezuela",m:"Lõuna-Ameerika",p:"2.9 M",fl:"ve",la:10.48,lo:-66.916,dist:9099,near:[{n:"Santo Domingo",d:946},{n:"Bogotá",d:1016},{n:"Kingston",d:1353}]},
+{n:"Montevideo",c:"Uruguay",m:"Lõuna-Ameerika",p:"1.8 M",fl:"uy",la:-34.901,lo:-56.165,dist:12817,near:[{n:"Buenos Aires",d:210},{n:"Asunción",d:1079},{n:"Santiago",d:1341}]},
+{n:"Sydney",c:"Austraalia",m:"Austraalia ja Okeaania",p:"5.3 M",fl:"au",la:-33.869,lo:151.209,dist:15228,near:[{n:"Canberra",d:247},{n:"Gold Coast",d:683},{n:"Melbourne",d:713}]},
+{n:"Melbourne",c:"Austraalia",m:"Austraalia ja Okeaania",p:"5.1 M",fl:"au",la:-37.814,lo:144.963,dist:15221,near:[{n:"Canberra",d:467},{n:"Hobart",d:598},{n:"Adelaide",d:654}]},
+{n:"Brisbane",c:"Austraalia",m:"Austraalia ja Okeaania",p:"2.6 M",fl:"au",la:-27.471,lo:153.024,dist:14742,near:[{n:"Gold Coast",d:71},{n:"Sydney",d:732},{n:"Canberra",d:943}]},
+{n:"Perth",c:"Austraalia",m:"Austraalia ja Okeaania",p:"2.1 M",fl:"au",la:-31.952,lo:115.861,dist:13082,near:[{n:"Adelaide",d:2131},{n:"Bali (Denpasar)",d:2592},{n:"Darwin",d:2653}]},
+{n:"Adelaide",c:"Austraalia",m:"Austraalia ja Okeaania",p:"1.4 M",fl:"au",la:-34.929,lo:138.6,dist:14613,near:[{n:"Melbourne",d:654},{n:"Canberra",d:958},{n:"Hobart",d:1161}]},
+{n:"Gold Coast",c:"Austraalia",m:"Austraalia ja Okeaania",p:"700 tuh",fl:"au",la:-28.017,lo:153.4,dist:14813,near:[{n:"Brisbane",d:71},{n:"Sydney",d:683},{n:"Canberra",d:903}]},
+{n:"Canberra",c:"Austraalia",m:"Austraalia ja Okeaania",p:"460 tuh",fl:"au",la:-35.28,lo:149.13,dist:15237,near:[{n:"Sydney",d:247},{n:"Melbourne",d:467},{n:"Hobart",d:859}]},
+{n:"Hobart",c:"Austraalia",m:"Austraalia ja Okeaania",p:"240 tuh",fl:"au",la:-42.88,lo:147.328,dist:15774,near:[{n:"Melbourne",d:598},{n:"Canberra",d:859},{n:"Sydney",d:1057}]},
+{n:"Darwin",c:"Austraalia",m:"Austraalia ja Okeaania",p:"150 tuh",fl:"au",la:-12.462,lo:130.842,dist:12106,near:[{n:"Bali (Denpasar)",d:1759},{n:"Port Moresby",d:1814},{n:"Adelaide",d:2618}]},
+{n:"Auckland",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"1.7 M",fl:"nz",la:-36.867,lo:174.767,dist:16717,near:[{n:"Hamilton",d:112},{n:"Wellington",d:491},{n:"Christchurch",d:763}]},
+{n:"Wellington",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"440 tuh",fl:"nz",la:-41.286,lo:174.776,dist:17129,near:[{n:"Christchurch",d:305},{n:"Hamilton",d:391},{n:"Auckland",d:491}]},
+{n:"Christchurch",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"400 tuh",fl:"nz",la:-43.532,lo:172.636,dist:17220,near:[{n:"Wellington",d:305},{n:"Dunedin",d:311},{n:"Hamilton",d:676}]},
+{n:"Hamilton",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"180 tuh",fl:"nz",la:-37.787,lo:175.279,dist:16828,near:[{n:"Auckland",d:112},{n:"Wellington",d:391},{n:"Christchurch",d:676}]},
+{n:"Dunedin",c:"Uus-Meremaa",m:"Austraalia ja Okeaania",p:"130 tuh",fl:"nz",la:-45.878,lo:170.503,dist:17303,near:[{n:"Christchurch",d:311},{n:"Wellington",d:616},{n:"Hamilton",d:982}]},
+{n:"Port Moresby",c:"Paapua Uus-Guinea",m:"Austraalia ja Okeaania",p:"410 tuh",fl:"pg",la:-9.447,lo:147.18,dist:12701,near:[{n:"Darwin",d:1814},{n:"Brisbane",d:2096},{n:"Gold Coast",d:2165}]},
+{n:"Suva",c:"Fidži",m:"Austraalia ja Okeaania",p:"190 tuh",fl:"fj",la:-18.141,lo:178.441,dist:14959,near:[{n:"Auckland",d:2113},{n:"Hamilton",d:2206},{n:"Wellington",d:2597}]},
+{n:"Vatikan",c:"Vatikan",m:"Euroopa",p:"1 tuh",fl:"va",la:41.903,lo:12.453,dist:2126,near:[{n:"Rooma",d:4},{n:"Napoli",d:191},{n:"San Marino",d:226}]},
+{n:"Vientiane",c:"Laos",m:"Aasia",p:"950 tuh",fl:"la",la:17.966,lo:102.6,dist:7610,near:[{n:"Hanoi",d:478},{n:"Bangkok",d:519},{n:"Yangon",d:690}]},
+{n:"Bishkek",c:"Kõrgõzstan",m:"Aasia",p:"1.1 M",fl:"kg",la:42.871,lo:74.599,dist:3813,near:[{n:"Almatõ",d:187},{n:"Taškent",d:475},{n:"Dušanbe",d:686}]},
+{n:"Dušanbe",c:"Tadžikistan",m:"Aasia",p:"850 tuh",fl:"tj",la:38.558,lo:68.773,dist:3853,near:[{n:"Taškent",d:307},{n:"Kabul",d:450},{n:"Islamabad",d:661}]},
+{n:"Ašgabat",c:"Türkmenistan",m:"Aasia",p:"810 tuh",fl:"tm",la:37.952,lo:58.383,dist:3369,near:[{n:"Teheran",d:668},{n:"Bakuu",d:783},{n:"Dušanbe",d:909}]},
+{n:"Sanaa",c:"Jeemen",m:"Aasia",p:"3.0 M",fl:"ye",la:15.354,lo:44.207,dist:5153,near:[{n:"Jeddah",d:863},{n:"Addis Abeba",d:921},{n:"Riyad",d:1071}]},
+{n:"Manama",c:"Bahrein",m:"Aasia",p:"150 tuh",fl:"bh",la:26.218,lo:50.586,dist:4194,near:[{n:"Doha",d:140},{n:"Riyad",d:424},{n:"Abu Dhabi",d:429}]},
+{n:"Malé",c:"Maldiivid",m:"Aasia",p:"230 tuh",fl:"mv",la:4.175,lo:73.509,dist:7406,near:[{n:"Colombo",d:767},{n:"Bangalore",d:1076},{n:"Chennai",d:1238}]},
+{n:"Tripoli",c:"Liibüa",m:"Aafrika",p:"1.2 M",fl:"ly",la:32.902,lo:13.18,dist:3072,near:[{n:"Valetta",d:355},{n:"Tunis",d:515},{n:"Napoli",d:889}]},
+{n:"Abidjan",c:"Elevandiluurannik",m:"Aafrika",p:"5.0 M",fl:"ci",la:5.354,lo:-4.008,dist:6493,near:[{n:"Accra",d:424},{n:"Lagos",d:827},{n:"Abuja",d:1334}]},
+{n:"Harare",c:"Zimbabwe",m:"Aafrika",p:"1.5 M",fl:"zw",la:-17.829,lo:31.052,dist:8611,near:[{n:"Maputo",d:918},{n:"Pretoria",d:929},{n:"Johannesburg",d:981}]},
+{n:"Kigali",c:"Rwanda",m:"Aafrika",p:"1.3 M",fl:"rw",la:-1.95,lo:30.057,dist:6842,near:[{n:"Kampala",d:377},{n:"Nairobi",d:755},{n:"Zanzibar",d:1117}]},
+{n:"Maputo",c:"Mosambiik",m:"Aafrika",p:"1.1 M",fl:"mz",la:-25.966,lo:32.573,dist:9524,near:[{n:"Pretoria",d:439},{n:"Johannesburg",d:452},{n:"Harare",d:918}]},
+{n:"Windhoek",c:"Namiibia",m:"Aafrika",p:"470 tuh",fl:"na",la:-22.559,lo:17.083,dist:9145,near:[{n:"Pretoria",d:1181},{n:"Johannesburg",d:1182},{n:"Kapilinn",d:1271}]},
+{n:"Zanzibar",c:"Tansaania",m:"Aafrika",p:"900 tuh",fl:"tz",la:-6.165,lo:39.199,dist:7406,near:[{n:"Dar es Salaam",d:71},{n:"Nairobi",d:603},{n:"Kampala",d:1029}]},
+{n:"Quito",c:"Ecuador",m:"Lõuna-Ameerika",p:"2.0 M",fl:"ec",la:-0.229,lo:-78.524,dist:10775,near:[{n:"Bogotá",d:739},{n:"Panama City",d:1031},{n:"San José",d:1286}]},
+{n:"La Paz",c:"Boliivia",m:"Lõuna-Ameerika",p:"2.0 M",fl:"bo",la:-16.5,lo:-68.15,dist:11744,near:[{n:"Lima",d:1078},{n:"Asunción",d:1463},{n:"Santiago",d:1902}]},
+{n:"Asunción",c:"Paraguay",m:"Lõuna-Ameerika",p:"2.3 M",fl:"py",la:-25.286,lo:-57.647,dist:11996,near:[{n:"Buenos Aires",d:1040},{n:"Montevideo",d:1079},{n:"São Paulo",d:1131}]},
+{n:"Guatemala City",c:"Guatemala",m:"Põhja-Ameerika",p:"3.0 M",fl:"gt",la:14.633,lo:-90.507,dist:9959,near:[{n:"San José",d:871},{n:"Mexico City",d:1061},{n:"Havanna",d:1275}]},
+{n:"Panama City",c:"Panama",m:"Põhja-Ameerika",p:"1.9 M",fl:"pa",la:8.994,lo:-79.519,dist:9939,near:[{n:"San José",d:512},{n:"Bogotá",d:767},{n:"Quito",d:1031}]},
+{n:"San José",c:"Costa Rica",m:"Põhja-Ameerika",p:"1.4 M",fl:"cr",la:9.928,lo:-84.091,dist:10092,near:[{n:"Panama City",d:512},{n:"Guatemala City",d:871},{n:"Kingston",d:1193}]},
+{n:"Kingston",c:"Jamaica",m:"Põhja-Ameerika",p:"1.2 M",fl:"jm",la:17.998,lo:-76.793,dist:8924,near:[{n:"Santo Domingo",d:727},{n:"Havanna",d:814},{n:"Miami",d:934}]},
+{n:"Santo Domingo",c:"Dominikaani Vabariik",m:"Põhja-Ameerika",p:"3.3 M",fl:"do",la:18.474,lo:-69.931,dist:8506,near:[{n:"Kingston",d:727},{n:"Caracas",d:946},{n:"Miami",d:1333}]},
+{n:"Sharm el-Sheikh",c:"Egiptus",m:"Aafrika",p:"70 tuh",fl:"eg",la:27.912,lo:34.329,dist:3581,near:[{n:"Hurghada",d:89},{n:"Kairo",d:383},{n:"Jeruusalemm",d:437}]},
+{n:"Tartu",c:"Eesti",m:"Euroopa",p:"94 tuh",fl:"ee",la:58.378,lo:26.729,dist:163,near:[{n:"Põlva",d:40},{n:"Jõgeva",d:46},{n:"Võru",d:62}]},
+{n:"Narva",c:"Eesti",m:"Euroopa",p:"53 tuh",fl:"ee",la:59.378,lo:28.179,dist:194,near:[{n:"Jõhvi",d:43},{n:"Kohtla-Järve",d:51},{n:"Rakvere",d:103}]},
+{n:"Pärnu",c:"Eesti",m:"Euroopa",p:"51 tuh",fl:"ee",la:58.385,lo:24.499,dist:118,near:[{n:"Viljandi",d:64},{n:"Rapla",d:70},{n:"Haapsalu",d:83}]},
+{n:"Kohtla-Järve",c:"Eesti",m:"Euroopa",p:"37 tuh",fl:"ee",la:59.397,lo:27.274,dist:143,near:[{n:"Jõhvi",d:9},{n:"Narva",d:51},{n:"Rakvere",d:52}]},
+{n:"Rakvere",c:"Eesti",m:"Euroopa",p:"16 tuh",fl:"ee",la:59.347,lo:26.355,dist:91,near:[{n:"Kohtla-Järve",d:52},{n:"Jõhvi",d:60},{n:"Jõgeva",d:66}]},
+{n:"Viljandi",c:"Eesti",m:"Euroopa",p:"18 tuh",fl:"ee",la:58.363,lo:25.59,dist:129,near:[{n:"Paide",d:58},{n:"Pärnu",d:64},{n:"Jõgeva",d:64}]},
+{n:"Jõhvi",c:"Eesti",m:"Euroopa",p:"12 tuh",fl:"ee",la:59.358,lo:27.416,dist:151,near:[{n:"Kohtla-Järve",d:9},{n:"Narva",d:43},{n:"Rakvere",d:60}]},
+{n:"Kuressaare",c:"Eesti",m:"Euroopa",p:"13 tuh",fl:"ee",la:58.248,lo:22.487,dist:186,near:[{n:"Kärdla",d:84},{n:"Haapsalu",d:99},{n:"Pärnu",d:118}]},
+{n:"Võru",c:"Eesti",m:"Euroopa",p:"12 tuh",fl:"ee",la:57.838,lo:27.015,dist:221,near:[{n:"Põlva",d:25},{n:"Valga",d:58},{n:"Tartu",d:62}]},
+{n:"Valga",c:"Eesti",m:"Euroopa",p:"12 tuh",fl:"ee",la:57.778,lo:26.034,dist:199,near:[{n:"Võru",d:58},{n:"Põlva",d:68},{n:"Cēsis",d:69}]},
+{n:"Haapsalu",c:"Eesti",m:"Euroopa",p:"11 tuh",fl:"ee",la:58.944,lo:23.546,dist:88,near:[{n:"Kärdla",d:46},{n:"Rapla",d:72},{n:"Pärnu",d:83}]},
+{n:"Paide",c:"Eesti",m:"Euroopa",p:"9 tuh",fl:"ee",la:58.885,lo:25.558,dist:77,near:[{n:"Rapla",d:45},{n:"Jõgeva",d:51},{n:"Viljandi",d:58}]},
+{n:"Jõgeva",c:"Eesti",m:"Euroopa",p:"6 tuh",fl:"ee",la:58.752,lo:26.401,dist:121,near:[{n:"Tartu",d:46},{n:"Paide",d:51},{n:"Viljandi",d:64}]},
+{n:"Põlva",c:"Eesti",m:"Euroopa",p:"6 tuh",fl:"ee",la:58.058,lo:27.058,dist:203,near:[{n:"Võru",d:25},{n:"Tartu",d:40},{n:"Valga",d:68}]},
+{n:"Rapla",c:"Eesti",m:"Euroopa",p:"5 tuh",fl:"ee",la:58.992,lo:24.793,dist:50,near:[{n:"Paide",d:45},{n:"Tallinn",d:50},{n:"Pärnu",d:70}]},
+{n:"Kärdla",c:"Eesti",m:"Euroopa",p:"4 tuh",fl:"ee",la:58.994,lo:22.748,dist:124,near:[{n:"Haapsalu",d:46},{n:"Kuressaare",d:84},{n:"Rapla",d:117}]}
 ];
 
 const CONTS=["Euroopa","Aasia","Aafrika","Põhja-Ameerika","Lõuna-Ameerika","Austraalia ja Okeaania"];
+const CONT_ABBR={"Euroopa":"EU","Aasia":"AS","Aafrika":"AF","Põhja-Ameerika":"NA","Lõuna-Ameerika":"LA","Austraalia ja Okeaania":"OC"};
 const CONT_COLOR={"Euroopa":"var(--eu-c)","Aasia":"var(--as-c)","Aafrika":"var(--af-c)","Põhja-Ameerika":"var(--na-c)","Lõuna-Ameerika":"var(--la-c)","Austraalia ja Okeaania":"var(--ok-c)"};
 const MAX_D=20000;
 const TICKS=[1000,2000,5000,10000,15000];
 
+// ═══ GEO ═══
 function hav(a1,o1,a2,o2){
   const R=6371,r=Math.PI/180,x=Math.sin((a2-a1)*r/2)**2+Math.cos(a1*r)*Math.cos(a2*r)*Math.sin((o2-o1)*r/2)**2;
   return Math.round(2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)));
 }
 function pct(d){return Math.min(d/MAX_D*100,99.5);}
+
+// Precompute
+// dist ja near on eelarvutatud serveri poolel
+
 function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
 function fmt(n){return n.toLocaleString('et-EE');}
 
+// ═══ STATE ═══
 const S={deck:[],cur:0,phase:'guess',guess:null,hintUsed:false,pts:0,done:0};
 
+// ═══ BUILD BOARD ═══
 function buildBoard(){
   const board=document.getElementById('board');board.innerHTML='';
   CONTS.forEach(m=>{
@@ -646,6 +662,7 @@ function buildBoard(){
       </div>`;
     board.appendChild(row);
 
+    // Click handler
     const track=row.querySelector('.bar-track');
     track.addEventListener('mousemove',e=>{
       if(S.phase!=='guess')return;
@@ -672,6 +689,7 @@ function buildBoard(){
   });
 }
 
+// ═══ GAME ═══
 function startGame(){
   S.deck=shuf(CITIES);S.cur=0;S.phase='guess';S.guess=null;S.hintUsed=false;S.pts=0;S.done=0;
   document.getElementById('gameover').style.display='none';
@@ -685,12 +703,18 @@ function showCard(){
   const city=S.deck[S.cur];
   if(!city){endGame();return;}
   S.phase='guess';S.guess=null;S.hintUsed=false;
+
+  // Front
   const nm=document.getElementById('cf-name');
   nm.textContent=city.n;
   nm.className='cf-name'+(city.n.length>13?' sm':'')+(city.n.length>17?' xs':'');
   document.getElementById('cf-num-l').textContent=`${S.cur+1} / ${S.deck.length}`;
+
+  // Back
   document.getElementById('cb-name').textContent=city.n;
-  document.getElementById('cb-flag').textContent=city.fl||'🏳';
+  const flagEl=document.getElementById('cb-flag');
+  flagEl.src=`https://flagcdn.com/w40/${city.fl}.png`;
+  flagEl.alt=city.c;
   document.getElementById('cb-region').textContent=city.m;
   document.getElementById('cb-dist').textContent=fmt(city.dist);
   document.getElementById('cb-country').textContent=city.c;
@@ -699,6 +723,8 @@ function showCard(){
     `<div class="cb-near-row"><span class="cb-near-name">${n.n}</span><span class="cb-near-d">${fmt(n.d)} km</span></div>`).join('');
   const back=document.getElementById('card-back');
   back.dataset.m=city.m;
+
+  // Reset UI
   document.getElementById('card-inner').classList.remove('flipped');
   document.getElementById('hint-btn').disabled=false;
   document.getElementById('hint-btn').textContent='⬡ Näita vihjet (3 linna)';
@@ -707,26 +733,37 @@ function showCard(){
   document.getElementById('confirm-btn').style.display='none';
   document.getElementById('next-btn').style.display='none';
   document.getElementById('board-hint').textContent='Klõpsa ribal → vali maailmajagu ja kaugus';
+
+  // Clear bar selections
   document.querySelectorAll('.bar-row').forEach(r=>r.classList.remove('selected','active-target'));
+  // Clear guess indicators (keep placed markers)
   document.querySelectorAll('.placing-card,.guess-line,.guess-cap').forEach(e=>e.remove());
+  // Clear hint dots
   document.querySelectorAll('.marker.hint-mk').forEach(e=>e.remove());
 }
 
 function setGuess(continent,dist){
   S.guess={continent,dist};
+  // Clear previous placing indicators
   document.querySelectorAll('.placing-card,.guess-line,.guess-cap').forEach(e=>e.remove());
   document.querySelectorAll('.bar-row').forEach(r=>r.classList.remove('selected'));
+
   const bar=document.getElementById('bar-'+continent.replace(/\s+/g,'_'));
   bar.classList.add('selected');
   const track=bar.querySelector('.bar-track');
   const city=S.deck[S.cur];
+
+  // Mini card on bar
   const pc=document.createElement('div');
   pc.className='placing-card';
   pc.style.left=pct(dist)+'%';
   pc.innerHTML=`<div class="pc-name">${city.n}</div><div class="pc-q">?</div>`;
   track.appendChild(pc);
+
+  // Vertical line
   const gl=document.createElement('div');gl.className='guess-line';
   gl.style.left=pct(dist)+'%';track.appendChild(gl);
+
   document.getElementById('confirm-btn').style.display='block';
   document.getElementById('board-hint').textContent=
     `Valitud: ${continent} · ~${fmt(dist)} km — kinnita või muuda`;
@@ -738,6 +775,8 @@ function showHint(){
   const city=S.deck[S.cur];
   const btn=document.getElementById('hint-btn');
   btn.disabled=true;btn.textContent='⬡ Vihje kasutatud';
+
+  // Pick 3 hint cities: >1000km from Tallinn, not current city, spread across Tallinn-distance thirds
   const pool=CITIES.filter(c=>c.n!==city.n&&c.dist>1000);
   const shuf_pool=shuf(pool);
   const thirds=[[1000,7000],[7000,13000],[13000,20000]];
@@ -751,16 +790,23 @@ function showHint(){
     if(c)hints.push(c);else break;
   }
   const three=hints.slice(0,3);
+
+  // Arvuta kaugus kaardilinnast (mitte Tallinnast) iga vihjelinna jaoks
   three.forEach(h=>{h.distFromCard=hav(city.la,city.lo,h.la,h.lo);});
+
+  // Näita vihjelinnad: kaugus ON kaardilinnast, positsioon ribal = kaugus Tallinnast
   const disp=document.getElementById('hint-display');
   disp.style.display='block';
-  document.getElementById('hd-ttl').textContent=`Kaugus ${city.n}st`;
+  document.getElementById('hd-ttl').textContent=
+    `Kaugus ${city.n}st`;
   document.getElementById('hd-rows').innerHTML=three.map(h=>
     `<div class="hd-row">
       <span class="hd-name">${h.n}</span>
       <span class="hd-dist">${fmt(h.distFromCard)} km</span>
     </div>`
   ).join('');
+
+  // Vihjelinnade markereid ribadel ei näidata
 }
 
 function confirmGuess(){
@@ -768,13 +814,19 @@ function confirmGuess(){
   S.phase='reveal';
   const city=S.deck[S.cur];
   const {continent:gc,dist:gd}=S.guess;
+
+  // Score
   const sameM=gc===city.m;
   const sp=sameM?3:0;
   const err=Math.abs(gd-city.dist)/city.dist;
   const dp=err<.10?3:err<.25?2:err<.50?1:0;
   const score=sp+dp;
   S.pts+=score;S.done++;
+
+  // Flip card
   document.getElementById('card-inner').classList.add('flipped');
+
+  // Show correct marker on the RIGHT bar
   const correctTrack=document.querySelector(`#bar-${city.m.replace(/\s+/g,'_')} .bar-track`);
   if(correctTrack){
     const cm=document.createElement('div');cm.className='marker correct';
@@ -783,6 +835,8 @@ function confirmGuess(){
     cm.innerHTML=`<div class="marker-dot" style="background:${CONT_COLOR[city.m]}"></div><div class="marker-lbl" style="color:${CONT_COLOR[city.m]}">${city.n}</div>`;
     correctTrack.appendChild(cm);
   }
+
+  // If wrong continent, also show guess marker on the guess bar
   if(!sameM){
     const guessTrack=document.querySelector(`#bar-${gc.replace(/\s+/g,'_')} .bar-track`);
     if(guessTrack){
@@ -792,15 +846,20 @@ function confirmGuess(){
       guessTrack.appendChild(gm);
     }
   }
+
+  // Highlight bars
   document.querySelectorAll('.bar-row').forEach(r=>{
     r.classList.remove('selected');
     if(r.dataset.m===city.m)r.classList.add('active-target');
   });
+
+  // Result badge
   const rb=document.getElementById('result-badge');rb.style.display='block';
   document.getElementById('rb-pts').textContent=score;
   document.getElementById('rb-detail').innerHTML=
     `<span class="${sameM?'ok':'bad'}">${sameM?'✓ Õige maailmajagu':'✗ Vale maailmajagu'} (${city.m})</span> — ${sp}/3p<br>`+
     `<span class="${dp===3?'ok':dp>=1?'adj':'bad'}">${dp===3?'✓ Väga täpne':dp===2?'↕ Hea':dp===1?'~ Okei':'✗ Kaugel'}</span> (${fmt(city.dist)} km, sinu: ~${fmt(gd)}) — ${dp}/3p`;
+
   document.getElementById('confirm-btn').style.display='none';
   document.getElementById('next-btn').style.display='block';
   updScore();
