@@ -7,42 +7,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#08111C; --surface:#0E1E2E; --surface2:#142436;
+  --bg:#08111C;--surface:#0E1E2E;--surface2:#142436;
   --border:rgba(255,255,255,0.07);
-  --text:#E8DCC8; --muted:#5A7080; --dim:#1A2E3E;
-  --gold:#C9A84C; --goldd:rgba(201,168,76,0.3);
-
-  --eu-c:#A52020; --eu-bg:rgba(165,32,32,0.13); --eu-bd:rgba(165,32,32,0.4);
-  --as-c:#D4680A; --as-bg:rgba(212,104,10,0.13); --as-bd:rgba(212,104,10,0.4);
-  --af-c:#C9A020; --af-bg:rgba(201,160,32,0.13); --af-bd:rgba(201,160,32,0.4);
-  --na-c:#2EA830; --na-bg:rgba(46,168,48,0.13);  --na-bd:rgba(46,168,48,0.4);
-  --la-c:#1A7020; --la-bg:rgba(26,112,32,0.13);  --la-bd:rgba(26,112,32,0.4);
-  --ok-c:#9B3A9B; --ok-bg:rgba(155,58,155,0.13); --ok-bd:rgba(155,58,155,0.4);
+  --text:#E8DCC8;--muted:#5A7080;--dim:#1A2E3E;
+  --gold:#C9A84C;--goldd:rgba(201,168,76,0.3);--gold2:#E8C97A;
+  --eu-c:#A52020;--eu-bg:rgba(165,32,32,0.13);--eu-bd:rgba(165,32,32,0.4);
+  --as-c:#D4680A;--as-bg:rgba(212,104,10,0.13);--as-bd:rgba(212,104,10,0.4);
+  --af-c:#C9A020;--af-bg:rgba(201,160,32,0.13);--af-bd:rgba(201,160,32,0.4);
+  --na-c:#2EA830;--na-bg:rgba(46,168,48,0.13);--na-bd:rgba(46,168,48,0.4);
+  --la-c:#1A7020;--la-bg:rgba(26,112,32,0.13);--la-bd:rgba(26,112,32,0.4);
+  --ok-c:#9B3A9B;--ok-bg:rgba(155,58,155,0.13);--ok-bd:rgba(155,58,155,0.4);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:var(--bg); color:var(--text);
-  font-family:'Courier Prime',monospace;
-  min-height:100vh; display:flex; flex-direction:column;
-  align-items:center; padding:14px 12px 40px;
+  background:var(--bg);color:var(--text);font-family:'Courier Prime',monospace;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:14px 12px 40px;
   background-image:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.05) 0%,transparent 60%);
 }
 
 /* HEADER */
 .hdr{width:100%;max-width:1120px;display:flex;justify-content:space-between;
-  align-items:center;margin-bottom:14px}
+  align-items:center;margin-bottom:14px;gap:12px;flex-wrap:wrap}
 .hdr h1{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--gold);font-weight:900}
-.score-bar{display:flex;gap:12px;align-items:center}
+  text-transform:uppercase;color:var(--gold);font-weight:900;white-space:nowrap}
+.score-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .sb{text-align:center;background:var(--surface);border:1px solid var(--border);
   border-radius:7px;padding:7px 16px}
 .sb .v{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold)}
 .sb .l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sb.pts-sb .v{color:var(--gold2)}
+/* Progress bar */
+.progress-wrap{width:100%;max-width:1120px;margin-bottom:10px}
+.progress-bar{height:4px;background:var(--dim);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));
+  border-radius:2px;transition:width .4s ease}
+.progress-lbl{font-size:10px;color:var(--muted);text-align:right;margin-top:3px;letter-spacing:.08em}
 
 /* LAYOUT */
 .game{display:flex;gap:14px;width:100%;max-width:1120px;align-items:flex-start}
-
-/* CARD PANEL */
 .card-panel{flex:0 0 230px;display:flex;flex-direction:column;gap:10px}
 
 /* CARD */
@@ -62,22 +65,23 @@ body{
   background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(0,0,0,.012) 14px,rgba(0,0,0,.012) 15px);
   pointer-events:none}
 .cf-num{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A7050;
-  margin-bottom:10px;display:flex;justify-content:space-between}
+  margin-bottom:10px;display:flex;justify-content:space-between;position:relative;z-index:1}
 .cf-divider{border:none;border-top:1px solid rgba(201,168,76,.3);margin:8px 0}
 .cf-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;
-  color:#1A1005;line-height:1.1;margin-bottom:4px;word-break:break-word}
+  color:#1A1005;line-height:1.1;margin-bottom:4px;word-break:break-word;position:relative;z-index:1}
 .cf-name.sm{font-size:22px}.cf-name.xs{font-size:18px}
 .cf-q{font-size:12px;color:#7A6040;line-height:1.5;margin-top:auto;
-  border-top:1px solid rgba(201,168,76,.25);padding-top:8px}
+  border-top:1px solid rgba(201,168,76,.25);padding-top:8px;position:relative;z-index:1}
 .cf-q strong{display:block;font-size:14px;color:#3A2810;margin-bottom:3px}
 .hint-btn{
   margin-top:8px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);
   color:#7A5A20;font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:.08em;
   text-transform:uppercase;border-radius:5px;padding:7px 10px;cursor:pointer;
-  transition:all .18s;width:100%;
+  transition:all .18s;width:100%;position:relative;z-index:1;
 }
 .hint-btn:hover{background:rgba(201,168,76,.22);color:#3A2810}
 .hint-btn:disabled{opacity:.35;cursor:default}
+.hint-cost{font-size:10px;color:#9B2020;font-weight:700}
 
 /* BACK */
 .card-back{
@@ -85,10 +89,13 @@ body{
   display:flex;flex-direction:column;padding:14px 13px 11px;
   border:2.5px solid transparent;
 }
-.cb-region{font-size:11px;letter-spacing:.15em;text-transform:uppercase;
-  opacity:.7;margin-bottom:6px}
-.cb-dist{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;
-  line-height:1;margin-bottom:1px}
+.cb-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px}
+.cb-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;
+  opacity:.85;letter-spacing:.03em}
+.cb-flag{width:36px;height:24px;border-radius:3px;object-fit:cover;
+  margin-top:1px;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.cb-region{font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.cb-dist{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;line-height:1;margin-bottom:1px}
 .cb-dist-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
 .cb-divider{border:none;border-top:1px solid rgba(255,255,255,.15);margin:9px 0 7px}
 .cb-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:13px}
@@ -99,16 +106,20 @@ body{
 .cb-near-row{display:flex;justify-content:space-between;font-size:12px;
   padding:3px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .cb-near-row:last-child{border-bottom:none}
-.cb-near-name{opacity:.75}
-.cb-near-d{font-weight:700;opacity:.85}
+.cb-near-name{opacity:.75}.cb-near-d{font-weight:700;opacity:.85}
 
-/* RESULT BADGE */
-.result-badge{
-  text-align:center;padding:8px 10px;border-radius:8px;
-  background:var(--surface);border:1px solid var(--border);
-  display:none;
-}
-.rb-pts{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--gold)}
+/* Kaardi tagakülg maailmajao värvide järgi */
+.card-back[data-m="Euroopa"]{background:linear-gradient(145deg,#2A0808,#400E0E);border-color:var(--eu-c);color:#FFD0D0}
+.card-back[data-m="Aasia"]{background:linear-gradient(145deg,#2A1405,#42200A);border-color:var(--as-c);color:#FFE5C8}
+.card-back[data-m="Aafrika"]{background:linear-gradient(145deg,#271E04,#3E3008);border-color:var(--af-c);color:#FFF3C0}
+.card-back[data-m="Põhja-Ameerika"]{background:linear-gradient(145deg,#05200A,#0A3410);border-color:var(--na-c);color:#C8FFD0}
+.card-back[data-m="Lõuna-Ameerika"]{background:linear-gradient(145deg,#041508,#08250D);border-color:var(--la-c);color:#B8FFCA}
+.card-back[data-m="Austraalia ja Okeaania"]{background:linear-gradient(145deg,#1E0825,#2E103A);border-color:var(--ok-c);color:#F0C8FF}
+
+/* RESULT */
+.result-badge{text-align:center;padding:10px 12px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);display:none}
+.rb-pts{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--gold)}
 .rb-max{font-size:12px;color:var(--muted)}
 .rb-detail{font-size:12px;color:var(--text);line-height:1.8;margin-top:6px}
 .ok{color:#4ade80}.adj{color:#facc15}.bad{color:#f87171}
@@ -122,112 +133,116 @@ body{
 }
 .action-btn:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
 .action-btn.primary{background:rgba(201,168,76,.15)}
-.action-btn:disabled{opacity:.3;cursor:default}
 
 /* HINT DISPLAY */
-.hint-display{
-  background:var(--surface);border:1px solid var(--border);border-radius:8px;
-  padding:10px 12px;display:none;
-}
+.hint-display{background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:10px 12px;display:none}
 .hd-ttl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--muted);margin-bottom:8px}
 .hd-row{display:flex;justify-content:space-between;align-items:baseline;
   padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}
 .hd-row:last-child{border-bottom:none}
-.hd-name{color:var(--text)}
-.hd-dist{color:var(--gold);font-weight:700}
+.hd-name{color:var(--text)}.hd-dist{color:var(--gold);font-weight:700}
+
+/* SCOREBOARD */
+.scoreboard{
+  background:var(--surface);border:1px solid var(--goldd);
+  border-radius:10px;padding:12px 14px;
+}
+.sc-title{font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);
+  font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sc-title::after{content:'';flex:1;height:1px;background:var(--goldd)}
+.sc-empty{font-size:11px;color:var(--muted);text-align:center;padding:8px 0;font-style:italic}
+.sc-row{display:flex;align-items:center;gap:8px;padding:5px 0;
+  border-bottom:1px solid var(--border);font-size:12px}
+.sc-row:last-child{border-bottom:none}
+.sc-rank{font-family:'Playfair Display',serif;font-size:16px;font-weight:900;
+  color:var(--muted);min-width:20px;text-align:center}
+.sc-rank.gold{color:#FFD700}.sc-rank.silver{color:#C0C0C0}.sc-rank.bronze{color:#CD7F32}
+.sc-pts{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;
+  color:var(--gold);min-width:42px;text-align:right}
+.sc-info{flex:1;min-width:0}
+.sc-name{color:var(--text);font-size:11px;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;letter-spacing:.04em}
+.sc-meta{font-size:10px;color:var(--muted)}
+.sc-max{font-size:10px;color:var(--muted)}
 
 /* GAME OVER */
-.gameover{
-  background:var(--surface);border:1px solid var(--goldd);border-radius:12px;
-  padding:22px;text-align:center;width:100%;display:none;
+.gameover{display:none;text-align:center;padding:0}
+.go-card{background:linear-gradient(145deg,var(--surface),var(--surface2));
+  border:1px solid var(--goldd);border-radius:12px;padding:24px 20px;margin-bottom:10px}
+.go-h{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);margin-bottom:4px}
+.go-sub{font-size:11px;color:var(--muted);margin-bottom:14px;letter-spacing:.1em}
+.go-s{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;
+  color:var(--gold2);line-height:1}
+.go-max{font-size:13px;color:var(--muted);margin-bottom:16px}
+.go-grade{font-size:22px;font-weight:700;margin-bottom:6px}
+.go-msg{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.go-name-wrap{margin-bottom:14px}
+.go-name-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:5px}
+.go-name-input{
+  width:100%;background:var(--dim);border:1px solid var(--goldd);
+  color:var(--text);font-family:'Courier Prime',monospace;font-size:14px;
+  border-radius:6px;padding:8px 12px;text-align:center;outline:none;
 }
-.go-h{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);margin-bottom:8px}
-.go-s{font-family:'Playfair Display',serif;font-size:54px;font-weight:900;color:var(--gold2,var(--gold))}
-.go-m{font-size:13px;color:var(--muted);margin-bottom:14px}
-.go-r{background:var(--gold);color:#0a1520;border:none;border-radius:7px;
-  padding:10px 24px;font-family:'Courier Prime',monospace;font-weight:700;font-size:12px;
-  letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.go-r:hover{filter:brightness(1.12)}
+.go-name-input:focus{border-color:var(--gold)}
+.go-btns{display:flex;gap:8px}
+.go-save{flex:1;background:var(--gold);color:#0a1520;border:none;border-radius:7px;
+  padding:11px;font-family:'Courier Prime',monospace;font-weight:700;font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.go-save:hover{filter:brightness(1.1)}
+.go-new{flex:1;background:transparent;color:var(--gold);border:1.5px solid var(--goldd);
+  border-radius:7px;padding:11px;font-family:'Courier Prime',monospace;font-weight:700;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.go-new:hover{background:rgba(201,168,76,.1)}
 
-/* BOARD PANEL */
+/* BOARD */
 .board-panel{flex:1;min-width:0}
-.board-hint{font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;
-  letter-spacing:.06em}
-
-/* BAR ROWS */
-.bar-row{
-  margin-bottom:8px;border-radius:9px;overflow:hidden;
-  border:1.5px solid transparent;transition:border-color .2s;
-}
+.board-hint{font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;letter-spacing:.06em}
+.bar-row{margin-bottom:8px;border-radius:9px;overflow:hidden;
+  border:1.5px solid transparent;transition:border-color .2s}
 .bar-row.active-target{border-color:rgba(255,255,255,.25)!important}
-
-.bar-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:5px 10px;
-}
+.bar-row.selected{box-shadow:0 0 0 2px rgba(255,255,255,.3) inset}
+.bar-header{display:flex;align-items:center;justify-content:space-between;padding:5px 10px}
 .bar-label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .bar-dist-range{font-size:11px;opacity:.5;letter-spacing:.04em}
-
-.bar-track{
-  position:relative;height:60px;cursor:crosshair;
-  margin:0 10px 8px;border-radius:4px;
-  background:rgba(0,0,0,.3);
-  border:1px solid rgba(255,255,255,.06);
-}
-.bar-track:hover .bar-hover-line{opacity:1}
-
-/* Tick marks */
+.bar-track{position:relative;height:60px;cursor:crosshair;
+  margin:0 10px 8px;border-radius:4px;background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.06)}
 .bar-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.07);pointer-events:none}
 .bar-tick-lbl{position:absolute;bottom:-1px;transform:translateX(-50%);
   font-size:9px;color:rgba(255,255,255,.25);white-space:nowrap;pointer-events:none}
-.bar-hover-line{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.25);
-  pointer-events:none;opacity:0;transition:opacity .1s}
+.bar-hover-line{position:absolute;top:0;bottom:0;width:1px;
+  background:rgba(255,255,255,.25);pointer-events:none;opacity:0;transition:opacity .1s}
 .bar-hover-dist{position:absolute;bottom:2px;font-size:11px;
   background:rgba(0,0,0,.8);padding:2px 6px;border-radius:3px;
-  color:rgba(255,255,255,.7);pointer-events:none;transform:translateX(-50%)}
-
-/* Markers on bar */
+  color:rgba(255,255,255,.7);pointer-events:none;transform:translateX(-50%);display:none}
 .marker{position:absolute;top:50%;transform:translate(-50%,-50%);
   display:flex;flex-direction:column;align-items:center;pointer-events:none}
 .marker-dot{width:12px;height:12px;border-radius:50%;border:2px solid rgba(0,0,0,.4)}
 .marker-lbl{font-size:9px;white-space:nowrap;margin-top:2px;
   background:rgba(0,0,0,.75);padding:2px 4px;border-radius:2px;
   max-width:72px;overflow:hidden;text-overflow:ellipsis;text-align:center}
-.marker.guess .marker-dot{background:rgba(255,255,255,.4);border-color:rgba(255,255,255,.2)}
-.marker.guess .marker-lbl{color:rgba(255,255,255,.5)}
 .marker.correct .marker-dot{width:16px;height:16px;border-width:2.5px}
 .marker.correct .marker-lbl{font-weight:700}
-.marker.hint-mk .marker-dot{width:7px;height:7px;background:rgba(255,255,255,.15);
-  border:1.5px dashed rgba(255,255,255,.25)}
-.marker.hint-mk .marker-lbl{color:rgba(255,255,255,.3);font-size:6.5px}
-
-/* Guess line: vertical bar at guess position */
+.marker.guess .marker-dot{background:rgba(255,255,255,.4);border-color:rgba(255,255,255,.2)}
+.marker.guess .marker-lbl{color:rgba(255,255,255,.5)}
 .guess-line{position:absolute;top:6px;bottom:6px;width:2px;
-  background:rgba(255,255,255,.35);transform:translateX(-50%);
-  border-radius:1px;pointer-events:none}
-.guess-cap{position:absolute;top:4px;width:10px;height:10px;border-radius:50%;
-  background:white;opacity:.45;transform:translate(-50%,-50%)}
-
-/* Current guess indicator card on bar */
-.placing-card{
-  position:absolute;top:50%;transform:translate(-50%,-50%);
-  width:44px;border-radius:5px;padding:3px 4px;text-align:center;
+  background:rgba(255,255,255,.35);transform:translateX(-50%);border-radius:1px;pointer-events:none}
+.placing-card{position:absolute;top:50%;transform:translate(-50%,-50%);
+  width:48px;border-radius:5px;padding:3px 5px;text-align:center;
   border:1.5px solid rgba(255,255,255,.35);background:rgba(30,46,60,.9);
-  pointer-events:none;z-index:5;
-}
+  pointer-events:none;z-index:5}
 .pc-name{font-size:9px;font-weight:700;color:rgba(255,255,255,.85);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pc-q{font-size:8px;color:rgba(255,255,255,.35)}
 
-/* Continent row colors */
 .bar-row[data-m="Euroopa"]{background:var(--eu-bg);border-color:var(--eu-bd)}
 .bar-row[data-m="Aasia"]{background:var(--as-bg);border-color:var(--as-bd)}
 .bar-row[data-m="Aafrika"]{background:var(--af-bg);border-color:var(--af-bd)}
 .bar-row[data-m="Põhja-Ameerika"]{background:var(--na-bg);border-color:var(--na-bd)}
 .bar-row[data-m="Lõuna-Ameerika"]{background:var(--la-bg);border-color:var(--la-bd)}
 .bar-row[data-m="Austraalia ja Okeaania"]{background:var(--ok-bg);border-color:var(--ok-bd)}
-
 .bar-row[data-m="Euroopa"] .bar-label,.bar-row[data-m="Euroopa"] .bar-dist-range{color:var(--eu-c)}
 .bar-row[data-m="Aasia"] .bar-label,.bar-row[data-m="Aasia"] .bar-dist-range{color:var(--as-c)}
 .bar-row[data-m="Aafrika"] .bar-label,.bar-row[data-m="Aafrika"] .bar-dist-range{color:var(--af-c)}
@@ -235,25 +250,14 @@ body{
 .bar-row[data-m="Lõuna-Ameerika"] .bar-label,.bar-row[data-m="Lõuna-Ameerika"] .bar-dist-range{color:var(--la-c)}
 .bar-row[data-m="Austraalia ja Okeaania"] .bar-label,.bar-row[data-m="Austraalia ja Okeaania"] .bar-dist-range{color:var(--ok-c)}
 
-/* Card back continent colors */
-.card-back[data-m="Euroopa"]{background:linear-gradient(145deg,#2A0808,#400E0E);border-color:var(--eu-c);color:#FFD0D0}
-.card-back[data-m="Aasia"]{background:linear-gradient(145deg,#2A1405,#42200A);border-color:var(--as-c);color:#FFE5C8}
-.card-back[data-m="Aafrika"]{background:linear-gradient(145deg,#271E04,#3E3008);border-color:var(--af-c);color:#FFF3C0}
-.card-back[data-m="Põhja-Ameerika"]{background:linear-gradient(145deg,#05200A,#0A3410);border-color:var(--na-c);color:#C8FFD0}
-.card-back[data-m="Lõuna-Ameerika"]{background:linear-gradient(145deg,#041508,#08250D);border-color:var(--la-c);color:#B8FFCA}
-.card-back[data-m="Austraalia ja Okeaania"]{background:linear-gradient(145deg,#1E0825,#2E103A);border-color:var(--ok-c);color:#F0C8FF}
-
-/* Selected bar highlight */
-.bar-row.selected{box-shadow:0 0 0 2px rgba(255,255,255,.35) inset}
-
-/* Tutorial overlay */
+/* TUT */
 .tut{position:fixed;inset:0;background:rgba(5,10,18,.94);display:flex;
   align-items:center;justify-content:center;z-index:100}
 .tut-box{background:#0D1B2A;border:2px solid var(--goldd);border-radius:14px;
   max-width:440px;padding:28px;text-align:center}
-.tut-box h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);margin-bottom:14px}
+.tut-box h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);margin-bottom:12px}
 .tut-box p{font-size:12px;line-height:1.8;color:var(--text);margin-bottom:6px}
-.tut-steps{text-align:left;font-size:11.5px;line-height:2.1;
+.tut-steps{text-align:left;font-size:12px;line-height:2.2;
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);
   margin:12px 0;padding:10px 0}
 .tut-steps span{color:var(--gold);font-weight:700}
@@ -268,21 +272,24 @@ body{
 <div class="hdr">
   <h1>Kui kaugel see linn Tallinnast on?</h1>
   <div class="score-bar">
-    <div class="sb"><div class="v" id="s-pts">0</div><div class="l">Punktid</div></div>
+    <div class="sb pts-sb"><div class="v" id="s-pts">0</div><div class="l">Punktid</div></div>
     <div class="sb"><div class="v" id="s-done">0</div><div class="l">Mängitud</div></div>
-    <div class="sb"><div class="v" id="s-left">253</div><div class="l">Järel</div></div>
+    <div class="sb"><div class="v" id="s-left">15</div><div class="l">Järel</div></div>
+    <div class="sb"><div class="v" id="s-max">90</div><div class="l">Max pts</div></div>
   </div>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="progress-lbl" id="prog-lbl">0 / 15 kaarti</div>
 </div>
 
 <div class="game" id="game">
-  <!-- LEFT: card panel -->
   <div class="card-panel">
-    <!-- Kaart -->
     <div class="card-scene">
       <div class="card-inner" id="card-inner">
         <div class="card-face card-front" id="card-front">
           <div class="cf-num">
-            <span id="cf-num-l">1 / 62</span>
+            <span id="cf-num-l">1 / 15</span>
             <span style="color:rgba(201,168,76,.5)">✦</span>
           </div>
           <hr class="cf-divider">
@@ -291,13 +298,15 @@ body{
             <strong>Kui kaugel on see linn Tallinnast?</strong>
             Klõpsa mängulaua ribal õiges maailmajaos ja kaugusele.
           </div>
-          <button class="hint-btn" id="hint-btn" onclick="showHint()">⬡ Näita vihjet (3 linna)</button>
+          <button class="hint-btn" id="hint-btn" onclick="showHint()">
+            ⬡ Näita vihjet <span class="hint-cost">(-1p)</span>
+          </button>
         </div>
         <div class="card-face card-back" id="card-back">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
-          <div class="cb-name" id="cb-name" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;opacity:.85;letter-spacing:.03em">—</div>
-          <img id="cb-flag" src="" width="36" height="24" style="border-radius:3px;object-fit:cover;margin-top:1px;box-shadow:0 1px 4px rgba(0,0,0,.4)" alt="">
-        </div>
+          <div class="cb-top-row">
+            <div class="cb-name" id="cb-name">—</div>
+            <img class="cb-flag" id="cb-flag" src="" alt="">
+          </div>
           <div class="cb-region" id="cb-region">—</div>
           <div class="cb-dist" id="cb-dist">—</div>
           <div class="cb-dist-lbl">km Tallinnast</div>
@@ -311,34 +320,49 @@ body{
         </div>
       </div>
     </div>
-
-    <!-- Vihjed -->
     <div class="hint-display" id="hint-display">
       <div class="hd-ttl" id="hd-ttl">Kaugus kaardilinnast</div>
       <div id="hd-rows"></div>
     </div>
-
-    <!-- Tulemus -->
     <div class="result-badge" id="result-badge">
       <div class="rb-pts" id="rb-pts">0</div>
       <div class="rb-max">/ 6 punkti</div>
       <div class="rb-detail" id="rb-detail"></div>
     </div>
-
-    <!-- Nupp -->
     <button class="action-btn primary" id="confirm-btn" onclick="confirmGuess()">✓ Kinnita asukoht</button>
     <button class="action-btn" id="next-btn" onclick="nextCard()">Järgmine kaart →</button>
 
-    <!-- Gameover -->
+    <!-- GAME OVER -->
     <div class="gameover" id="gameover">
-      <div class="go-h">Mäng läbi!</div>
-      <div class="go-s" id="go-s">0</div>
-      <div class="go-m" id="go-m">0 punkti võimalikust</div>
-      <button class="go-r" onclick="startGame()">Mängi uuesti</button>
+      <div class="go-card">
+        <div class="go-h">Mäng läbi!</div>
+        <div class="go-sub" id="go-sub">15 kaarti mängitud</div>
+        <div class="go-s" id="go-s">0</div>
+        <div class="go-max" id="go-max">0 / 90 punkti</div>
+        <div class="go-grade" id="go-grade"></div>
+        <div class="go-msg" id="go-msg"></div>
+        <div class="go-name-wrap">
+          <div class="go-name-lbl">Sinu nimi tulemustabelisse</div>
+          <input class="go-name-input" id="go-name" type="text" placeholder="Sinu nimi..." maxlength="20">
+        </div>
+        <div class="go-btns">
+          <button class="go-save" onclick="saveScore()">💾 Salvesta</button>
+          <button class="go-new" onclick="startGame()">↻ Uus mäng</button>
+        </div>
+      </div>
+      <div class="scoreboard">
+        <div class="sc-title">Edetabel</div>
+        <div id="sc-list"></div>
+      </div>
+    </div>
+
+    <!-- SCOREBOARD always visible when not game over -->
+    <div class="scoreboard" id="sc-sidebar" style="display:none">
+      <div class="sc-title">Edetabel</div>
+      <div id="sc-sidebar-list"></div>
     </div>
   </div>
 
-  <!-- RIGHT: board -->
   <div class="board-panel">
     <div class="board-hint" id="board-hint">Klõpsa ribal → vali maailmajagu ja kaugus</div>
     <div id="board"></div>
@@ -348,21 +372,20 @@ body{
 <div class="tut" id="tut">
   <div class="tut-box">
     <h2>Kaugustemäng</h2>
-    <p>Kaardil on linna nimi. Sinu ülesanne: asetada see linn <b>õigesse maailmajaosse</b> ja <b>õigele kaugusele</b> Tallinnast.</p>
+    <p>Iga mäng = <b>15 juhuslikku linna</b> maailma eri nurkadest.</p>
     <div class="tut-steps">
-      <span>1.</span> Loe linna nime (esikülg)<br>
-      <span>2.</span> Vajad vihjet? Ava 3 võrdluslinna kaugused<br>
-      <span>3.</span> Klõpsa paremal <b>ribale</b> — vali maailmajagu ja kaugus<br>
-      <span>4.</span> Kinnita → kaart pööratakse ümber<br>
-      <span>5.</span> <b>Sektor: 0–3p</b> · <b>Kaugus: 0–3p</b> → max 6p kaardil
+      <span>1.</span> Kaardil on linna nimi<br>
+      <span>2.</span> Klõpsa paremal <b>ribal</b> — vali maailmajagu + kaugus<br>
+      <span>3.</span> Kinnita → õige asukoht ilmub<br>
+      <span>4.</span> <b>Sektor: 0–3p · Kaugus: 0–3p</b> → max 6p kaardil<br>
+      <span>⬡</span> Vihje avamine maksab <b>−1 punkt</b>
     </div>
-    <p style="font-size:10px;color:#4A6070">Ribad näitavad 0–20 000 km skaalat.<br>Mängitud kaardid jäävad ribale nähtavale.</p>
+    <p style="font-size:10px;color:#4A6070">Max 90 punkti per mäng (15 × 6p)</p>
     <button class="tut-go" onclick="document.getElementById('tut').style.display='none'">Alustame!</button>
   </div>
 </div>
 
 <script>
-// ═══ DATA ═══
 const CITIES=[
 {n:"Tōkyō",c:"Jaapan",m:"Aasia",p:"37.4 M",fl:"jp",la:35.689,lo:139.692,dist:7877,near:[{n:"Ōsaka",d:396},{n:"Busan",d:963},{n:"Seoul",d:1153}]},
 {n:"Delhi",c:"India",m:"Aasia",p:"32.9 M",fl:"in",la:28.614,lo:77.209,dist:5205,near:[{n:"Lahore",d:427},{n:"Islamabad",d:692},{n:"Katmandu",d:801}]},
@@ -619,66 +642,121 @@ const CITIES=[
 {n:"Kärdla",c:"Eesti",m:"Euroopa",p:"4 tuh",fl:"ee",la:58.994,lo:22.748,dist:124,near:[{n:"Haapsalu",d:46},{n:"Kuressaare",d:84},{n:"Rapla",d:117}]}
 ];
 
-const CONTS=["Euroopa","Aasia","Aafrika","Põhja-Ameerika","Lõuna-Ameerika","Austraalia ja Okeaania"];
-const CONT_ABBR={"Euroopa":"EU","Aasia":"AS","Aafrika":"AF","Põhja-Ameerika":"NA","Lõuna-Ameerika":"LA","Austraalia ja Okeaania":"OC"};
-const CONT_COLOR={"Euroopa":"var(--eu-c)","Aasia":"var(--as-c)","Aafrika":"var(--af-c)","Põhja-Ameerika":"var(--na-c)","Lõuna-Ameerika":"var(--la-c)","Austraalia ja Okeaania":"var(--ok-c)"};
+const GAME_SIZE=15;
 const MAX_D=20000;
+const CONTS=["Euroopa","Aasia","Aafrika","Põhja-Ameerika","Lõuna-Ameerika","Austraalia ja Okeaania"];
+const CONT_COLOR={"Euroopa":"var(--eu-c)","Aasia":"var(--as-c)","Aafrika":"var(--af-c)","Põhja-Ameerika":"var(--na-c)","Lõuna-Ameerika":"var(--la-c)","Austraalia ja Okeaania":"var(--ok-c)"};
 const TICKS=[1000,2000,5000,10000,15000];
+// Lähilinnad (< 500 km Tallinnast) — alati kaasatakse 2
+const NEAR_DIST=500;
 
-// ═══ GEO ═══
+// --- GRADE ---
+function grade(pts,max){
+  const p=pts/max;
+  if(p>=0.92)return{g:"⭐ Meister",m:"Suurepärane! Sa tunned maailma geograafiat hästi.",col:"#FFD700"};
+  if(p>=0.75)return{g:"🥇 Ekspert",m:"Väga hea tulemus! Mõned linnad ajasid segadusse.",col:"#C9A84C"};
+  if(p>=0.55)return{g:"🥈 Seikleja",m:"Tubli! Harjutamisega tuleb meister.",col:"#C0C0C0"};
+  if(p>=0.35)return{g:"🥉 Avastaja",m:"Hea algus — maailm on suur.",col:"#CD7F32"};
+  return{g:"🗺 Uudishimulik",m:"Jätka mängimist — kaugused selguvad!",col:"#5A7080"};
+}
+
+// --- HAVERSINE ---
 function hav(a1,o1,a2,o2){
   const R=6371,r=Math.PI/180,x=Math.sin((a2-a1)*r/2)**2+Math.cos(a1*r)*Math.cos(a2*r)*Math.sin((o2-o1)*r/2)**2;
   return Math.round(2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)));
 }
 function pct(d){return Math.min(d/MAX_D*100,99.5);}
-
-// Precompute
-// dist ja near on eelarvutatud serveri poolel
-
-function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
 function fmt(n){return n.toLocaleString('et-EE');}
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
 
-// ═══ STATE ═══
-const S={deck:[],cur:0,phase:'guess',guess:null,hintUsed:false,pts:0,done:0};
+// --- SMART DECK ---
+// Taga: igast maailmajaost vähemalt 1, 2 lähilinna (<500km), ülejäänud juhuslik
+function buildDeck(){
+  const near=CITIES.filter(c=>c.dist<=NEAR_DIST);
+  const far=CITIES.filter(c=>c.dist>NEAR_DIST);
+  const byCont={};
+  CONTS.forEach(m=>{byCont[m]=shuf(far.filter(c=>c.m===m));});
 
-// ═══ BUILD BOARD ═══
+  const deck=[];
+  // 2 lähilinna
+  shuf(near).slice(0,2).forEach(c=>deck.push(c));
+  // Igast maailmajaost vähemalt 1
+  CONTS.forEach(m=>{if(byCont[m].length)deck.push(byCont[m].shift());});
+  // Täida ülejäänud (GAME_SIZE - praegu olemas) juhuslikult
+  const used=new Set(deck.map(c=>c.n));
+  const pool=shuf(CITIES.filter(c=>!used.has(c.n)));
+  while(deck.length<GAME_SIZE&&pool.length){deck.push(pool.shift());}
+  return shuf(deck.slice(0,GAME_SIZE));
+}
+
+// --- SCOREBOARD ---
+const SC_KEY='tallinn_game_scores';
+function loadScores(){try{return JSON.parse(localStorage.getItem(SC_KEY)||'[]');}catch{return[];}}
+function saveScores(s){try{localStorage.setItem(SC_KEY,JSON.stringify(s));}catch{}}
+function addScore(name,pts,max,cards){
+  const scores=loadScores();
+  scores.push({name,pts,max,cards,date:new Date().toLocaleDateString('et-EE'),ts:Date.now()});
+  scores.sort((a,b)=>b.pts-a.pts||b.ts-a.ts);
+  saveScores(scores.slice(0,10));
+  return scores;
+}
+function renderScores(listId){
+  const scores=loadScores();
+  const el=document.getElementById(listId);if(!el)return;
+  if(!scores.length){el.innerHTML='<div class="sc-empty">Veel pole tulemusi</div>';return;}
+  const rankCls=['gold','silver','bronze'];
+  el.innerHTML=scores.slice(0,8).map((s,i)=>`
+    <div class="sc-row">
+      <div class="sc-rank ${rankCls[i]||''}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div>
+      <div class="sc-info">
+        <div class="sc-name">${s.name||'Anonüümne'}</div>
+        <div class="sc-meta">${s.date} · ${s.cards} kaarti</div>
+      </div>
+      <div>
+        <div class="sc-pts">${s.pts}</div>
+        <div class="sc-max">/ ${s.max}</div>
+      </div>
+    </div>`).join('');
+}
+
+// --- STATE ---
+const S={deck:[],cur:0,phase:'guess',guess:null,hintUsed:false,
+  pts:0,done:0,hintPenalty:0,scored:false};
+
+// --- BUILD BOARD ---
 function buildBoard(){
   const board=document.getElementById('board');board.innerHTML='';
   CONTS.forEach(m=>{
+    const key=m.replace(/\s+/g,'_');
     const row=document.createElement('div');
-    row.className='bar-row';row.dataset.m=m;row.id='bar-'+m.replace(/\s+/g,'_');
+    row.className='bar-row';row.dataset.m=m;row.id='bar-'+key;
     row.innerHTML=`
       <div class="bar-header">
         <span class="bar-label">${m}</span>
         <span class="bar-dist-range">0 — 20 000 km</span>
       </div>
-      <div class="bar-track" id="track-${m.replace(/\s+/g,'_')}">
+      <div class="bar-track" id="track-${key}">
         ${TICKS.map(t=>`
           <div class="bar-tick" style="left:${pct(t)}%"></div>
           <div class="bar-tick-lbl" style="left:${pct(t)}%">${t>=1000?t/1000+'k':t}</div>
         `).join('')}
-        <div class="bar-hover-line" id="hline-${m.replace(/\s+/g,'_')}"></div>
-        <div class="bar-hover-dist" id="hdist-${m.replace(/\s+/g,'_')}" style="display:none"></div>
+        <div class="bar-hover-line" id="hline-${key}"></div>
+        <div class="bar-hover-dist" id="hdist-${key}"></div>
       </div>`;
     board.appendChild(row);
-
-    // Click handler
     const track=row.querySelector('.bar-track');
     track.addEventListener('mousemove',e=>{
       if(S.phase!=='guess')return;
       const rect=track.getBoundingClientRect();
-      const x=e.clientX-rect.left;
-      const p=Math.max(0,Math.min(1,x/rect.width));
-      const hline=row.querySelector('.bar-hover-line');
-      const hdist=row.querySelector('.bar-hover-dist');
-      hline.style.left=p*100+'%';hline.style.opacity='1';
-      hdist.style.display='block';hdist.style.left=p*100+'%';
-      hdist.textContent=fmt(Math.round(p*MAX_D))+' km';
+      const p=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
+      row.querySelector('.bar-hover-line').style.cssText=`left:${p*100}%;opacity:1`;
+      const hd=row.querySelector('.bar-hover-dist');
+      hd.style.display='block';hd.style.left=p*100+'%';
+      hd.textContent=fmt(Math.round(p*MAX_D))+' km';
     });
     track.addEventListener('mouseleave',()=>{
-      const hline=row.querySelector('.bar-hover-line');
-      const hdist=row.querySelector('.bar-hover-dist');
-      hline.style.opacity='0';hdist.style.display='none';
+      row.querySelector('.bar-hover-line').style.opacity='0';
+      row.querySelector('.bar-hover-dist').style.display='none';
     });
     track.addEventListener('click',e=>{
       if(S.phase!=='guess')return;
@@ -689,180 +767,145 @@ function buildBoard(){
   });
 }
 
-// ═══ GAME ═══
 function startGame(){
-  S.deck=shuf(CITIES);S.cur=0;S.phase='guess';S.guess=null;S.hintUsed=false;S.pts=0;S.done=0;
+  S.deck=buildDeck();S.cur=0;S.phase='guess';S.guess=null;
+  S.hintUsed=false;S.pts=0;S.done=0;S.hintPenalty=0;S.scored=false;
   document.getElementById('gameover').style.display='none';
-  document.getElementById('card-front').style.display='flex';
-  document.getElementById('card-front').style.flexDirection='column';
+  document.getElementById('sc-sidebar').style.display='block';
+  renderScores('sc-sidebar-list');
+  buildBoard();showCard();updHdr();
   document.getElementById('card-inner').classList.remove('flipped');
-  buildBoard();showCard();updScore();
 }
 
 function showCard(){
   const city=S.deck[S.cur];
-  if(!city){endGame();return;}
   S.phase='guess';S.guess=null;S.hintUsed=false;
 
-  // Front
+  // Esikülje sisu kohe
   const nm=document.getElementById('cf-name');
   nm.textContent=city.n;
   nm.className='cf-name'+(city.n.length>13?' sm':'')+(city.n.length>17?' xs':'');
   document.getElementById('cf-num-l').textContent=`${S.cur+1} / ${S.deck.length}`;
 
-  // Back
-  document.getElementById('cb-name').textContent=city.n;
-  const flagEl=document.getElementById('cb-flag');
-  flagEl.src=`https://flagcdn.com/w40/${city.fl}.png`;
-  flagEl.alt=city.c;
-  document.getElementById('cb-region').textContent=city.m;
-  document.getElementById('cb-dist').textContent=fmt(city.dist);
-  document.getElementById('cb-country').textContent=city.c;
-  document.getElementById('cb-pop').textContent=city.p;
-  document.getElementById('cb-near-rows').innerHTML=city.near.map(n=>
-    `<div class="cb-near-row"><span class="cb-near-name">${n.n}</span><span class="cb-near-d">${fmt(n.d)} km</span></div>`).join('');
-  const back=document.getElementById('card-back');
-  back.dataset.m=city.m;
-
-  // Reset UI
+  // Alusta flip-animatsiooni kohe (tagumine külg pöördub ära)
   document.getElementById('card-inner').classList.remove('flipped');
+
+  // Uuenda tagakülje sisu animatsiooni keskel (~325ms),
+  // mil kaart on serval ja tagakülg pole näha
+  setTimeout(()=>{
+    document.getElementById('cb-name').textContent=city.n;
+    document.getElementById('cb-region').textContent=city.m;
+    document.getElementById('cb-dist').textContent=fmt(city.dist);
+    document.getElementById('cb-country').textContent=city.c;
+    document.getElementById('cb-pop').textContent=city.p;
+    document.getElementById('cb-near-rows').innerHTML=city.near.map(n=>
+      `<div class="cb-near-row"><span class="cb-near-name">${n.n}</span><span class="cb-near-d">${fmt(n.d)} km</span></div>`).join('');
+    const back=document.getElementById('card-back');back.dataset.m=city.m;
+    const flagEl=document.getElementById('cb-flag');
+    flagEl.src=`https://flagcdn.com/w40/${city.fl}.png`;flagEl.alt=city.c;
+  }, 325);
+
   document.getElementById('hint-btn').disabled=false;
-  document.getElementById('hint-btn').textContent='⬡ Näita vihjet (3 linna)';
+  document.getElementById('hint-btn').innerHTML='⬡ Näita vihjet <span class="hint-cost">(-1p)</span>';
   document.getElementById('hint-display').style.display='none';
   document.getElementById('result-badge').style.display='none';
   document.getElementById('confirm-btn').style.display='none';
   document.getElementById('next-btn').style.display='none';
   document.getElementById('board-hint').textContent='Klõpsa ribal → vali maailmajagu ja kaugus';
-
-  // Clear bar selections
   document.querySelectorAll('.bar-row').forEach(r=>r.classList.remove('selected','active-target'));
-  // Clear guess indicators (keep placed markers)
-  document.querySelectorAll('.placing-card,.guess-line,.guess-cap').forEach(e=>e.remove());
-  // Clear hint dots
-  document.querySelectorAll('.marker.hint-mk').forEach(e=>e.remove());
+  document.querySelectorAll('.placing-card,.guess-line').forEach(e=>e.remove());
+  updProgress();
 }
 
 function setGuess(continent,dist){
   S.guess={continent,dist};
-  // Clear previous placing indicators
-  document.querySelectorAll('.placing-card,.guess-line,.guess-cap').forEach(e=>e.remove());
+  document.querySelectorAll('.placing-card,.guess-line').forEach(e=>e.remove());
   document.querySelectorAll('.bar-row').forEach(r=>r.classList.remove('selected'));
-
   const bar=document.getElementById('bar-'+continent.replace(/\s+/g,'_'));
   bar.classList.add('selected');
   const track=bar.querySelector('.bar-track');
   const city=S.deck[S.cur];
-
-  // Mini card on bar
-  const pc=document.createElement('div');
-  pc.className='placing-card';
+  const pc=document.createElement('div');pc.className='placing-card';
   pc.style.left=pct(dist)+'%';
-  pc.innerHTML=`<div class="pc-name">${city.n}</div><div class="pc-q">?</div>`;
+  pc.innerHTML=`<div class="pc-name">${city.n}</div><div style="font-size:8px;color:rgba(255,255,255,.4)">?</div>`;
   track.appendChild(pc);
-
-  // Vertical line
   const gl=document.createElement('div');gl.className='guess-line';
   gl.style.left=pct(dist)+'%';track.appendChild(gl);
-
   document.getElementById('confirm-btn').style.display='block';
-  document.getElementById('board-hint').textContent=
-    `Valitud: ${continent} · ~${fmt(dist)} km — kinnita või muuda`;
+  document.getElementById('board-hint').textContent=`${continent} · ~${fmt(dist)} km — kinnita või muuda`;
 }
 
 function showHint(){
   if(S.hintUsed)return;
   S.hintUsed=true;
+  S.hintPenalty=1;
+  document.getElementById('hint-btn').disabled=true;
+  document.getElementById('hint-btn').innerHTML='⬡ Vihje kasutatud (-1p)';
   const city=S.deck[S.cur];
-  const btn=document.getElementById('hint-btn');
-  btn.disabled=true;btn.textContent='⬡ Vihje kasutatud';
-
-  // Pick 3 hint cities: >1000km from Tallinn, not current city, spread across Tallinn-distance thirds
   const pool=CITIES.filter(c=>c.n!==city.n&&c.dist>1000);
-  const shuf_pool=shuf(pool);
+  const sp=shuf(pool);
   const thirds=[[1000,7000],[7000,13000],[13000,20000]];
   const hints=[];
   thirds.forEach(([lo,hi])=>{
-    const cands=shuf_pool.filter(c=>c.dist>=lo&&c.dist<hi&&!hints.includes(c));
-    if(cands.length)hints.push(cands[0]);
+    const c=sp.find(x=>x.dist>=lo&&x.dist<hi&&!hints.includes(x));
+    if(c)hints.push(c);
   });
-  while(hints.length<3&&shuf_pool.length>hints.length){
-    const c=shuf_pool.find(x=>!hints.includes(x));
-    if(c)hints.push(c);else break;
-  }
+  while(hints.length<3){const c=sp.find(x=>!hints.includes(x));if(c)hints.push(c);else break;}
   const three=hints.slice(0,3);
-
-  // Arvuta kaugus kaardilinnast (mitte Tallinnast) iga vihjelinna jaoks
   three.forEach(h=>{h.distFromCard=hav(city.la,city.lo,h.la,h.lo);});
-
-  // Näita vihjelinnad: kaugus ON kaardilinnast, positsioon ribal = kaugus Tallinnast
-  const disp=document.getElementById('hint-display');
-  disp.style.display='block';
-  document.getElementById('hd-ttl').textContent=
-    `Kaugus ${city.n}st`;
+  document.getElementById('hd-ttl').textContent=`Kaugus linnast ${city.n}`;
   document.getElementById('hd-rows').innerHTML=three.map(h=>
-    `<div class="hd-row">
-      <span class="hd-name">${h.n}</span>
-      <span class="hd-dist">${fmt(h.distFromCard)} km</span>
-    </div>`
+    `<div class="hd-row"><span class="hd-name">${h.n}</span><span class="hd-dist">${fmt(h.distFromCard)} km</span></div>`
   ).join('');
-
-  // Vihjelinnade markereid ribadel ei näidata
+  document.getElementById('hint-display').style.display='block';
 }
 
 function confirmGuess(){
   if(!S.guess||S.phase!=='guess')return;
   S.phase='reveal';
   const city=S.deck[S.cur];
-  const {continent:gc,dist:gd}=S.guess;
-
-  // Score
+  const{continent:gc,dist:gd}=S.guess;
   const sameM=gc===city.m;
   const sp=sameM?3:0;
   const err=Math.abs(gd-city.dist)/city.dist;
   const dp=err<.10?3:err<.25?2:err<.50?1:0;
-  const score=sp+dp;
+  const raw=sp+dp;
+  const score=Math.max(0,raw-S.hintPenalty);
   S.pts+=score;S.done++;
-
-  // Flip card
   document.getElementById('card-inner').classList.add('flipped');
-
-  // Show correct marker on the RIGHT bar
-  const correctTrack=document.querySelector(`#bar-${city.m.replace(/\s+/g,'_')} .bar-track`);
-  if(correctTrack){
+  // Correct marker
+  const ct=document.querySelector(`#bar-${city.m.replace(/\s+/g,'_')} .bar-track`);
+  if(ct){
     const cm=document.createElement('div');cm.className='marker correct';
     cm.style.left=pct(city.dist)+'%';
     cm.style.color=CONT_COLOR[city.m];
     cm.innerHTML=`<div class="marker-dot" style="background:${CONT_COLOR[city.m]}"></div><div class="marker-lbl" style="color:${CONT_COLOR[city.m]}">${city.n}</div>`;
-    correctTrack.appendChild(cm);
+    ct.appendChild(cm);
   }
-
-  // If wrong continent, also show guess marker on the guess bar
   if(!sameM){
-    const guessTrack=document.querySelector(`#bar-${gc.replace(/\s+/g,'_')} .bar-track`);
-    if(guessTrack){
+    const gt=document.querySelector(`#bar-${gc.replace(/\s+/g,'_')} .bar-track`);
+    if(gt){
       const gm=document.createElement('div');gm.className='marker guess';
       gm.style.left=pct(gd)+'%';
-      gm.innerHTML=`<div class="marker-dot" style="background:rgba(255,255,255,0.3)"></div><div class="marker-lbl">?</div>`;
-      guessTrack.appendChild(gm);
+      gm.innerHTML=`<div class="marker-dot"></div><div class="marker-lbl">?</div>`;
+      gt.appendChild(gm);
     }
   }
-
-  // Highlight bars
   document.querySelectorAll('.bar-row').forEach(r=>{
     r.classList.remove('selected');
     if(r.dataset.m===city.m)r.classList.add('active-target');
   });
-
-  // Result badge
-  const rb=document.getElementById('result-badge');rb.style.display='block';
+  const hintNote=S.hintPenalty?` <span class="bad">(-1p vihje)</span>`:'';
+  document.getElementById('result-badge').style.display='block';
   document.getElementById('rb-pts').textContent=score;
   document.getElementById('rb-detail').innerHTML=
-    `<span class="${sameM?'ok':'bad'}">${sameM?'✓ Õige maailmajagu':'✗ Vale maailmajagu'} (${city.m})</span> — ${sp}/3p<br>`+
-    `<span class="${dp===3?'ok':dp>=1?'adj':'bad'}">${dp===3?'✓ Väga täpne':dp===2?'↕ Hea':dp===1?'~ Okei':'✗ Kaugel'}</span> (${fmt(city.dist)} km, sinu: ~${fmt(gd)}) — ${dp}/3p`;
-
+    `<span class="${sameM?'ok':'bad'}">${sameM?'✓ Õige maailmajagu':'✗ Vale maailmajagu'}</span> — ${sp}/3p<br>`+
+    `<span class="${dp===3?'ok':dp>=1?'adj':'bad'}">${dp===3?'✓ Väga täpne':dp===2?'↕ Hea':dp===1?'~ Okei':'✗ Kaugel'}</span> (${fmt(city.dist)} km) — ${dp}/3p${hintNote}`;
   document.getElementById('confirm-btn').style.display='none';
+  const isLast=S.cur===S.deck.length-1;
   document.getElementById('next-btn').style.display='block';
-  updScore();
+  document.getElementById('next-btn').textContent=isLast?'Vaata tulemust →':'Järgmine kaart →';
+  updHdr();updProgress();
 }
 
 function nextCard(){
@@ -873,21 +916,51 @@ function nextCard(){
 
 function endGame(){
   S.phase='done';
-  document.getElementById('gameover').style.display='block';
+  const max=S.deck.length*6;
   document.getElementById('confirm-btn').style.display='none';
   document.getElementById('next-btn').style.display='none';
   document.getElementById('result-badge').style.display='none';
+  document.getElementById('hint-display').style.display='none';
+  document.getElementById('sc-sidebar').style.display='none';
+  document.getElementById('gameover').style.display='block';
   document.getElementById('go-s').textContent=S.pts;
-  document.getElementById('go-m').textContent=`${S.pts} / ${S.done*6} punkti (max ${S.deck.length*6})`;
+  document.getElementById('go-max').textContent=`${S.pts} / ${max} punkti`;
+  document.getElementById('go-sub').textContent=`${S.done} kaarti mängitud`;
+  const gr=grade(S.pts,max);
+  document.getElementById('go-grade').textContent=gr.g;
+  document.getElementById('go-grade').style.color=gr.col;
+  document.getElementById('go-msg').textContent=gr.m;
+  renderScores('sc-list');
+  updProgress();
 }
 
-function updScore(){
+function saveScore(){
+  const name=(document.getElementById('go-name').value.trim()||'Anonüümne').slice(0,20);
+  const max=S.deck.length*6;
+  addScore(name,S.pts,max,S.done);
+  renderScores('sc-list');
+  renderScores('sc-sidebar-list');
+  document.getElementById('go-name').value='';
+}
+
+function updHdr(){
+  const max=S.deck.length*6;
   document.getElementById('s-pts').textContent=S.pts;
   document.getElementById('s-done').textContent=S.done;
-  document.getElementById('s-left').textContent=S.deck.length-S.done;
+  document.getElementById('s-left').textContent=Math.max(0,S.deck.length-S.done);
+  document.getElementById('s-max').textContent=max;
+}
+function updProgress(){
+  const n=S.deck.length,done=S.done;
+  const p=done/n*100;
+  document.getElementById('prog-fill').style.width=p+'%';
+  document.getElementById('prog-lbl').textContent=`${done} / ${n} kaarti`;
 }
 
+buildBoard();
 startGame();
 </script>
+
+
 </body>
 </html>
