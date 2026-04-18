@@ -209,7 +209,7 @@ body{
 .bar-dist-range{font-size:11px;opacity:.5;letter-spacing:.04em}
 .bar-track{position:relative;height:60px;cursor:crosshair;
   margin:0 10px 8px;border-radius:4px;background:rgba(0,0,0,.3);
-  border:1px solid rgba(255,255,255,.06)}
+  border:1px solid rgba(255,255,255,.06);overflow:visible}
 .bar-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.07);pointer-events:none}
 .bar-tick-lbl{position:absolute;bottom:-1px;transform:translateX(-50%);
   font-size:9px;color:rgba(255,255,255,.25);white-space:nowrap;pointer-events:none}
@@ -220,10 +220,7 @@ body{
   color:rgba(255,255,255,.7);pointer-events:none;transform:translateX(-50%);display:none}
 .marker{position:absolute;top:50%;transform:translate(-50%,-50%);
   display:flex;flex-direction:column;align-items:center;pointer-events:none}
-.marker.marker-anchor-l{transform:translate(0,-50%)}
-.marker.marker-anchor-l .marker-lbl{text-align:left}
-.marker.marker-anchor-r{transform:translate(-100%,-50%)}
-.marker.marker-anchor-r .marker-lbl{text-align:right}
+/* anchor klassid eemaldatud — marker on alati tsentreeritud */
 .marker-dot{width:12px;height:12px;border-radius:50%;border:2px solid rgba(0,0,0,.4)}
 .marker-lbl{font-size:9px;white-space:nowrap;margin-top:2px;
   background:rgba(0,0,0,.75);padding:2px 4px;border-radius:2px;
@@ -885,24 +882,43 @@ function confirmGuess(){
   const score=Math.max(0,raw-S.hintPenalty);
   S.pts+=score;S.done++;
   document.getElementById('card-inner').classList.add('flipped');
-  // Correct marker
+
+  // Eemalda paigutuskaart ja vertikaaljoon
+  document.querySelectorAll('.placing-card,.guess-line').forEach(e=>e.remove());
+
+  // Õige positsioon
+  const cpct=pct(city.dist);
   const ct=document.querySelector(`#bar-${city.m.replace(/\s+/g,'_')} .bar-track`);
   if(ct){
     const cm=document.createElement('div');cm.className='marker correct';
-    const cpct=pct(city.dist);
     cm.style.left=cpct+'%';
     cm.style.color=CONT_COLOR[city.m];
-    const anchor=cpct<14?'marker-anchor-l':cpct>86?'marker-anchor-r':'';
-    cm.classList.add(...anchor.split(' ').filter(Boolean));
     cm.innerHTML=`<div class="marker-dot" style="background:${CONT_COLOR[city.m]}"></div><div class="marker-lbl" style="color:${CONT_COLOR[city.m]}">${city.n}</div>`;
     ct.appendChild(cm);
+
+    // Väike arvamusepunkt + ühendav joon samal ribal
+    if(sameM){
+      const gpct=pct(gd);
+      const gm=document.createElement('div');gm.className='marker guess';
+      gm.style.left=gpct+'%';
+      gm.innerHTML='<div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);border:1.5px solid rgba(255,255,255,0.5);margin-bottom:2px"></div>';
+      ct.appendChild(gm);
+      const lo=Math.min(cpct,gpct),hi=Math.max(cpct,gpct);
+      if(hi-lo>0.3){
+        const ln=document.createElement('div');
+        ln.style.cssText='position:absolute;top:50%;height:2px;transform:translateY(-50%);left:'+lo+'%;width:'+(hi-lo)+'%;background:rgba(255,255,255,0.12);pointer-events:none;border-radius:1px';
+        ct.appendChild(ln);
+      }
+    }
   }
+
+  // Vale maailmajagu — arvamusepunkt teises ribas
   if(!sameM){
     const gt=document.querySelector(`#bar-${gc.replace(/\s+/g,'_')} .bar-track`);
     if(gt){
       const gm=document.createElement('div');gm.className='marker guess';
       gm.style.left=pct(gd)+'%';
-      gm.innerHTML=`<div class="marker-dot"></div><div class="marker-lbl">?</div>`;
+      gm.innerHTML='<div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px dashed rgba(255,255,255,0.4)"></div>';
       gt.appendChild(gm);
     }
   }
