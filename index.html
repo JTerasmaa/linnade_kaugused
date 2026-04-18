@@ -650,7 +650,7 @@ const GAME_SIZE=15;
 const MAX_D=20000;
 const CONTS=["Euroopa","Aasia","Aafrika","Põhja-Ameerika","Lõuna-Ameerika","Austraalia ja Okeaania"];
 const CONT_COLOR={"Euroopa":"var(--eu-c)","Aasia":"var(--as-c)","Aafrika":"var(--af-c)","Põhja-Ameerika":"var(--na-c)","Lõuna-Ameerika":"var(--la-c)","Austraalia ja Okeaania":"var(--ok-c)"};
-const TICKS=[500,1000,2000,5000,8000,12000,17000];
+const TICKS=[200,500,1000,2000,5000,10000,15000];
 // Lähilinnad (< 500 km Tallinnast) — alati kaasatakse 2
 const NEAR_DIST=500;
 
@@ -670,18 +670,13 @@ function hav(a1,o1,a2,o2){
   return Math.round(2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)));
 }
 function pct(d){
-  // Mitte-lineaarne skaala: lähedased linnad saavad rohkem ruumi
-  // 0-2000km = 0-30% | 2000-8000km = 30-65% | 8000-20000km = 65-100%
-  const d_=Math.min(d,MAX_D);
-  if(d_<=2000) return d_/2000*30;
-  if(d_<=8000) return 30+(d_-2000)/6000*35;
-  return 65+(d_-8000)/12000*35;
+  // Ruutjuurskaal: sqrt(d/20000)*100
+  // Annab rohkem ruumi lähedastele linnadele, vähem kaugematele
+  return Math.sqrt(Math.min(d,MAX_D)/MAX_D)*100;
 }
 function pctInv(p){
-  // Pöördfunktsioon: protsent → km
-  if(p<=30) return p/30*2000;
-  if(p<=65) return 2000+(p-30)/35*6000;
-  return 8000+(p-65)/35*12000;
+  // Ruutjuurskaal pöördvalem: (p/100)^2 * 20000
+  return Math.round((p/100)**2*MAX_D);
 }
 function fmt(n){return n.toLocaleString('et-EE');}
 function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
@@ -755,7 +750,7 @@ function buildBoard(){
       <div class="bar-track" id="track-${key}">
         ${TICKS.map(t=>`
           <div class="bar-tick" style="left:${pct(t)}%"></div>
-          <div class="bar-tick-lbl" style="left:${pct(t)}%">${t>=1000?t/1000+'k':t+'km'}</div>
+          <div class="bar-tick-lbl" style="left:${pct(t)}%">${t>=1000?t/1000+'k':t+''}</div>
         `).join('')}
         <div class="bar-hover-line" id="hline-${key}"></div>
         <div class="bar-hover-dist" id="hdist-${key}"></div>
@@ -897,7 +892,7 @@ function confirmGuess(){
     const cpct=pct(city.dist);
     cm.style.left=cpct+'%';
     cm.style.color=CONT_COLOR[city.m];
-    const anchor=cpct<12?'marker-anchor-l':cpct>88?'marker-anchor-r':'';
+    const anchor=cpct<14?'marker-anchor-l':cpct>86?'marker-anchor-r':'';
     cm.classList.add(...anchor.split(' ').filter(Boolean));
     cm.innerHTML=`<div class="marker-dot" style="background:${CONT_COLOR[city.m]}"></div><div class="marker-lbl" style="color:${CONT_COLOR[city.m]}">${city.n}</div>`;
     ct.appendChild(cm);
