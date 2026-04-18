@@ -276,7 +276,7 @@ body{
     <div class="sb pts-sb"><div class="v" id="s-pts">0</div><div class="l">Punktid</div></div>
     <div class="sb"><div class="v" id="s-done">0</div><div class="l">Mängitud</div></div>
     <div class="sb"><div class="v" id="s-left">15</div><div class="l">Järel</div></div>
-    <div class="sb"><div class="v" id="s-max">90</div><div class="l">Max pts</div></div>
+    <div class="sb"><div class="v" id="s-max">60</div><div class="l">Max pts</div></div>
   </div>
 </div>
 <div class="progress-wrap">
@@ -327,7 +327,7 @@ body{
     </div>
     <div class="result-badge" id="result-badge">
       <div class="rb-pts" id="rb-pts">0</div>
-      <div class="rb-max">/ 6 punkti</div>
+      <div class="rb-max">/ 4 punkti</div>
       <div class="rb-detail" id="rb-detail"></div>
     </div>
     <button class="action-btn primary" id="confirm-btn" onclick="confirmGuess()">✓ Kinnita asukoht</button>
@@ -378,10 +378,10 @@ body{
       <span>1.</span> Kaardil on linna nimi<br>
       <span>2.</span> Klõpsa paremal <b>ribal</b> — vali maailmajagu + kaugus<br>
       <span>3.</span> Kinnita → õige asukoht ilmub<br>
-      <span>4.</span> <b>Sektor: 0–3p · Kaugus: 0–3p</b> → max 6p kaardil<br>
-      <span>⬡</span> Vihje avamine maksab <b>−1 punkt</b>
+      <span>4.</span> <b>Sektor: 1p · Kaugus: 0–3p</b> → max 4p kaardil<br>
+      <span>⬡</span> Vihje avamine maksab <b>−1p</b>
     </div>
-    <p style="font-size:10px;color:#4A6070">Max 90 punkti per mäng (15 × 6p)</p>
+    <p style="font-size:10px;color:#4A6070">Max 60 punkti per mäng (15 × 4p)</p>
     <button class="tut-go" onclick="document.getElementById('tut').style.display='none'">Alustame!</button>
   </div>
 </div>
@@ -698,27 +698,85 @@ function buildDeck(){
   return shuf(deck.slice(0,GAME_SIZE));
 }
 
-// --- SCOREBOARD ---
-const SC_KEY='tallinn_game_scores';
-function loadScores(){try{return JSON.parse(localStorage.getItem(SC_KEY)||'[]');}catch{return[];}}
-function saveScores(s){try{localStorage.setItem(SC_KEY,JSON.stringify(s));}catch{}}
-function addScore(name,pts,max,cards){
-  const scores=loadScores();
-  scores.push({name,pts,max,cards,date:new Date().toLocaleDateString('et-EE'),ts:Date.now()});
-  scores.sort((a,b)=>b.pts-a.pts||b.ts-a.ts);
-  saveScores(scores.slice(0,10));
-  return scores;
+// ═══════════════════════════════════════════════════════
+// ONLINE EDETABEL — Supabase
+// ───────────────────────────────────────────────────────
+// Seadistus (üks kord):
+//  1. Mine supabase.com → loo tasuta konto ja uus projekt
+//  2. SQL Editoris käivita:
+//       CREATE TABLE scores (
+//         id bigserial primary key,
+//         name text not null,
+//         pts int not null,
+//         max_pts int not null,
+//         cards int not null,
+//         created_at timestamptz default now()
+//       );
+//       ALTER TABLE scores ENABLE ROW LEVEL SECURITY;
+//       CREATE POLICY "public read" ON scores FOR SELECT USING (true);
+//       CREATE POLICY "public insert" ON scores FOR INSERT WITH CHECK (true);
+//  3. Settings → API → kopeeri "Project URL" ja "anon public" võti alla
+//  4. Asenda SUPABASE_URL ja SUPABASE_KEY siia
+// ═══════════════════════════════════════════════════════
+const SUPABASE_URL = 'https://hrwleavlaywjzxsfryex.supabase.co'; // nt https://xxxx.supabase.co
+const SUPABASE_KEY = 'sb_publishable_gh7Wa_qOhhT7WEJtCYq35w_JTVuxZMN';
+
+const SB_CONFIGURED = !SUPABASE_URL.startsWith('SINU');
+
+async function loadScores(){
+  if(!SB_CONFIGURED) return loadLocalScores();
+  try{
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/scores?select=name,pts,max_pts,cards,created_at&order=pts.desc,created_at.asc&limit=10`,{
+      headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
+    });
+    if(!r.ok) throw new Error();
+    const data=await r.json();
+    return data.map(s=>({name:s.name,pts:s.pts,max:s.max_pts,cards:s.cards,
+      date:new Date(s.created_at).toLocaleDateString('et-EE')}));
+  }catch{return loadLocalScores();}
 }
-function renderScores(listId){
-  const scores=loadScores();
+
+async function addScore(name,pts,max,cards){
+  if(SB_CONFIGURED){
+    try{
+      await fetch(`${SUPABASE_URL}/rest/v1/scores`,{
+        method:'POST',
+        headers:{
+          'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,
+          'Content-Type':'application/json','Prefer':'return=minimal'
+        },
+        body:JSON.stringify({name,pts,max_pts:max,cards})
+      });
+    }catch(e){console.warn('Skoor ei salvestunud serverisse:',e);}
+  }
+  // Salvesta ka lokaalselt varuna
+  const local=loadLocalScores();
+  local.push({name,pts,max,cards,date:new Date().toLocaleDateString('et-EE'),ts:Date.now()});
+  local.sort((a,b)=>b.pts-a.pts||b.ts-a.ts);
+  try{localStorage.setItem('tallinn_scores',JSON.stringify(local.slice(0,10)));}catch{}
+  return await loadScores();
+}
+
+function loadLocalScores(){
+  try{return JSON.parse(localStorage.getItem('tallinn_scores')||'[]');}catch{return[];}
+}
+
+async function renderScores(listId){
   const el=document.getElementById(listId);if(!el)return;
-  if(!scores.length){el.innerHTML='<div class="sc-empty">Veel pole tulemusi</div>';return;}
+  el.innerHTML='<div class="sc-empty" style="opacity:.5;font-style:italic">Laen...</div>';
+  const scores=await loadScores();
+  if(!scores.length){
+    el.innerHTML='<div class="sc-empty">Veel pole tulemusi</div>';
+    if(!SB_CONFIGURED)el.innerHTML+='<div class="sc-empty" style="font-size:9px;margin-top:6px;opacity:.5">Ühise edetabeli jaoks seadista Supabase (juhend koodis)</div>';
+    return;
+  }
+  const medals=['🥇','🥈','🥉'];
   const rankCls=['gold','silver','bronze'];
-  el.innerHTML=scores.slice(0,8).map((s,i)=>`
+  el.innerHTML=scores.map((s,i)=>`
     <div class="sc-row">
-      <div class="sc-rank ${rankCls[i]||''}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div>
+      <div class="sc-rank ${rankCls[i]||''}">${medals[i]||i+1}</div>
       <div class="sc-info">
-        <div class="sc-name">${s.name||'Anonüümne'}</div>
+        <div class="sc-name">${(s.name||'Anonüümne').replace(/</g,'&lt;')}</div>
         <div class="sc-meta">${s.date} · ${s.cards} kaarti</div>
       </div>
       <div>
@@ -726,6 +784,7 @@ function renderScores(listId){
         <div class="sc-max">/ ${s.max}</div>
       </div>
     </div>`).join('');
+  if(SB_CONFIGURED)el.innerHTML+='<div style="font-size:9px;color:var(--muted);text-align:right;margin-top:4px;opacity:.5">🌐 ühisloend</div>';
 }
 
 // --- STATE ---
@@ -781,7 +840,7 @@ function startGame(){
   S.hintUsed=false;S.pts=0;S.done=0;S.hintPenalty=0;S.scored=false;
   document.getElementById('gameover').style.display='none';
   document.getElementById('sc-sidebar').style.display='block';
-  renderScores('sc-sidebar-list');
+  renderScores('sc-sidebar-list');  // async ok
   buildBoard();showCard();updHdr();
   document.getElementById('card-inner').classList.remove('flipped');
 }
@@ -875,7 +934,7 @@ function confirmGuess(){
   const city=S.deck[S.cur];
   const{continent:gc,dist:gd}=S.guess;
   const sameM=gc===city.m;
-  const sp=sameM?3:0;
+  const sp=sameM?1:0;
   const err=Math.abs(gd-city.dist)/city.dist;
   const dp=err<.10?3:err<.25?2:err<.50?1:0;
   const raw=sp+dp;
@@ -930,7 +989,7 @@ function confirmGuess(){
   document.getElementById('result-badge').style.display='block';
   document.getElementById('rb-pts').textContent=score;
   document.getElementById('rb-detail').innerHTML=
-    `<span class="${sameM?'ok':'bad'}">${sameM?'✓ Õige maailmajagu':'✗ Vale maailmajagu'}</span> — ${sp}/3p<br>`+
+    `<span class="${sameM?'ok':'bad'}">${sameM?'✓ Õige maailmajagu':'✗ Vale maailmajagu'}</span> — ${sp}/1p<br>`+
     `<span class="${dp===3?'ok':dp>=1?'adj':'bad'}">${dp===3?'✓ Väga täpne':dp===2?'↕ Hea':dp===1?'~ Okei':'✗ Kaugel'}</span> (${fmt(city.dist)} km) — ${dp}/3p${hintNote}`;
   document.getElementById('confirm-btn').style.display='none';
   const isLast=S.cur===S.deck.length-1;
@@ -947,7 +1006,7 @@ function nextCard(){
 
 function endGame(){
   S.phase='done';
-  const max=S.deck.length*6;
+  const max=S.deck.length*4;
   document.getElementById('confirm-btn').style.display='none';
   document.getElementById('next-btn').style.display='none';
   document.getElementById('result-badge').style.display='none';
@@ -967,15 +1026,15 @@ function endGame(){
 
 function saveScore(){
   const name=(document.getElementById('go-name').value.trim()||'Anonüümne').slice(0,20);
-  const max=S.deck.length*6;
+  const max=S.deck.length*4;
   addScore(name,S.pts,max,S.done);
   renderScores('sc-list');
-  renderScores('sc-sidebar-list');
+  renderScores('sc-sidebar-list');  // async ok
   document.getElementById('go-name').value='';
 }
 
 function updHdr(){
-  const max=S.deck.length*6;
+  const max=S.deck.length*4;
   document.getElementById('s-pts').textContent=S.pts;
   document.getElementById('s-done').textContent=S.done;
   document.getElementById('s-left').textContent=Math.max(0,S.deck.length-S.done);
